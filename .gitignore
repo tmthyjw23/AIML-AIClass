@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+.venv/
+venv/
+env/
+ENV/
+.env
+.venv_*/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AIML brain cache (if you save brain)
+*.brn
+*.brain
+
+# Logs & temp
+*.log
+*.tmp
+.opencode/
+temp/
+
+# Keep PDF & large assets out (Lecture material)
+*.pdf
+*.pdf_content.txt
+
+# Flask
+instance/
+.webassets-cache
+
+# Node (if you add frontend later)
+node_modules/

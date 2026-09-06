@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8">
+
+    <!-- ========================================== -->
+    <!-- 1. GREETINGS & PERSONA SETTING             -->
+    <!-- ========================================== -->
+
+    <!-- CORE: Sapaan Santai -->
+    <category>
+        <pattern>CORE GREETING SANTAI</pattern>
+        <template>
+            <think><set name="gaya_bahasa">santai</set></think>
+            <random>
+                <li>Yoi, ada yang bisa dibantu?</li>
+                <li>Halo bro! Mau nanya-nanya apa nih?</li>
+                <li>Woy juga! Lagi nyari info soal Fakultas Teknik Arsitektur kah?</li>
+            </random>
+        </template>
+    </category>
+
+    <!-- ROUTING: Sapaan Santai -->
+    <category><pattern>WOY</pattern><template><srai>CORE GREETING SANTAI</srai></template></category>
+    <category><pattern>WOY *</pattern><template><srai>CORE GREETING SANTAI</srai></template></category>
+    <category><pattern>P</pattern><template><srai>CORE GREETING SANTAI</srai></template></category>
+    <category><pattern>BRO</pattern><template><srai>CORE GREETING SANTAI</srai></template></category>
+    <category><pattern>CUY</pattern><template><srai>CORE GREETING SANTAI</srai></template></category>
+
+    <!-- CORE: Sapaan Formal -->
+    <category>
+        <pattern>CORE GREETING FORMAL</pattern>
+        <template>
+            <think><set name="gaya_bahasa">formal</set></think>
+            <random>
+                <li>Halo, selamat datang. Ada yang bisa saya bantu?</li>
+                <li>Selamat datang! Apakah ada informasi seputar Teknik Arsitektur yang Anda butuhkan?</li>
+                <li>Salam! Saya siap membantu menjawab pertanyaan Anda.</li>
+            </random>
+        </template>
+    </category>
+
+    <!-- ROUTING: Sapaan Formal -->
+    <category><pattern>HALO</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+    <category><pattern>HALO *</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+    <category><pattern>SELAMAT PAGI</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+    <category><pattern>SELAMAT SIANG</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+    <category><pattern>SELAMAT MALAM</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+    <category><pattern>PERMISI</pattern><template><srai>CORE GREETING FORMAL</srai></template></category>
+
+
+    <!-- ========================================== -->
+    <!-- 2. VALIDATION (IYA / OKE)                  -->
+    <!-- ========================================== -->
+
+    <category>
+        <pattern>CORE VALIDASI</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Sip, mantap. Gas lanjut, mau nanya apa lagi?</li>
+                <li value="formal">Baik. Apakah ada hal lain yang ingin Anda tanyakan?</li>
+                <li>Baik, ada lagi yang bisa saya bantu?</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>OKE</pattern><template><srai>CORE VALIDASI</srai></template></category>
+    <category><pattern>OK</pattern><template><srai>CORE VALIDASI</srai></template></category>
+    <category><pattern>SIP</pattern><template><srai>CORE VALIDASI</srai></template></category>
+    <category><pattern>IO</pattern><template><srai>CORE VALIDASI</srai></template></category>
+    <category><pattern>GASS</pattern><template><srai>CORE VALIDASI</srai></template></category>
+
+
+    <!-- ========================================== -->
+    <!-- 3. DENIAL (TIDAK / NGGAK)                  -->
+    <!-- ========================================== -->
+
+    <category>
+        <pattern>CORE TIDAK</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Oke deh, santai aja. Kalau butuh info soal Arsitektur, panggil gue ya.</li>
+                <li value="formal">Baiklah, tidak masalah. Silakan hubungi saya jika Anda butuh informasi lebih lanjut.</li>
+                <li>Baik, terima kasih.</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>TIDAK</pattern><template><srai>CORE TIDAK</srai></template></category>
+    <category><pattern>NGGAK</pattern><template><srai>CORE TIDAK</srai></template></category>
+    <category><pattern>NDA</pattern><template><srai>CORE TIDAK</srai></template></category>
+    <category><pattern>SKIP</pattern><template><srai>CORE TIDAK</srai></template></category>
+
+
+    <!-- ========================================== -->
+    <!-- 4. BRIDGING (TRANSISI KE TOPIK ARSITEKTUR) -->
+    <!-- ========================================== -->
+
+    <category>
+        <pattern>CORE BRIDGING</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">
+                    <random>
+                        <li>Ngomong-ngomong soal itu, lu udah tau belum info-info seputar Fakultas Teknik Arsitektur kita?</li>
+                        <li>Btw, gue tuh spesialis bahas Fakultas Teknik Arsitektur. Ada yang mau lu tanyain soal jurusan ini nggak?</li>
+                        <li>Asik sih bahas itu. Tapi lu ada pertanyaan spesifik soal anak Teknik Arsitektur nggak nih?</li>
+                        <li>Nah, mumpung bahas itu, lu lagi butuh info soal pendaftaran atau jadwal di Teknik Arsitektur nggak?</li>
+                    </random>
+                </li>
+                <li value="formal">
+                    <random>
+                        <li>Berbicara mengenai hal tersebut, apakah Anda memiliki pertanyaan spesifik mengenai Fakultas Teknik Arsitektur?</li>
+                        <li>Sebagai informasi tambahan, saya diprogram khusus untuk memberikan informasi seputar Fakultas Teknik Arsitektur. Ada yang ingin Anda ketahui?</li>
+                        <li>Terkait dengan kegiatan akademik, apakah ada informasi mengenai Fakultas Teknik Arsitektur yang sedang Anda cari?</li>
+                    </random>
+                </li>
+                <!-- Default jika persona belum terdeteksi -->
+                <li>Apakah Anda memiliki pertanyaan spesifik mengenai Fakultas Teknik Arsitektur? Saya siap membantu.</li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- ROUTING: Kata Kunci Kuliah & Kampus -->
+    <category><pattern>KAMPUS</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* KAMPUS</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>KAMPUS *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* KAMPUS *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+    <category><pattern>KULIAH</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* KULIAH</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>KULIAH *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* KULIAH *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+    <category><pattern>JURUSAN</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* JURUSAN *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+    <category><pattern>FAKULTAS</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* FAKULTAS *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+    <category><pattern>DOSEN</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* DOSEN *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+    <category><pattern>TUGAS</pattern><template><srai>CORE BRIDGING</srai></template></category>
+    <category><pattern>* TUGAS *</pattern><template><srai>CORE BRIDGING</srai></template></category>
+
+
+    <!-- ========================================== -->
+    <!-- 5. FALLBACK & RECOVERY (ULTIMATE CATCH-ALL)-->
+    <!-- ========================================== -->
+    <!-- PENTING: Pola bintang tunggal (*) HARUS selalu diletakkan paling bawah -->
+
+        <!-- ========================================== -->
+    <!-- 5b. SMALLTALK & HELP (tidak kaku)             -->
+    <!-- ========================================== -->
+
+    <!-- Persona -->
+    <category><pattern>SIAPA KAMU</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category><pattern>* SIAPA KAMU *</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category><pattern>KAMU SIAPA</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category><pattern>NAMA KAMU SIAPA</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category><pattern>KAMU BOT APA</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category><pattern>KAMU MANUSIA ATAU BOT</pattern><template><srai>CORE SIAPA KAMU</srai></template></category>
+    <category>
+        <pattern>CORE SIAPA KAMU</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Gue ArsitekBot — asisten Fakultas Teknik Arsitektur. Santai aja ngobrolnya, tapi jawaban gue spesialis arsitektur.</li>
+                <li value="formal">Saya adalah ArsitekBot, chatbot AIML untuk informasi Fakultas Teknik Arsitektur. Saya siap membantu.</li>
+                <li>Saya ArsitekBot, siap bantu seputar Teknik Arsitektur.</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>BISA APA</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category><pattern>* BISA APA *</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category><pattern>HELP</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category><pattern>MENU</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category><pattern>FITUR APA SAJA</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category><pattern>CARA PAKAI</pattern><template><srai>CORE BISA APA</srai></template></category>
+    <category>
+        <pattern>CORE BISA APA</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Gue bisa jawab 150+ topik: bauhaus, brutalisme, void, mezzanine, beton, skala, ergonomi, dll. Coba ketik "apa itu arsitektur tropis" atau "siapa frank lloyd wright".</li>
+                <li value="formal">Saya dapat menjawab 150+ topik arsitektur seperti Bauhaus, Brutalisme, Void, Beton Bertulang, Skala, serta info kampus. Silakan tanyakan, mis. "apa itu arsitektur tropis".</li>
+                <li>Saya bisa bantu jawab seputar arsitektur: gaya, tokoh, struktur, material. Contoh: "apa itu bauhaus".</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>APA KABAR</pattern><template><srai>CORE APA KABAR</srai></template></category>
+    <category><pattern>* APA KABAR *</pattern><template><srai>CORE APA KABAR</srai></template></category>
+    <category><pattern>GIMANA KABARMU</pattern><template><srai>CORE APA KABAR</srai></template></category>
+    <category><pattern>KABAR GIMANA</pattern><template><srai>CORE APA KABAR</srai></template></category>
+    <category>
+        <pattern>CORE APA KABAR</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai"><random><li>Baik bro, lu gimana?</li><li>Sehat cuy! Lu sendiri?</li><li>Aman! Lagi siap bahas arsitektur.</li></random></li>
+                <li value="formal"><random><li>Baik, terima kasih. Bagaimana kabar Anda?</li><li>Kabar baik. Ada yang bisa saya bantu hari ini?</li></random></li>
+                <li>Baik! Ada yang bisa dibantu?</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>CAPEK</pattern><template><srai>CORE CAPEK</srai></template></category>
+    <category><pattern>CAPE</pattern><template><srai>CORE CAPEK</srai></template></category>
+    <category><pattern>GABUT</pattern><template><srai>CORE CAPEK</srai></template></category>
+    <category><pattern>BOSAN</pattern><template><srai>CORE CAPEK</srai></template></category>
+    <category><pattern>SEDIH</pattern><template><srai>CORE CAPEK</srai></template></category>
+    <category>
+        <pattern>CORE CAPEK</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Waduh, istirahat dulu bro. Abis itu kita bahas arsitektur biar seger lagi. Mau tanya apa?</li>
+                <li value="formal">Saya mengerti. Jika Anda ingin pengalihan, saya bisa jelaskan topik arsitektur yang ringan.</li>
+                <li>Santai, ambil jeda sebentar. Mau bahas topik arsitektur apa?</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>WKWK</pattern><template><srai>CORE TAWA</srai></template></category>
+    <category><pattern>HAHA *</pattern><template><srai>CORE TAWA</srai></template></category>
+    <category><pattern>HEHE *</pattern><template><srai>CORE TAWA</srai></template></category>
+    <category><pattern>LOL</pattern><template><srai>CORE TAWA</srai></template></category>
+    <category>
+        <pattern>CORE TAWA</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai"><random><li>wkwk ngakak</li><li>haha, ada-ada aja lu</li><li>hehe, lanjut bahas arsitektur yuk</li></random></li>
+                <li value="formal">Haha, senang bisa membuat Anda terhibur. Ada pertanyaan arsitektur?</li>
+                <li>Haha!</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>TERIMA KASIH</pattern><template><srai>CORE TERIMA KASIH</srai></template></category>
+    <category><pattern>MAKASIH</pattern><template><srai>CORE TERIMA KASIH</srai></template></category>
+    <category><pattern>THANKS *</pattern><template><srai>CORE TERIMA KASIH</srai></template></category>
+    <category><pattern>MAKACI *</pattern><template><srai>CORE TERIMA KASIH</srai></template></category>
+    <category>
+        <pattern>CORE TERIMA KASIH</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Sama-sama bro! Kapan-kapan tanya lagi ya.</li>
+                <li value="formal">Sama-sama. Senang bisa membantu.</li>
+                <li>Sama-sama!</li>
+            </condition>
+        </template>
+    </category>
+
+    <category><pattern>MAAF *</pattern><template><srai>CORE MAAF</srai></template></category>
+    <category><pattern>SORRY *</pattern><template><srai>CORE MAAF</srai></template></category>
+    <category>
+        <pattern>CORE MAAF</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">Santai bro, aman.</li>
+                <li value="formal">Tidak apa-apa.</li>
+                <li>Oke, tidak masalah.</li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Typo-tolerant & slang srai -->
+    <category><pattern>HALOO</pattern><template><srai>HALO</srai></template></category>
+    <category><pattern>HALLO</pattern><template><srai>HALO</srai></template></category>
+    <category><pattern>HEI</pattern><template><srai>HALO</srai></template></category>
+    <category><pattern>HAI</pattern><template><srai>HALO</srai></template></category>
+    <category><pattern>WOI</pattern><template><srai>WOY</srai></template></category>
+    <category><pattern>OKAY</pattern><template><srai>OKE</srai></template></category>
+    <category><pattern>OKA</pattern><template><srai>OKE</srai></template></category>
+    <category><pattern>THX</pattern><template><srai>TERIMA KASIH</srai></template></category>
+
+    <!-- ========================================== -->
+    <!-- 6. CONTEXT-AWARE (predicate + that)        -->
+    <!-- ========================================== -->
+
+    <!-- Recall TOPIK -->
+    <category><pattern>TADI AKU NANYA APA</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>APA YANG TADI AKU TANYA</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>KAMU INGAT GA AKU NANYA APA</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>KAMU INGAT *</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>TOPIK TERAKHIR APA</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>APA TOPIK TERAKHIR</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category><pattern>TOPIK KITA APA</pattern><template><srai>CORE RECALL TOPIK</srai></template></category>
+    <category>
+        <pattern>CORE RECALL TOPIK</pattern>
+        <template>
+            <condition name="TOPIK">
+                <li value="">Belum ada topik spesifik tadi. Coba tanya "apa itu bauhaus" dulu.</li>
+                <li>Kamu tadi nanya soal <get name="TOPIK"/>. Mau lanjut detailnya?</li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Follow-up detail: pakai TOPIK -->
+    <category><pattern>JELASKAN LEBIH DETAIL</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>JELASIN LAGI</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>DETAIL DONK</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>LEBIH LENGKAP</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>CONTOHNYA</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>KASIH CONTOH</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>KELEBIHANNYA APA</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>KEKURANGANNYA APA</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>LANJUT</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>TERUS</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>YANG TADI</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category><pattern>YANG ITU APA</pattern><template><srai>CORE DETAIL TOPIK</srai></template></category>
+    <category>
+        <pattern>CORE DETAIL TOPIK</pattern>
+        <template>
+            <condition name="TOPIK">
+                <li value="">
+                    <random>
+                        <li>Detail tentang apa nih? Sebut topiknya, mis. "apa itu bauhaus".</li>
+                        <li>Kamu mau detail topik apa? Gue spesialis arsitektur.</li>
+                    </random>
+                </li>
+                <li>
+                    <random>
+                        <li>Maksud kamu <get name="TOPIK"/> ya? Intinya: <srai>MASTER <get name="TOPIK"/></srai> Mau contoh penerapannya juga?</li>
+                        <li>Oke, lanjut soal <get name="TOPIK"/> — <srai>MASTER <get name="TOPIK"/></srai> Mau dibahas lebih dalam bagian mana?</li>
+                    </random>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Generic follow-up KALAU YANG ... GIMANA -->
+    <category><pattern>KALAU YANG * GIMANA</pattern><template>Kamu nanya kalau yang <star/> gimana, terkait <get name="TOPIK"/>? Coba lebih spesifik, mis. "kalau yang minimalis gimana" — gue coba jawab.</template></category>
+    <category><pattern>KALAU * GIMANA</pattern><template>Kalau <star/> gimana maksudnya terkait <get name="TOPIK"/>? Bisa diperjelas sedikit?</template></category>
+    <category><pattern>* GIMANA CARA KERJANYA</pattern><template>Terkait <get name="TOPIK"/>, cara kerjanya tergantung konteks. Bisa kasih contoh kasusnya?</template></category>
+
+    <!-- that-based: jawaban ya/mau setelah bridging -->
+    <category><pattern>MAU</pattern><that>* TEKNIK ARSITEKTUR *</that><template>Asik! Langsung tanya aja — mis. "apa itu void dalam arsitektur" atau "siapa frank lloyd wright".</template></category>
+    <category><pattern>IYA MAU</pattern><that>* ARSITEKTUR *</that><template>Mantap, silakan.</template></category>
+    <category><pattern>BOLEH</pattern><that>* ARSITEKTUR *</that><template>Boleh banget, gaskeun.</template></category>
+    <category><pattern>GAS</pattern><that>* ARSITEKTUR *</that><template>Gass!</template></category>
+    <category><pattern>MAU DONG</pattern><that>* ARSITEKTUR *</that><template>Sip, tanya aja.</template></category>
+    <category><pattern>IYA</pattern><that>* ARSITEKTUR *</that><template>Oke, mau nanya apa?</template></category>
+        <category><pattern>MAU</pattern><template><condition name="gaya_bahasa"><li value="santai">Mau nanya apa bro? Gas aja.</li><li value="formal">Silakan, Anda ingin menanyakan apa?</li><li>Mau tanya apa?</li></condition></template></category>
+    <category><pattern>MAU BANGET</pattern><template><srai>MAU</srai></template></category>
+
+    <category><pattern>LANJUT DONK</pattern><that>*</that><template>Oke lanjut — <get name="TOPIK"/> tadi mau dibahas lebih dalam atau ganti topik?</template></category>
+
+    <!-- that-based untuk detail recall -->
+    <category><pattern>APA MAKSUDNYA</pattern><that>TENTANG * ADALAH *</that><template>Maksudnya penjelasan tadi tentang <get name="TOPIK"/> — intinya seperti yang gue jelasin di atas. Mau contoh visual/denah?</template></category>
+    <category><pattern>OH GITU</pattern><that>TENTANG * ADALAH *</that><template>Yoi! Mau lanjut ke topik terkait? Mis. kalau habis bahas bauhaus, bisa lanjut ke "apa itu art deco".</template></category>
+
+    <!-- History via input -->
+    <category><pattern>TADI AKU BILANG APA</pattern><template>Kamu tadi bilang: "<input index="2"/>". Terakhir: "<input index="1"/>".</template></category>
+    <category><pattern>APA INPUT TERAKHIR</pattern><template>Input terakhir kamu: "<input index="1"/>". Sebelumnya: "<input index="2"/>".</template></category>
+
+
+
+    <category>
+        <pattern>*</pattern>
+        <template>
+            <condition name="gaya_bahasa">
+                <li value="santai">
+                    <random>
+                        <li>Sorry bro, gue nggak nangkap nih maksudnya. Bisa agak diperjelas?</li>
+                        <li>Waduh, bahasa lu ketinggian buat gue. Gimana kalau kita bahas soal Fakultas Teknik Arsitektur aja?</li>
+                        <li>Hmm, kurang paham gue. Coba tanya soal jadwal atau pendaftaran Arsitektur deh, pasti gue bisa jawab.</li>
+                    </random>
+                </li>
+                <li value="formal">
+                    <random>
+                        <li>Mohon maaf, saya kurang mengerti pertanyaan Anda. Bisa tolong diperjelas?</li>
+                        <li>Pertanyaan Anda sepertinya di luar kemampuan saya. Apakah Anda ingin bertanya seputar Fakultas Teknik Arsitektur?</li>
+                        <li>Maaf, saya tidak menemukan jawaban untuk itu. Saat ini saya diprogram khusus untuk informasi Teknik Arsitektur.</li>
+                    </random>
+                </li>
+                <li>Maaf, saya kurang mengerti. Silakan tanyakan hal seputar Fakultas Teknik Arsitektur.</li>
+            </condition>
+        </template>
+    </category>
+
+</aiml>

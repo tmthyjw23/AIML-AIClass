@@ -1,0 +1,6 @@
+- Python AIML
+- flownya native untuk conversation
+- flow validasi dan penyampaian halnya lancar dan tidak kaku
+- utamanya akan menjawab mengenai Ars.aiml nanti
+- LLM untuk membuat file AIML sendiri dari File yang di upload
+- bisa tts, stt, callword

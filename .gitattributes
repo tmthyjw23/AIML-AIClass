@@ -1,0 +1,4 @@
+*.aiml text eol=lf linguist-language=XML
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf

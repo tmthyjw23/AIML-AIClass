@@ -1,0 +1,3604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8">
+
+  <!-- MASTER: APA ITU ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Arsitektur adalah seni dan ilmu dalam merancang serta merencanakan bangunan dan struktur fisik.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TEKNIK ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU TEKNIK ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU TEKNIK ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Teknik arsitektur berfokus pada keandalan struktur, efisiensi energi, serta aspek teknis dan estetika dalam perancangan bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TEKNIK ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU TEKNIK ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TEKNIK ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU TEKNIK ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TEKNIK ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU TEKNIK ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TEKNIK ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU TEKNIK ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA SAJA ELEMEN ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA SAJA ELEMEN ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA SAJA ELEMEN ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Elemen arsitektur meliputi titik, garis, bidang, volume, bentuk, ruang, warna, dan tekstur.</template>
+  </category>
+
+  <category>
+    <pattern>APA SAJA ELEMEN ARSITEKTUR</pattern>
+    <template><srai>MASTER APA SAJA ELEMEN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA SAJA ELEMEN ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA SAJA ELEMEN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA SAJA ELEMEN ARSITEKTUR</pattern>
+    <template><srai>MASTER APA SAJA ELEMEN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA SAJA ELEMEN ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA SAJA ELEMEN ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU PRINSIP DESAIN ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU PRINSIP DESAIN ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU PRINSIP DESAIN ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Prinsip desain meliputi keseimbangan, irama, proporsi, skala, penekanan, kesatuan, dan kontras.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU PRINSIP DESAIN ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU PRINSIP DESAIN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU PRINSIP DESAIN ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU PRINSIP DESAIN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PRINSIP DESAIN ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU PRINSIP DESAIN ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PRINSIP DESAIN ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU PRINSIP DESAIN ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SKALA ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU SKALA ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU SKALA ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Skala adalah perbandingan ukuran antara gambar pada cetakan dengan ukuran sebenarnya di lapangan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SKALA ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU SKALA ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SKALA ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU SKALA ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SKALA ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU SKALA ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SKALA ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU SKALA ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU PROPORSI DALAM ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU PROPORSI DALAM ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU PROPORSI DALAM ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Proporsi adalah hubungan antar bagian elemen terhadap bagian lainnya atau terhadap keseluruhan bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU PROPORSI DALAM ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU PROPORSI DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU PROPORSI DALAM ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU PROPORSI DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PROPORSI DALAM ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU PROPORSI DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PROPORSI DALAM ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU PROPORSI DALAM ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ERGONOMI -->
+  <category>
+    <pattern>MASTER APA ITU ERGONOMI</pattern>
+    <template><think><set name="TOPIK">APA ITU ERGONOMI</set></think>Tentang <get name="TOPIK"/>: Ergonomi adalah studi tentang dimensi dan kenyamanan tubuh manusia dalam interaksinya dengan elemen ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ERGONOMI</pattern>
+    <template><srai>MASTER APA ITU ERGONOMI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ERGONOMI *</pattern>
+    <template><srai>MASTER APA ITU ERGONOMI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ERGONOMI</pattern>
+    <template><srai>MASTER APA ITU ERGONOMI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ERGONOMI *</pattern>
+    <template><srai>MASTER APA ITU ERGONOMI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ANTHROPOMETRI -->
+  <category>
+    <pattern>MASTER APA ITU ANTHROPOMETRI</pattern>
+    <template><think><set name="TOPIK">APA ITU ANTHROPOMETRI</set></think>Tentang <get name="TOPIK"/>: Antropometri adalah pengukuran dimensi tubuh manusia untuk acuan merancang furnitur dan ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ANTHROPOMETRI</pattern>
+    <template><srai>MASTER APA ITU ANTHROPOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ANTHROPOMETRI *</pattern>
+    <template><srai>MASTER APA ITU ANTHROPOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ANTHROPOMETRI</pattern>
+    <template><srai>MASTER APA ITU ANTHROPOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ANTHROPOMETRI *</pattern>
+    <template><srai>MASTER APA ITU ANTHROPOMETRI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA FUNGSI ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA FUNGSI ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA FUNGSI ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Fungsi arsitektur adalah menyediakan wadah kegiatan manusia yang aman, nyaman, dan estetis.</template>
+  </category>
+
+  <category>
+    <pattern>APA FUNGSI ARSITEKTUR</pattern>
+    <template><srai>MASTER APA FUNGSI ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA FUNGSI ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA FUNGSI ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA FUNGSI ARSITEKTUR</pattern>
+    <template><srai>MASTER APA FUNGSI ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA FUNGSI ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA FUNGSI ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU VITARUVIAN TRIAD -->
+  <category>
+    <pattern>MASTER APA ITU VITARUVIAN TRIAD</pattern>
+    <template><think><set name="TOPIK">APA ITU VITARUVIAN TRIAD</set></think>Tentang <get name="TOPIK"/>: Vitruvian Triad adalah tiga prinsip utama Vitruvius: Firmitas (kekuatan), Utilitas (kegunaan), dan Venustas (keindahan).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU VITARUVIAN TRIAD</pattern>
+    <template><srai>MASTER APA ITU VITARUVIAN TRIAD</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU VITARUVIAN TRIAD *</pattern>
+    <template><srai>MASTER APA ITU VITARUVIAN TRIAD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VITARUVIAN TRIAD</pattern>
+    <template><srai>MASTER APA ITU VITARUVIAN TRIAD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VITARUVIAN TRIAD *</pattern>
+    <template><srai>MASTER APA ITU VITARUVIAN TRIAD</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FIRMITAS -->
+  <category>
+    <pattern>MASTER APA ITU FIRMITAS</pattern>
+    <template><think><set name="TOPIK">APA ITU FIRMITAS</set></think>Tentang <get name="TOPIK"/>: Firmitas merujuk pada kekuatan, kekokohan, dan keandalan struktur bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FIRMITAS</pattern>
+    <template><srai>MASTER APA ITU FIRMITAS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FIRMITAS *</pattern>
+    <template><srai>MASTER APA ITU FIRMITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FIRMITAS</pattern>
+    <template><srai>MASTER APA ITU FIRMITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FIRMITAS *</pattern>
+    <template><srai>MASTER APA ITU FIRMITAS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU UTILITAS -->
+  <category>
+    <pattern>MASTER APA ITU UTILITAS</pattern>
+    <template><think><set name="TOPIK">APA ITU UTILITAS</set></think>Tentang <get name="TOPIK"/>: Utilitas berkaitan dengan fungsi, kenyamanan, dan efisiensi pemanfaatan ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU UTILITAS</pattern>
+    <template><srai>MASTER APA ITU UTILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU UTILITAS *</pattern>
+    <template><srai>MASTER APA ITU UTILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU UTILITAS</pattern>
+    <template><srai>MASTER APA ITU UTILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU UTILITAS *</pattern>
+    <template><srai>MASTER APA ITU UTILITAS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU VENUSTAS -->
+  <category>
+    <pattern>MASTER APA ITU VENUSTAS</pattern>
+    <template><think><set name="TOPIK">APA ITU VENUSTAS</set></think>Tentang <get name="TOPIK"/>: Venustas merujuk pada nilai estetika, keindahan, dan daya tarik visual bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU VENUSTAS</pattern>
+    <template><srai>MASTER APA ITU VENUSTAS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU VENUSTAS *</pattern>
+    <template><srai>MASTER APA ITU VENUSTAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VENUSTAS</pattern>
+    <template><srai>MASTER APA ITU VENUSTAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VENUSTAS *</pattern>
+    <template><srai>MASTER APA ITU VENUSTAS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ZONASI RUANG -->
+  <category>
+    <pattern>MASTER APA ITU ZONASI RUANG</pattern>
+    <template><think><set name="TOPIK">APA ITU ZONASI RUANG</set></think>Tentang <get name="TOPIK"/>: Zonasi adalah pembagian area bangunan atau tapak berdasarkan fungsi, seperti publik, privat, atau servis.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ZONASI RUANG</pattern>
+    <template><srai>MASTER APA ITU ZONASI RUANG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ZONASI RUANG *</pattern>
+    <template><srai>MASTER APA ITU ZONASI RUANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ZONASI RUANG</pattern>
+    <template><srai>MASTER APA ITU ZONASI RUANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ZONASI RUANG *</pattern>
+    <template><srai>MASTER APA ITU ZONASI RUANG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ORIENTASI BANGUNAN -->
+  <category>
+    <pattern>MASTER APA ITU ORIENTASI BANGUNAN</pattern>
+    <template><think><set name="TOPIK">APA ITU ORIENTASI BANGUNAN</set></think>Tentang <get name="TOPIK"/>: Orientasi adalah penentuan posisi bangunan terhadap pencahayaan matahari, arah angin, dan pemandangan luar.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ORIENTASI BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ORIENTASI BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ORIENTASI BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ORIENTASI BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI BANGUNAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SITE PLAN -->
+  <category>
+    <pattern>MASTER APA ITU SITE PLAN</pattern>
+    <template><think><set name="TOPIK">APA ITU SITE PLAN</set></think>Tentang <get name="TOPIK"/>: Site plan adalah gambar rencana tapak yang menunjukkan tata letak bangunan beserta fasilitas pendukungnya.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SITE PLAN</pattern>
+    <template><srai>MASTER APA ITU SITE PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SITE PLAN *</pattern>
+    <template><srai>MASTER APA ITU SITE PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SITE PLAN</pattern>
+    <template><srai>MASTER APA ITU SITE PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SITE PLAN *</pattern>
+    <template><srai>MASTER APA ITU SITE PLAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FLOOR PLAN -->
+  <category>
+    <pattern>MASTER APA ITU FLOOR PLAN</pattern>
+    <template><think><set name="TOPIK">APA ITU FLOOR PLAN</set></think>Tentang <get name="TOPIK"/>: Floor plan atau denah adalah denah potongan horizontal yang memperlihatkan tata letak ruang pada suatu lantai.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FLOOR PLAN</pattern>
+    <template><srai>MASTER APA ITU FLOOR PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FLOOR PLAN *</pattern>
+    <template><srai>MASTER APA ITU FLOOR PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FLOOR PLAN</pattern>
+    <template><srai>MASTER APA ITU FLOOR PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FLOOR PLAN *</pattern>
+    <template><srai>MASTER APA ITU FLOOR PLAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TAMPAK BANGUNAN -->
+  <category>
+    <pattern>MASTER APA ITU TAMPAK BANGUNAN</pattern>
+    <template><think><set name="TOPIK">APA ITU TAMPAK BANGUNAN</set></think>Tentang <get name="TOPIK"/>: Tampak atau elevasi adalah gambar ortografis yang memperlihatkan sisi luar bangunan dari depan, samping, atau belakang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TAMPAK BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU TAMPAK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TAMPAK BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU TAMPAK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TAMPAK BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU TAMPAK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TAMPAK BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU TAMPAK BANGUNAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU POTONGAN BANGUNAN -->
+  <category>
+    <pattern>MASTER APA ITU POTONGAN BANGUNAN</pattern>
+    <template><think><set name="TOPIK">APA ITU POTONGAN BANGUNAN</set></think>Tentang <get name="TOPIK"/>: Gambar potongan memperlihatkan irisan vertikal bangunan untuk menunjukkan struktur bagian dalam dan ketinggian lantai.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU POTONGAN BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU POTONGAN BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU POTONGAN BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU POTONGAN BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU POTONGAN BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU POTONGAN BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU POTONGAN BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU POTONGAN BANGUNAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DETAIL ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU DETAIL ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU DETAIL ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Detail arsitektur adalah gambar teknis berskala besar yang memperlihatkan sambungan atau sambungan komponen bangunan secara spesifik.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DETAIL ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU DETAIL ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DETAIL ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU DETAIL ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DETAIL ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU DETAIL ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DETAIL ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU DETAIL ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ISOMETRI -->
+  <category>
+    <pattern>MASTER APA ITU ISOMETRI</pattern>
+    <template><think><set name="TOPIK">APA ITU ISOMETRI</set></think>Tentang <get name="TOPIK"/>: Isometri adalah teknik penggambaran 3D tanpa titik hilang dengan sudut sumbu tertentu (biasanya 30 derajat).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ISOMETRI</pattern>
+    <template><srai>MASTER APA ITU ISOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ISOMETRI *</pattern>
+    <template><srai>MASTER APA ITU ISOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ISOMETRI</pattern>
+    <template><srai>MASTER APA ITU ISOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ISOMETRI *</pattern>
+    <template><srai>MASTER APA ITU ISOMETRI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU PERSPEKTIF -->
+  <category>
+    <pattern>MASTER APA ITU PERSPEKTIF</pattern>
+    <template><think><set name="TOPIK">APA ITU PERSPEKTIF</set></think>Tentang <get name="TOPIK"/>: Perspektif adalah proyeksi penggambaran 3D yang meniru cara pandang mata manusia dengan satu, dua, atau tiga titik hilang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU PERSPEKTIF</pattern>
+    <template><srai>MASTER APA ITU PERSPEKTIF</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU PERSPEKTIF *</pattern>
+    <template><srai>MASTER APA ITU PERSPEKTIF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PERSPEKTIF</pattern>
+    <template><srai>MASTER APA ITU PERSPEKTIF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PERSPEKTIF *</pattern>
+    <template><srai>MASTER APA ITU PERSPEKTIF</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AKSONOMETRI -->
+  <category>
+    <pattern>MASTER APA ITU AKSONOMETRI</pattern>
+    <template><think><set name="TOPIK">APA ITU AKSONOMETRI</set></think>Tentang <get name="TOPIK"/>: Aksonometri adalah proyeksi paralel 3D tanpa distorsi perspektif untuk memperlihatkan hubungan antar komponen ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AKSONOMETRI</pattern>
+    <template><srai>MASTER APA ITU AKSONOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AKSONOMETRI *</pattern>
+    <template><srai>MASTER APA ITU AKSONOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AKSONOMETRI</pattern>
+    <template><srai>MASTER APA ITU AKSONOMETRI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AKSONOMETRI *</pattern>
+    <template><srai>MASTER APA ITU AKSONOMETRI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU VOID DALAM ARSITEKTUR -->
+  <category>
+    <pattern>MASTER APA ITU VOID DALAM ARSITEKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU VOID DALAM ARSITEKTUR</set></think>Tentang <get name="TOPIK"/>: Void adalah ruang kosong terbuka di antara lantai atas dan lantai bawah untuk melancarkan pencahayaan dan penghawaan alami.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU VOID DALAM ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU VOID DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU VOID DALAM ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU VOID DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VOID DALAM ARSITEKTUR</pattern>
+    <template><srai>MASTER APA ITU VOID DALAM ARSITEKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VOID DALAM ARSITEKTUR *</pattern>
+    <template><srai>MASTER APA ITU VOID DALAM ARSITEKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MEZZANINE -->
+  <category>
+    <pattern>MASTER APA ITU MEZZANINE</pattern>
+    <template><think><set name="TOPIK">APA ITU MEZZANINE</set></think>Tentang <get name="TOPIK"/>: Mezzanine adalah lantai tambahan yang berada di antara lantai utama dan plafon bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MEZZANINE</pattern>
+    <template><srai>MASTER APA ITU MEZZANINE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MEZZANINE *</pattern>
+    <template><srai>MASTER APA ITU MEZZANINE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEZZANINE</pattern>
+    <template><srai>MASTER APA ITU MEZZANINE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEZZANINE *</pattern>
+    <template><srai>MASTER APA ITU MEZZANINE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR MODERN -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR MODERN</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR MODERN</set></think>Tentang <get name="TOPIK"/>: Arsitektur modern mengutamakan simplisitas, fungsi, tanpa ornamen berlebih, serta mengedepankan bentuk geometri bersih.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR MODERN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MODERN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR MODERN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MODERN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR MODERN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MODERN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR MODERN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MODERN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR POSTMODERN -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR POSTMODERN</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR POSTMODERN</set></think>Tentang <get name="TOPIK"/>: Arsitektur postmodern merespons kemurnian modernisme dengan mengembalikan unsur dekorasi, sejarah, dan simbolisme visual.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR POSTMODERN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR POSTMODERN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR POSTMODERN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR POSTMODERN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR POSTMODERN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR POSTMODERN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR POSTMODERN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR POSTMODERN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR TROPIS -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR TROPIS</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR TROPIS</set></think>Tentang <get name="TOPIK"/>: Arsitektur tropis dirancang untuk beradaptasi dengan iklim tropis, mengutamakan ventilasi silang dan peneduh sinar matahari.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR TROPIS</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR TROPIS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR TROPIS *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR TROPIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR TROPIS</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR TROPIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR TROPIS *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR TROPIS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR VERNAKULAR -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR VERNAKULAR</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR VERNAKULAR</set></think>Tentang <get name="TOPIK"/>: Arsitektur vernakular menggunakan material lokal dan teknik tradisional khas suatu daerah untuk merespons iklim setempat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR VERNAKULAR</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR VERNAKULAR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR VERNAKULAR *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR VERNAKULAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR VERNAKULAR</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR VERNAKULAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR VERNAKULAR *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR VERNAKULAR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR MINIMALIS -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR MINIMALIS</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR MINIMALIS</set></think>Tentang <get name="TOPIK"/>: Arsitektur minimalis mengusung prinsip "less is more" dengan meminimalisasi elemen desain hingga ke tingkat paling esensial.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR MINIMALIS</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MINIMALIS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR MINIMALIS *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MINIMALIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR MINIMALIS</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MINIMALIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR MINIMALIS *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR MINIMALIS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR KLASIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR KLASIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR KLASIK</set></think>Tentang <get name="TOPIK"/>: Arsitektur klasik berasal dari tradisi Yunani dan Romawi kuno, ditandai oleh simetri, pilar berornamen, dan kolom bertingkat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR KLASIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR KLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR KLASIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR KLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR KLASIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR KLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR KLASIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR KLASIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR GOTIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR GOTIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR GOTIK</set></think>Tentang <get name="TOPIK"/>: Arsitektur gotik ditandai dengan lengkungan runcing (pointed arch), menara tinggi, penopang layang (flying buttress), dan kaca patri.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR GOTIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR GOTIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR GOTIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR GOTIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR GOTIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR GOTIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR GOTIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR GOTIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR BAROK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR BAROK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR BAROK</set></think>Tentang <get name="TOPIK"/>: Arsitektur barok mengedepankan dramatisasi visual, kubah megah, ornamen melengkung, serta permainan cahaya dan bayangan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR BAROK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BAROK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR BAROK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BAROK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BAROK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BAROK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BAROK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BAROK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR BRUTALISME -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR BRUTALISME</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR BRUTALISME</set></think>Tentang <get name="TOPIK"/>: Brutalisme mengekspos material mentah seperti beton tanpa finishing (beton brut) dengan bentuk-bentuk geometris masif.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR BRUTALISME</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BRUTALISME</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR BRUTALISME *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BRUTALISME</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BRUTALISME</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BRUTALISME</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BRUTALISME *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BRUTALISME</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR DEKONSTRUKSIVIZME -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</set></think>Tentang <get name="TOPIK"/>: Dekonstruktivisme memecah bentuk arsitektur konvensional menjadi struktur yang tampak tak simetris, terfragmentasi, dan kontras.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR DEKONSTRUKSIVIZME *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR DEKONSTRUKSIVIZME *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR DEKONSTRUKSIVIZME</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR PARAMETRIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR PARAMETRIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR PARAMETRIK</set></think>Tentang <get name="TOPIK"/>: Arsitektur parametrik menggunakan pemodelan algoritmik berbasis data untuk menciptakan bentuk fluida dan kompleks.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR PARAMETRIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR PARAMETRIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR PARAMETRIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR PARAMETRIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR PARAMETRIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR PARAMETRIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR PARAMETRIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR PARAMETRIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR BIOKLIMATIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR BIOKLIMATIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR BIOKLIMATIK</set></think>Tentang <get name="TOPIK"/>: Arsitektur bioklimatik merancang bangunan dengan memanfaatkan kondisi iklim sekitar guna mengoptimalkan kenyamanan alami.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR BIOKLIMATIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BIOKLIMATIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR BIOKLIMATIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BIOKLIMATIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BIOKLIMATIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BIOKLIMATIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR BIOKLIMATIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR BIOKLIMATIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR ORGANIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR ORGANIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR ORGANIK</set></think>Tentang <get name="TOPIK"/>: Arsitektur organik memadukan bangunan secara selaras dengan lingkungan alam disekitarnya, diusung oleh Frank Lloyd Wright.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR ORGANIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR ORGANIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR ORGANIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR ORGANIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR ORGANIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR ORGANIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR ORGANIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR ORGANIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ART DECO -->
+  <category>
+    <pattern>MASTER APA ITU ART DECO</pattern>
+    <template><think><set name="TOPIK">APA ITU ART DECO</set></think>Tentang <get name="TOPIK"/>: Art Deco mengombinasikan ornamen geometris modern, warna mencolok, dan bentuk garis tegas khas awal abad ke-20.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ART DECO</pattern>
+    <template><srai>MASTER APA ITU ART DECO</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ART DECO *</pattern>
+    <template><srai>MASTER APA ITU ART DECO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ART DECO</pattern>
+    <template><srai>MASTER APA ITU ART DECO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ART DECO *</pattern>
+    <template><srai>MASTER APA ITU ART DECO</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BAUHAUS -->
+  <category>
+    <pattern>MASTER APA ITU BAUHAUS</pattern>
+    <template><think><set name="TOPIK">APA ITU BAUHAUS</set></think>Tentang <get name="TOPIK"/>: Bauhaus adalah aliran yang memadukan seni dan industri, dengan prinsip bahwa bentuk bangunan harus mengikuti fungsinya (form follows function).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BAUHAUS</pattern>
+    <template><srai>MASTER APA ITU BAUHAUS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BAUHAUS *</pattern>
+    <template><srai>MASTER APA ITU BAUHAUS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAUHAUS</pattern>
+    <template><srai>MASTER APA ITU BAUHAUS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAUHAUS *</pattern>
+    <template><srai>MASTER APA ITU BAUHAUS</srai></template>
+  </category>
+
+
+  <!-- MASTER: SIAPA LE CORBUSIER -->
+  <category>
+    <pattern>MASTER SIAPA LE CORBUSIER</pattern>
+    <template><think><set name="TOPIK">SIAPA LE CORBUSIER</set></think>Tentang <get name="TOPIK"/>: Le Corbusier adalah salah satu pionir arsitektur modern yang merumuskan 'Five Points of Architecture'.</template>
+  </category>
+
+  <category>
+    <pattern>SIAPA LE CORBUSIER</pattern>
+    <template><srai>MASTER SIAPA LE CORBUSIER</srai></template>
+  </category>
+  <category>
+    <pattern>SIAPA LE CORBUSIER *</pattern>
+    <template><srai>MASTER SIAPA LE CORBUSIER</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA LE CORBUSIER</pattern>
+    <template><srai>MASTER SIAPA LE CORBUSIER</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA LE CORBUSIER *</pattern>
+    <template><srai>MASTER SIAPA LE CORBUSIER</srai></template>
+  </category>
+
+
+  <!-- MASTER: SIAPA FRANK LLOYD WRIGHT -->
+  <category>
+    <pattern>MASTER SIAPA FRANK LLOYD WRIGHT</pattern>
+    <template><think><set name="TOPIK">SIAPA FRANK LLOYD WRIGHT</set></think>Tentang <get name="TOPIK"/>: Frank Lloyd Wright adalah arsitek ternama Amerika yang mempopulerkan arsitektur organik dan desain Fallingwater.</template>
+  </category>
+
+  <category>
+    <pattern>SIAPA FRANK LLOYD WRIGHT</pattern>
+    <template><srai>MASTER SIAPA FRANK LLOYD WRIGHT</srai></template>
+  </category>
+  <category>
+    <pattern>SIAPA FRANK LLOYD WRIGHT *</pattern>
+    <template><srai>MASTER SIAPA FRANK LLOYD WRIGHT</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA FRANK LLOYD WRIGHT</pattern>
+    <template><srai>MASTER SIAPA FRANK LLOYD WRIGHT</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA FRANK LLOYD WRIGHT *</pattern>
+    <template><srai>MASTER SIAPA FRANK LLOYD WRIGHT</srai></template>
+  </category>
+
+
+  <!-- MASTER: SIAPA ZAHA HADID -->
+  <category>
+    <pattern>MASTER SIAPA ZAHA HADID</pattern>
+    <template><think><set name="TOPIK">SIAPA ZAHA HADID</set></think>Tentang <get name="TOPIK"/>: Zaha Hadid adalah arsitek wanita perintis gaya parametrik dan bentuk-bentuk futuristik yang dinamis.</template>
+  </category>
+
+  <category>
+    <pattern>SIAPA ZAHA HADID</pattern>
+    <template><srai>MASTER SIAPA ZAHA HADID</srai></template>
+  </category>
+  <category>
+    <pattern>SIAPA ZAHA HADID *</pattern>
+    <template><srai>MASTER SIAPA ZAHA HADID</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA ZAHA HADID</pattern>
+    <template><srai>MASTER SIAPA ZAHA HADID</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA ZAHA HADID *</pattern>
+    <template><srai>MASTER SIAPA ZAHA HADID</srai></template>
+  </category>
+
+
+  <!-- MASTER: SIAPA MIES VAN DER ROHE -->
+  <category>
+    <pattern>MASTER SIAPA MIES VAN DER ROHE</pattern>
+    <template><think><set name="TOPIK">SIAPA MIES VAN DER ROHE</set></think>Tentang <get name="TOPIK"/>: Mies van der Rohe adalah tokoh arsitektur modern yang terkenal dengan kutipan "Less is more" dan "God is in the details".</template>
+  </category>
+
+  <category>
+    <pattern>SIAPA MIES VAN DER ROHE</pattern>
+    <template><srai>MASTER SIAPA MIES VAN DER ROHE</srai></template>
+  </category>
+  <category>
+    <pattern>SIAPA MIES VAN DER ROHE *</pattern>
+    <template><srai>MASTER SIAPA MIES VAN DER ROHE</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA MIES VAN DER ROHE</pattern>
+    <template><srai>MASTER SIAPA MIES VAN DER ROHE</srai></template>
+  </category>
+  <category>
+    <pattern>* SIAPA MIES VAN DER ROHE *</pattern>
+    <template><srai>MASTER SIAPA MIES VAN DER ROHE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FORM FOLLOWS FUNCTION -->
+  <category>
+    <pattern>MASTER APA ITU FORM FOLLOWS FUNCTION</pattern>
+    <template><think><set name="TOPIK">APA ITU FORM FOLLOWS FUNCTION</set></think>Tentang <get name="TOPIK"/>: Form follows function adalah prinsip bahwa bentuk fisik bangunan harus ditentukan oleh fungsi utama bangunan tersebut.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FORM FOLLOWS FUNCTION</pattern>
+    <template><srai>MASTER APA ITU FORM FOLLOWS FUNCTION</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FORM FOLLOWS FUNCTION *</pattern>
+    <template><srai>MASTER APA ITU FORM FOLLOWS FUNCTION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FORM FOLLOWS FUNCTION</pattern>
+    <template><srai>MASTER APA ITU FORM FOLLOWS FUNCTION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FORM FOLLOWS FUNCTION *</pattern>
+    <template><srai>MASTER APA ITU FORM FOLLOWS FUNCTION</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU LESS IS MORE -->
+  <category>
+    <pattern>MASTER APA ITU LESS IS MORE</pattern>
+    <template><think><set name="TOPIK">APA ITU LESS IS MORE</set></think>Tentang <get name="TOPIK"/>: Less is more adalah ungkapan yang menyatakan bahwa kesederhanaan dalam desain dapat menghasilkan dampak keindahan yang optimal.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU LESS IS MORE</pattern>
+    <template><srai>MASTER APA ITU LESS IS MORE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU LESS IS MORE *</pattern>
+    <template><srai>MASTER APA ITU LESS IS MORE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LESS IS MORE</pattern>
+    <template><srai>MASTER APA ITU LESS IS MORE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LESS IS MORE *</pattern>
+    <template><srai>MASTER APA ITU LESS IS MORE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR NEOKLASIK -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR NEOKLASIK</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR NEOKLASIK</set></think>Tentang <get name="TOPIK"/>: Neoklasik adalah gaya yang menghidupkan kembali elemen klasik Yunani-Romawi dengan eksekusi geometris yang lebih bersih.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR NEOKLASIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR NEOKLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR NEOKLASIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR NEOKLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR NEOKLASIK</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR NEOKLASIK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR NEOKLASIK *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR NEOKLASIK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR INDUSTRIAL -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR INDUSTRIAL</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR INDUSTRIAL</set></think>Tentang <get name="TOPIK"/>: Gaya industrial mengekspos elemen struktural dan utilitas seperti pipa, kabel, saluran ducting, serta dinding bata ekspos.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR INDUSTRIAL</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR INDUSTRIAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR INDUSTRIAL *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR INDUSTRIAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR INDUSTRIAL</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR INDUSTRIAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR INDUSTRIAL *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR INDUSTRIAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR SCANDINAVIAN -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR SCANDINAVIAN</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR SCANDINAVIAN</set></think>Tentang <get name="TOPIK"/>: Gaya Scandinavian berfokus pada pencahayaan alami, warna netral, kepraktisan, dan penggunaan kayu yang hangat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR SCANDINAVIAN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR SCANDINAVIAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR SCANDINAVIAN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR SCANDINAVIAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR SCANDINAVIAN</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR SCANDINAVIAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR SCANDINAVIAN *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR SCANDINAVIAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ARSITEKTUR JAPANDI -->
+  <category>
+    <pattern>MASTER APA ITU ARSITEKTUR JAPANDI</pattern>
+    <template><think><set name="TOPIK">APA ITU ARSITEKTUR JAPANDI</set></think>Tentang <get name="TOPIK"/>: Japandi adalah kombinasi estetika minimalis Jepang (wabi-sabi) dan kenyamanan gaya Scandinavian (hygge).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ARSITEKTUR JAPANDI</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR JAPANDI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ARSITEKTUR JAPANDI *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR JAPANDI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR JAPANDI</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR JAPANDI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ARSITEKTUR JAPANDI *</pattern>
+    <template><srai>MASTER APA ITU ARSITEKTUR JAPANDI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BETON BERTULANG -->
+  <category>
+    <pattern>MASTER APA ITU BETON BERTULANG</pattern>
+    <template><think><set name="TOPIK">APA ITU BETON BERTULANG</set></think>Tentang <get name="TOPIK"/>: Beton bertulang adalah gabungan beton dan baja tulangan untuk menahan gaya tekan dan tarik secara bersamaan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BETON BERTULANG</pattern>
+    <template><srai>MASTER APA ITU BETON BERTULANG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BETON BERTULANG *</pattern>
+    <template><srai>MASTER APA ITU BETON BERTULANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BETON BERTULANG</pattern>
+    <template><srai>MASTER APA ITU BETON BERTULANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BETON BERTULANG *</pattern>
+    <template><srai>MASTER APA ITU BETON BERTULANG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BETON PRACETAK -->
+  <category>
+    <pattern>MASTER APA ITU BETON PRACETAK</pattern>
+    <template><think><set name="TOPIK">APA ITU BETON PRACETAK</set></think>Tentang <get name="TOPIK"/>: Beton pracetak (precast) adalah komponen beton yang dicetak dan dikeringkan di pabrik sebelum dipasang di lokasi proyek.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BETON PRACETAK</pattern>
+    <template><srai>MASTER APA ITU BETON PRACETAK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BETON PRACETAK *</pattern>
+    <template><srai>MASTER APA ITU BETON PRACETAK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BETON PRACETAK</pattern>
+    <template><srai>MASTER APA ITU BETON PRACETAK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BETON PRACETAK *</pattern>
+    <template><srai>MASTER APA ITU BETON PRACETAK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BAJA RINGAN -->
+  <category>
+    <pattern>MASTER APA ITU BAJA RINGAN</pattern>
+    <template><think><set name="TOPIK">APA ITU BAJA RINGAN</set></think>Tentang <get name="TOPIK"/>: Baja ringan adalah material baja mutu tinggi berkadar karbon rendah yang tipis, kuat, dan tahan karat untuk rangka atap.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BAJA RINGAN</pattern>
+    <template><srai>MASTER APA ITU BAJA RINGAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BAJA RINGAN *</pattern>
+    <template><srai>MASTER APA ITU BAJA RINGAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAJA RINGAN</pattern>
+    <template><srai>MASTER APA ITU BAJA RINGAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAJA RINGAN *</pattern>
+    <template><srai>MASTER APA ITU BAJA RINGAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BAJA STRUKTUR -->
+  <category>
+    <pattern>MASTER APA ITU BAJA STRUKTUR</pattern>
+    <template><think><set name="TOPIK">APA ITU BAJA STRUKTUR</set></think>Tentang <get name="TOPIK"/>: Baja struktur seperti profil I-beam atau H-beam digunakan untuk menopang beban konstruksi berskala besar.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BAJA STRUKTUR</pattern>
+    <template><srai>MASTER APA ITU BAJA STRUKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BAJA STRUKTUR *</pattern>
+    <template><srai>MASTER APA ITU BAJA STRUKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAJA STRUKTUR</pattern>
+    <template><srai>MASTER APA ITU BAJA STRUKTUR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAJA STRUKTUR *</pattern>
+    <template><srai>MASTER APA ITU BAJA STRUKTUR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KACA LOW E -->
+  <category>
+    <pattern>MASTER APA ITU KACA LOW E</pattern>
+    <template><think><set name="TOPIK">APA ITU KACA LOW E</set></think>Tentang <get name="TOPIK"/>: Kaca Low-E (Low-Emissivity) memiliki lapisan khusus untuk memantulkan radiasi panas matahari tanpa mengurangi masuknya cahaya.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KACA LOW E</pattern>
+    <template><srai>MASTER APA ITU KACA LOW E</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KACA LOW E *</pattern>
+    <template><srai>MASTER APA ITU KACA LOW E</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KACA LOW E</pattern>
+    <template><srai>MASTER APA ITU KACA LOW E</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KACA LOW E *</pattern>
+    <template><srai>MASTER APA ITU KACA LOW E</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TEMPERED GLASS -->
+  <category>
+    <pattern>MASTER APA ITU TEMPERED GLASS</pattern>
+    <template><think><set name="TOPIK">APA ITU TEMPERED GLASS</set></think>Tentang <get name="TOPIK"/>: Tempered glass adalah kaca yang diperkuat melalui proses termal, sehingga pecahan kacanya berbentuk tumpul yang relatif aman.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TEMPERED GLASS</pattern>
+    <template><srai>MASTER APA ITU TEMPERED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TEMPERED GLASS *</pattern>
+    <template><srai>MASTER APA ITU TEMPERED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TEMPERED GLASS</pattern>
+    <template><srai>MASTER APA ITU TEMPERED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TEMPERED GLASS *</pattern>
+    <template><srai>MASTER APA ITU TEMPERED GLASS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU LAMINATED GLASS -->
+  <category>
+    <pattern>MASTER APA ITU LAMINATED GLASS</pattern>
+    <template><think><set name="TOPIK">APA ITU LAMINATED GLASS</set></think>Tentang <get name="TOPIK"/>: Laminated glass terdiri dari dua atau lebih lembaran kaca yang disatukan dengan lapisan film inter-layer tahan benturan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU LAMINATED GLASS</pattern>
+    <template><srai>MASTER APA ITU LAMINATED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU LAMINATED GLASS *</pattern>
+    <template><srai>MASTER APA ITU LAMINATED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LAMINATED GLASS</pattern>
+    <template><srai>MASTER APA ITU LAMINATED GLASS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LAMINATED GLASS *</pattern>
+    <template><srai>MASTER APA ITU LAMINATED GLASS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ACP -->
+  <category>
+    <pattern>MASTER APA ITU ACP</pattern>
+    <template><think><set name="TOPIK">APA ITU ACP</set></think>Tentang <get name="TOPIK"/>: ACP (Aluminium Composite Panel) adalah material pelapis luar (cladding) berbahan lembaran aluminium dan inti polyethylene.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ACP</pattern>
+    <template><srai>MASTER APA ITU ACP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ACP *</pattern>
+    <template><srai>MASTER APA ITU ACP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ACP</pattern>
+    <template><srai>MASTER APA ITU ACP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ACP *</pattern>
+    <template><srai>MASTER APA ITU ACP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BAMBU STRUKTURAL -->
+  <category>
+    <pattern>MASTER APA ITU BAMBU STRUKTURAL</pattern>
+    <template><think><set name="TOPIK">APA ITU BAMBU STRUKTURAL</set></think>Tentang <get name="TOPIK"/>: Bambu struktural adalah bahan alami yang diawetkan dan dirancang untuk menahan beban bangunan secara ekologis.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BAMBU STRUKTURAL</pattern>
+    <template><srai>MASTER APA ITU BAMBU STRUKTURAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BAMBU STRUKTURAL *</pattern>
+    <template><srai>MASTER APA ITU BAMBU STRUKTURAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAMBU STRUKTURAL</pattern>
+    <template><srai>MASTER APA ITU BAMBU STRUKTURAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BAMBU STRUKTURAL *</pattern>
+    <template><srai>MASTER APA ITU BAMBU STRUKTURAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KAYU LAMINASI -->
+  <category>
+    <pattern>MASTER APA ITU KAYU LAMINASI</pattern>
+    <template><think><set name="TOPIK">APA ITU KAYU LAMINASI</set></think>Tentang <get name="TOPIK"/>: Kayu laminasi (Glulam/CLT) adalah kayu olahan bermutu tinggi yang dibuat dari potongan kayu terikat lem perekat kuat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KAYU LAMINASI</pattern>
+    <template><srai>MASTER APA ITU KAYU LAMINASI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KAYU LAMINASI *</pattern>
+    <template><srai>MASTER APA ITU KAYU LAMINASI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KAYU LAMINASI</pattern>
+    <template><srai>MASTER APA ITU KAYU LAMINASI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KAYU LAMINASI *</pattern>
+    <template><srai>MASTER APA ITU KAYU LAMINASI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU HEBEL -->
+  <category>
+    <pattern>MASTER APA ITU HEBEL</pattern>
+    <template><think><set name="TOPIK">APA ITU HEBEL</set></think>Tentang <get name="TOPIK"/>: Hebel atau bata ringan AAC adalah material dinding berbasis semen, pasir silika, dan kapur yang berbobot ringan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU HEBEL</pattern>
+    <template><srai>MASTER APA ITU HEBEL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU HEBEL *</pattern>
+    <template><srai>MASTER APA ITU HEBEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU HEBEL</pattern>
+    <template><srai>MASTER APA ITU HEBEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU HEBEL *</pattern>
+    <template><srai>MASTER APA ITU HEBEL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BATA MERAH -->
+  <category>
+    <pattern>MASTER APA ITU BATA MERAH</pattern>
+    <template><think><set name="TOPIK">APA ITU BATA MERAH</set></think>Tentang <get name="TOPIK"/>: Bata merah adalah material dinding tradisional berbahan tanah liat yang dibakar pada suhu tinggi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BATA MERAH</pattern>
+    <template><srai>MASTER APA ITU BATA MERAH</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BATA MERAH *</pattern>
+    <template><srai>MASTER APA ITU BATA MERAH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BATA MERAH</pattern>
+    <template><srai>MASTER APA ITU BATA MERAH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BATA MERAH *</pattern>
+    <template><srai>MASTER APA ITU BATA MERAH</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BATAKO -->
+  <category>
+    <pattern>MASTER APA ITU BATAKO</pattern>
+    <template><think><set name="TOPIK">APA ITU BATAKO</set></think>Tentang <get name="TOPIK"/>: Batako adalah blok dinding terbuat dari campuran semen dan pasir kasar yang dicetak press.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BATAKO</pattern>
+    <template><srai>MASTER APA ITU BATAKO</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BATAKO *</pattern>
+    <template><srai>MASTER APA ITU BATAKO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BATAKO</pattern>
+    <template><srai>MASTER APA ITU BATAKO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BATAKO *</pattern>
+    <template><srai>MASTER APA ITU BATAKO</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MEMBRAN ATAP -->
+  <category>
+    <pattern>MASTER APA ITU MEMBRAN ATAP</pattern>
+    <template><think><set name="TOPIK">APA ITU MEMBRAN ATAP</set></think>Tentang <get name="TOPIK"/>: Membran atap adalah lembaran kedap air elastis yang dipasang pada struktur atap datar untuk mencegah kebocoran.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MEMBRAN ATAP</pattern>
+    <template><srai>MASTER APA ITU MEMBRAN ATAP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MEMBRAN ATAP *</pattern>
+    <template><srai>MASTER APA ITU MEMBRAN ATAP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEMBRAN ATAP</pattern>
+    <template><srai>MASTER APA ITU MEMBRAN ATAP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEMBRAN ATAP *</pattern>
+    <template><srai>MASTER APA ITU MEMBRAN ATAP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GYPSUM BOARD -->
+  <category>
+    <pattern>MASTER APA ITU GYPSUM BOARD</pattern>
+    <template><think><set name="TOPIK">APA ITU GYPSUM BOARD</set></think>Tentang <get name="TOPIK"/>: Papan gipsum adalah papan interior yang biasa digunakan sebagai penutup plafon atau partisi dinding kering (drywall).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GYPSUM BOARD</pattern>
+    <template><srai>MASTER APA ITU GYPSUM BOARD</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GYPSUM BOARD *</pattern>
+    <template><srai>MASTER APA ITU GYPSUM BOARD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GYPSUM BOARD</pattern>
+    <template><srai>MASTER APA ITU GYPSUM BOARD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GYPSUM BOARD *</pattern>
+    <template><srai>MASTER APA ITU GYPSUM BOARD</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU WATERPROOFING -->
+  <category>
+    <pattern>MASTER APA ITU WATERPROOFING</pattern>
+    <template><think><set name="TOPIK">APA ITU WATERPROOFING</set></think>Tentang <get name="TOPIK"/>: Waterproofing adalah pelapis anti-air untuk mencegah rembesan air pada area basah atau atap dak beton.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU WATERPROOFING</pattern>
+    <template><srai>MASTER APA ITU WATERPROOFING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU WATERPROOFING *</pattern>
+    <template><srai>MASTER APA ITU WATERPROOFING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU WATERPROOFING</pattern>
+    <template><srai>MASTER APA ITU WATERPROOFING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU WATERPROOFING *</pattern>
+    <template><srai>MASTER APA ITU WATERPROOFING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MARMER -->
+  <category>
+    <pattern>MASTER APA ITU MARMER</pattern>
+    <template><think><set name="TOPIK">APA ITU MARMER</set></think>Tentang <get name="TOPIK"/>: Marmer adalah batuan metamorf alami berlapis ornamen urat mewah untuk pelapis lantai dan dinding interior.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MARMER</pattern>
+    <template><srai>MASTER APA ITU MARMER</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MARMER *</pattern>
+    <template><srai>MASTER APA ITU MARMER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MARMER</pattern>
+    <template><srai>MASTER APA ITU MARMER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MARMER *</pattern>
+    <template><srai>MASTER APA ITU MARMER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GRANIT TILE -->
+  <category>
+    <pattern>MASTER APA ITU GRANIT TILE</pattern>
+    <template><think><set name="TOPIK">APA ITU GRANIT TILE</set></think>Tentang <get name="TOPIK"/>: Granit tile atau homogeneous tile adalah ubin buatan berkepadatan tinggi dengan penyerapan air yang sangat rendah.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GRANIT TILE</pattern>
+    <template><srai>MASTER APA ITU GRANIT TILE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GRANIT TILE *</pattern>
+    <template><srai>MASTER APA ITU GRANIT TILE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GRANIT TILE</pattern>
+    <template><srai>MASTER APA ITU GRANIT TILE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GRANIT TILE *</pattern>
+    <template><srai>MASTER APA ITU GRANIT TILE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MOTIF TERRAZZO -->
+  <category>
+    <pattern>MASTER APA ITU MOTIF TERRAZZO</pattern>
+    <template><think><set name="TOPIK">APA ITU MOTIF TERRAZZO</set></think>Tentang <get name="TOPIK"/>: Terrazzo adalah material komposit berbahan serpihan marmer, kaca, atau granit yang dicampur semen dan dipoles halus.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MOTIF TERRAZZO</pattern>
+    <template><srai>MASTER APA ITU MOTIF TERRAZZO</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MOTIF TERRAZZO *</pattern>
+    <template><srai>MASTER APA ITU MOTIF TERRAZZO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MOTIF TERRAZZO</pattern>
+    <template><srai>MASTER APA ITU MOTIF TERRAZZO</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MOTIF TERRAZZO *</pattern>
+    <template><srai>MASTER APA ITU MOTIF TERRAZZO</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GEOLEKSTIL -->
+  <category>
+    <pattern>MASTER APA ITU GEOLEKSTIL</pattern>
+    <template><think><set name="TOPIK">APA ITU GEOLEKSTIL</set></think>Tentang <get name="TOPIK"/>: Geotekstil adalah lembaran sintetis permeabel untuk penyaringan, pemisahan, dan stabilisasi tanah pada fondasi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GEOLEKSTIL</pattern>
+    <template><srai>MASTER APA ITU GEOLEKSTIL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GEOLEKSTIL *</pattern>
+    <template><srai>MASTER APA ITU GEOLEKSTIL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GEOLEKSTIL</pattern>
+    <template><srai>MASTER APA ITU GEOLEKSTIL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GEOLEKSTIL *</pattern>
+    <template><srai>MASTER APA ITU GEOLEKSTIL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FOAM INSULATION -->
+  <category>
+    <pattern>MASTER APA ITU FOAM INSULATION</pattern>
+    <template><think><set name="TOPIK">APA ITU FOAM INSULATION</set></think>Tentang <get name="TOPIK"/>: Insulasi busa adalah bahan penyekat suhu dan peredam suara yang disemprotkan pada bagian celah dinding atau atap.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FOAM INSULATION</pattern>
+    <template><srai>MASTER APA ITU FOAM INSULATION</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FOAM INSULATION *</pattern>
+    <template><srai>MASTER APA ITU FOAM INSULATION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FOAM INSULATION</pattern>
+    <template><srai>MASTER APA ITU FOAM INSULATION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FOAM INSULATION *</pattern>
+    <template><srai>MASTER APA ITU FOAM INSULATION</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ROCKWOOL -->
+  <category>
+    <pattern>MASTER APA ITU ROCKWOOL</pattern>
+    <template><think><set name="TOPIK">APA ITU ROCKWOOL</set></think>Tentang <get name="TOPIK"/>: Rockwool adalah bahan insulasi akustik dan panas yang terbuat dari olahan serat batuan basalt.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ROCKWOOL</pattern>
+    <template><srai>MASTER APA ITU ROCKWOOL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ROCKWOOL *</pattern>
+    <template><srai>MASTER APA ITU ROCKWOOL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ROCKWOOL</pattern>
+    <template><srai>MASTER APA ITU ROCKWOOL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ROCKWOOL *</pattern>
+    <template><srai>MASTER APA ITU ROCKWOOL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MORTAR -->
+  <category>
+    <pattern>MASTER APA ITU MORTAR</pattern>
+    <template><think><set name="TOPIK">APA ITU MORTAR</set></think>Tentang <get name="TOPIK"/>: Mortar adalah adukan halus campuran semen, pasir, dan air sebagai perekat pasangan bata dan plesteran.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MORTAR</pattern>
+    <template><srai>MASTER APA ITU MORTAR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MORTAR *</pattern>
+    <template><srai>MASTER APA ITU MORTAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MORTAR</pattern>
+    <template><srai>MASTER APA ITU MORTAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MORTAR *</pattern>
+    <template><srai>MASTER APA ITU MORTAR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BEKISTING -->
+  <category>
+    <pattern>MASTER APA ITU BEKISTING</pattern>
+    <template><think><set name="TOPIK">APA ITU BEKISTING</set></think>Tentang <get name="TOPIK"/>: Bekisting adalah cetakan sementara yang digunakan untuk menahan beton cair sampai mengeras membentuk struktur.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BEKISTING</pattern>
+    <template><srai>MASTER APA ITU BEKISTING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BEKISTING *</pattern>
+    <template><srai>MASTER APA ITU BEKISTING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEKISTING</pattern>
+    <template><srai>MASTER APA ITU BEKISTING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEKISTING *</pattern>
+    <template><srai>MASTER APA ITU BEKISTING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU COMPOSITE MATERIAL -->
+  <category>
+    <pattern>MASTER APA ITU COMPOSITE MATERIAL</pattern>
+    <template><think><set name="TOPIK">APA ITU COMPOSITE MATERIAL</set></think>Tentang <get name="TOPIK"/>: Material komposit adalah gabungan dua atau lebih material berbeda untuk menghasilkan sifat fisik baru yang lebih unggul.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU COMPOSITE MATERIAL</pattern>
+    <template><srai>MASTER APA ITU COMPOSITE MATERIAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU COMPOSITE MATERIAL *</pattern>
+    <template><srai>MASTER APA ITU COMPOSITE MATERIAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU COMPOSITE MATERIAL</pattern>
+    <template><srai>MASTER APA ITU COMPOSITE MATERIAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU COMPOSITE MATERIAL *</pattern>
+    <template><srai>MASTER APA ITU COMPOSITE MATERIAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FONDASI DANGKAL -->
+  <category>
+    <pattern>MASTER APA ITU FONDASI DANGKAL</pattern>
+    <template><think><set name="TOPIK">APA ITU FONDASI DANGKAL</set></think>Tentang <get name="TOPIK"/>: Fondasi dangkal seperti batu kali atau footplate menopang beban bangunan langsung pada lapisan tanah bagian atas.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FONDASI DANGKAL</pattern>
+    <template><srai>MASTER APA ITU FONDASI DANGKAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FONDASI DANGKAL *</pattern>
+    <template><srai>MASTER APA ITU FONDASI DANGKAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI DANGKAL</pattern>
+    <template><srai>MASTER APA ITU FONDASI DANGKAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI DANGKAL *</pattern>
+    <template><srai>MASTER APA ITU FONDASI DANGKAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FONDASI DALAM -->
+  <category>
+    <pattern>MASTER APA ITU FONDASI DALAM</pattern>
+    <template><think><set name="TOPIK">APA ITU FONDASI DALAM</set></think>Tentang <get name="TOPIK"/>: Fondasi dalam seperti tiang pancang atau bore pile menyalurkan beban bangunan ke lapisan tanah keras yang jauh di dalam tanah.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FONDASI DALAM</pattern>
+    <template><srai>MASTER APA ITU FONDASI DALAM</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FONDASI DALAM *</pattern>
+    <template><srai>MASTER APA ITU FONDASI DALAM</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI DALAM</pattern>
+    <template><srai>MASTER APA ITU FONDASI DALAM</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI DALAM *</pattern>
+    <template><srai>MASTER APA ITU FONDASI DALAM</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU FONDASI BORE PILE -->
+  <category>
+    <pattern>MASTER APA ITU FONDASI BORE PILE</pattern>
+    <template><think><set name="TOPIK">APA ITU FONDASI BORE PILE</set></think>Tentang <get name="TOPIK"/>: Bore pile adalah fondasi tiang yang dibuat dengan mengebor tanah terlebih dahulu kemudian diisi dengan penulangan dan beton.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU FONDASI BORE PILE</pattern>
+    <template><srai>MASTER APA ITU FONDASI BORE PILE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU FONDASI BORE PILE *</pattern>
+    <template><srai>MASTER APA ITU FONDASI BORE PILE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI BORE PILE</pattern>
+    <template><srai>MASTER APA ITU FONDASI BORE PILE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU FONDASI BORE PILE *</pattern>
+    <template><srai>MASTER APA ITU FONDASI BORE PILE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TIANG PANCANG -->
+  <category>
+    <pattern>MASTER APA ITU TIANG PANCANG</pattern>
+    <template><think><set name="TOPIK">APA ITU TIANG PANCANG</set></think>Tentang <get name="TOPIK"/>: Tiang pancang adalah tiang beton atau baja yang ditancapkan ke tanah menggunakan alat pemukul atau hydro press.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TIANG PANCANG</pattern>
+    <template><srai>MASTER APA ITU TIANG PANCANG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TIANG PANCANG *</pattern>
+    <template><srai>MASTER APA ITU TIANG PANCANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TIANG PANCANG</pattern>
+    <template><srai>MASTER APA ITU TIANG PANCANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TIANG PANCANG *</pattern>
+    <template><srai>MASTER APA ITU TIANG PANCANG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KOLOM UTAMA -->
+  <category>
+    <pattern>MASTER APA ITU KOLOM UTAMA</pattern>
+    <template><think><set name="TOPIK">APA ITU KOLOM UTAMA</set></think>Tentang <get name="TOPIK"/>: Kolom utama adalah elemen penyangga vertikal yang bertugas menyalurkan seluruh beban bangunan ke fondasi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KOLOM UTAMA</pattern>
+    <template><srai>MASTER APA ITU KOLOM UTAMA</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KOLOM UTAMA *</pattern>
+    <template><srai>MASTER APA ITU KOLOM UTAMA</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KOLOM UTAMA</pattern>
+    <template><srai>MASTER APA ITU KOLOM UTAMA</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KOLOM UTAMA *</pattern>
+    <template><srai>MASTER APA ITU KOLOM UTAMA</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KOLOM PRAKTIS -->
+  <category>
+    <pattern>MASTER APA ITU KOLOM PRAKTIS</pattern>
+    <template><think><set name="TOPIK">APA ITU KOLOM PRAKTIS</set></think>Tentang <get name="TOPIK"/>: Kolom praktis berfungsi memperkuat perikatan pasangan dinding bata agar dinding tidak mudah retak atau roboh.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KOLOM PRAKTIS</pattern>
+    <template><srai>MASTER APA ITU KOLOM PRAKTIS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KOLOM PRAKTIS *</pattern>
+    <template><srai>MASTER APA ITU KOLOM PRAKTIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KOLOM PRAKTIS</pattern>
+    <template><srai>MASTER APA ITU KOLOM PRAKTIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KOLOM PRAKTIS *</pattern>
+    <template><srai>MASTER APA ITU KOLOM PRAKTIS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BALOK LATEI -->
+  <category>
+    <pattern>MASTER APA ITU BALOK LATEI</pattern>
+    <template><think><set name="TOPIK">APA ITU BALOK LATEI</set></think>Tentang <get name="TOPIK"/>: Balok latei atau lintel berada tepat di atas bukaan pintu/jendela untuk menahan beban dinding di atasnya.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BALOK LATEI</pattern>
+    <template><srai>MASTER APA ITU BALOK LATEI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BALOK LATEI *</pattern>
+    <template><srai>MASTER APA ITU BALOK LATEI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BALOK LATEI</pattern>
+    <template><srai>MASTER APA ITU BALOK LATEI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BALOK LATEI *</pattern>
+    <template><srai>MASTER APA ITU BALOK LATEI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SLOOF -->
+  <category>
+    <pattern>MASTER APA ITU SLOOF</pattern>
+    <template><think><set name="TOPIK">APA ITU SLOOF</set></think>Tentang <get name="TOPIK"/>: Sloof adalah balok beton horizontal di atas fondasi yang membagikan beban dinding secara merata ke fondasi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SLOOF</pattern>
+    <template><srai>MASTER APA ITU SLOOF</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SLOOF *</pattern>
+    <template><srai>MASTER APA ITU SLOOF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SLOOF</pattern>
+    <template><srai>MASTER APA ITU SLOOF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SLOOF *</pattern>
+    <template><srai>MASTER APA ITU SLOOF</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RING BALOK -->
+  <category>
+    <pattern>MASTER APA ITU RING BALOK</pattern>
+    <template><think><set name="TOPIK">APA ITU RING BALOK</set></think>Tentang <get name="TOPIK"/>: Ring balok dipasang di bagian puncak dinding bata untuk mengikat struktur dinding dan menopang rangka atap.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RING BALOK</pattern>
+    <template><srai>MASTER APA ITU RING BALOK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RING BALOK *</pattern>
+    <template><srai>MASTER APA ITU RING BALOK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RING BALOK</pattern>
+    <template><srai>MASTER APA ITU RING BALOK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RING BALOK *</pattern>
+    <template><srai>MASTER APA ITU RING BALOK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SHEAR WALL -->
+  <category>
+    <pattern>MASTER APA ITU SHEAR WALL</pattern>
+    <template><think><set name="TOPIK">APA ITU SHEAR WALL</set></think>Tentang <get name="TOPIK"/>: Shear wall atau dinding geser adalah struktur dinding beton bertulang untuk menahan gaya lateral akibat gempa atau angin.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SHEAR WALL</pattern>
+    <template><srai>MASTER APA ITU SHEAR WALL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SHEAR WALL *</pattern>
+    <template><srai>MASTER APA ITU SHEAR WALL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHEAR WALL</pattern>
+    <template><srai>MASTER APA ITU SHEAR WALL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHEAR WALL *</pattern>
+    <template><srai>MASTER APA ITU SHEAR WALL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TRUSS -->
+  <category>
+    <pattern>MASTER APA ITU TRUSS</pattern>
+    <template><think><set name="TOPIK">APA ITU TRUSS</set></think>Tentang <get name="TOPIK"/>: Truss adalah kerangka struktural berjejaring segi tiga untuk membentangi ruang tanpa perlu kolom di tengah.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TRUSS</pattern>
+    <template><srai>MASTER APA ITU TRUSS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TRUSS *</pattern>
+    <template><srai>MASTER APA ITU TRUSS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TRUSS</pattern>
+    <template><srai>MASTER APA ITU TRUSS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TRUSS *</pattern>
+    <template><srai>MASTER APA ITU TRUSS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU STRUKTUR BENTANG LEBAR -->
+  <category>
+    <pattern>MASTER APA ITU STRUKTUR BENTANG LEBAR</pattern>
+    <template><think><set name="TOPIK">APA ITU STRUKTUR BENTANG LEBAR</set></think>Tentang <get name="TOPIK"/>: Struktur bentang lebar digunakan pada stadion atau aula tanpa tiang tengah, seperti kabel, kubah, atau struktur cangkang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU STRUKTUR BENTANG LEBAR</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR BENTANG LEBAR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU STRUKTUR BENTANG LEBAR *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR BENTANG LEBAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR BENTANG LEBAR</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR BENTANG LEBAR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR BENTANG LEBAR *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR BENTANG LEBAR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU STRUKTUR KABEL -->
+  <category>
+    <pattern>MASTER APA ITU STRUKTUR KABEL</pattern>
+    <template><think><set name="TOPIK">APA ITU STRUKTUR KABEL</set></think>Tentang <get name="TOPIK"/>: Struktur kabel memanfaatkan tarik-menarik kabel baja fleksibel untuk menopang atap atau jembatan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU STRUKTUR KABEL</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR KABEL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU STRUKTUR KABEL *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR KABEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR KABEL</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR KABEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR KABEL *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR KABEL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU STRUKTUR CANGKANG -->
+  <category>
+    <pattern>MASTER APA ITU STRUKTUR CANGKANG</pattern>
+    <template><think><set name="TOPIK">APA ITU STRUKTUR CANGKANG</set></think>Tentang <get name="TOPIK"/>: Struktur cangkang (shell) adalah bentuk tiga dimensi tipis bertulang tipis yang melengkung dan mengalir kokoh.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU STRUKTUR CANGKANG</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR CANGKANG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU STRUKTUR CANGKANG *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR CANGKANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR CANGKANG</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR CANGKANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR CANGKANG *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR CANGKANG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU STRUKTUR MEMBRAN -->
+  <category>
+    <pattern>MASTER APA ITU STRUKTUR MEMBRAN</pattern>
+    <template><think><set name="TOPIK">APA ITU STRUKTUR MEMBRAN</set></think>Tentang <get name="TOPIK"/>: Struktur membran menggunakan bahan lembaran fleksibel yang ditegangkan oleh rangkanya untuk menutupi ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU STRUKTUR MEMBRAN</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR MEMBRAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU STRUKTUR MEMBRAN *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR MEMBRAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR MEMBRAN</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR MEMBRAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR MEMBRAN *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR MEMBRAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DAK BETON -->
+  <category>
+    <pattern>MASTER APA ITU DAK BETON</pattern>
+    <template><think><set name="TOPIK">APA ITU DAK BETON</set></think>Tentang <get name="TOPIK"/>: Dak beton adalah plat lantai beton horizontal yang berfungsi sebagai penutup atap atau lantai pembatas antar-tingkat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DAK BETON</pattern>
+    <template><srai>MASTER APA ITU DAK BETON</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DAK BETON *</pattern>
+    <template><srai>MASTER APA ITU DAK BETON</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DAK BETON</pattern>
+    <template><srai>MASTER APA ITU DAK BETON</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DAK BETON *</pattern>
+    <template><srai>MASTER APA ITU DAK BETON</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU CANTILEVER -->
+  <category>
+    <pattern>MASTER APA ITU CANTILEVER</pattern>
+    <template><think><set name="TOPIK">APA ITU CANTILEVER</set></think>Tentang <get name="TOPIK"/>: Cantilever adalah struktur balok atau lantai yang menjorok keluar tanpa dukungan tiang penopang di ujung luar.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU CANTILEVER</pattern>
+    <template><srai>MASTER APA ITU CANTILEVER</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU CANTILEVER *</pattern>
+    <template><srai>MASTER APA ITU CANTILEVER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU CANTILEVER</pattern>
+    <template><srai>MASTER APA ITU CANTILEVER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU CANTILEVER *</pattern>
+    <template><srai>MASTER APA ITU CANTILEVER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GAYA LATERAL -->
+  <category>
+    <pattern>MASTER APA ITU GAYA LATERAL</pattern>
+    <template><think><set name="TOPIK">APA ITU GAYA LATERAL</set></think>Tentang <get name="TOPIK"/>: Gaya lateral adalah tekanan horisontal yang bekerja pada bangunan, biasanya dipicu oleh getaran gempa bumi atau tekanan angin.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GAYA LATERAL</pattern>
+    <template><srai>MASTER APA ITU GAYA LATERAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GAYA LATERAL *</pattern>
+    <template><srai>MASTER APA ITU GAYA LATERAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GAYA LATERAL</pattern>
+    <template><srai>MASTER APA ITU GAYA LATERAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GAYA LATERAL *</pattern>
+    <template><srai>MASTER APA ITU GAYA LATERAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DINDING PENAHAN TANAH -->
+  <category>
+    <pattern>MASTER APA ITU DINDING PENAHAN TANAH</pattern>
+    <template><think><set name="TOPIK">APA ITU DINDING PENAHAN TANAH</set></think>Tentang <get name="TOPIK"/>: Dinding penahan tanah (retaining wall) dirancang untuk menahan pergerakan lateral tanah pada area berlereng.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DINDING PENAHAN TANAH</pattern>
+    <template><srai>MASTER APA ITU DINDING PENAHAN TANAH</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DINDING PENAHAN TANAH *</pattern>
+    <template><srai>MASTER APA ITU DINDING PENAHAN TANAH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DINDING PENAHAN TANAH</pattern>
+    <template><srai>MASTER APA ITU DINDING PENAHAN TANAH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DINDING PENAHAN TANAH *</pattern>
+    <template><srai>MASTER APA ITU DINDING PENAHAN TANAH</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU EXPANSION JOINT -->
+  <category>
+    <pattern>MASTER APA ITU EXPANSION JOINT</pattern>
+    <template><think><set name="TOPIK">APA ITU EXPANSION JOINT</set></think>Tentang <get name="TOPIK"/>: Expansion joint adalah celah pemisah antar-bagian struktur guna mencegah kerusakan akibat pemuaian termal atau getaran.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU EXPANSION JOINT</pattern>
+    <template><srai>MASTER APA ITU EXPANSION JOINT</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU EXPANSION JOINT *</pattern>
+    <template><srai>MASTER APA ITU EXPANSION JOINT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU EXPANSION JOINT</pattern>
+    <template><srai>MASTER APA ITU EXPANSION JOINT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU EXPANSION JOINT *</pattern>
+    <template><srai>MASTER APA ITU EXPANSION JOINT</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU STRUKTUR COMPOSITE -->
+  <category>
+    <pattern>MASTER APA ITU STRUKTUR COMPOSITE</pattern>
+    <template><think><set name="TOPIK">APA ITU STRUKTUR COMPOSITE</set></think>Tentang <get name="TOPIK"/>: Struktur komposit menggabungkan dua elemen berbeda (misal beton dan baja) agar bekerja bersama secara terpadu.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU STRUKTUR COMPOSITE</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR COMPOSITE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU STRUKTUR COMPOSITE *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR COMPOSITE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR COMPOSITE</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR COMPOSITE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU STRUKTUR COMPOSITE *</pattern>
+    <template><srai>MASTER APA ITU STRUKTUR COMPOSITE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BEBAN MATI -->
+  <category>
+    <pattern>MASTER APA ITU BEBAN MATI</pattern>
+    <template><think><set name="TOPIK">APA ITU BEBAN MATI</set></think>Tentang <get name="TOPIK"/>: Beban mati (dead load) adalah beban permanen bangunan seperti bobot dinding, lantai, pipa, dan rangka struktur.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BEBAN MATI</pattern>
+    <template><srai>MASTER APA ITU BEBAN MATI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BEBAN MATI *</pattern>
+    <template><srai>MASTER APA ITU BEBAN MATI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN MATI</pattern>
+    <template><srai>MASTER APA ITU BEBAN MATI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN MATI *</pattern>
+    <template><srai>MASTER APA ITU BEBAN MATI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BEBAN HIDUP -->
+  <category>
+    <pattern>MASTER APA ITU BEBAN HIDUP</pattern>
+    <template><think><set name="TOPIK">APA ITU BEBAN HIDUP</set></think>Tentang <get name="TOPIK"/>: Beban hidup (live load) adalah beban temporer yang berasal dari penghuni, perabot, dan peralatan yang dapat berpindah.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BEBAN HIDUP</pattern>
+    <template><srai>MASTER APA ITU BEBAN HIDUP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BEBAN HIDUP *</pattern>
+    <template><srai>MASTER APA ITU BEBAN HIDUP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN HIDUP</pattern>
+    <template><srai>MASTER APA ITU BEBAN HIDUP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN HIDUP *</pattern>
+    <template><srai>MASTER APA ITU BEBAN HIDUP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BEBAN GEMPA -->
+  <category>
+    <pattern>MASTER APA ITU BEBAN GEMPA</pattern>
+    <template><think><set name="TOPIK">APA ITU BEBAN GEMPA</set></think>Tentang <get name="TOPIK"/>: Beban gempa adalah gaya inersia horisontal pada bangunan akibat pergerakan dinamis tanah saat terjadi gempa.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BEBAN GEMPA</pattern>
+    <template><srai>MASTER APA ITU BEBAN GEMPA</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BEBAN GEMPA *</pattern>
+    <template><srai>MASTER APA ITU BEBAN GEMPA</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN GEMPA</pattern>
+    <template><srai>MASTER APA ITU BEBAN GEMPA</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN GEMPA *</pattern>
+    <template><srai>MASTER APA ITU BEBAN GEMPA</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BEBAN ANGIN -->
+  <category>
+    <pattern>MASTER APA ITU BEBAN ANGIN</pattern>
+    <template><think><set name="TOPIK">APA ITU BEBAN ANGIN</set></think>Tentang <get name="TOPIK"/>: Beban angin adalah tekanan atau isapan dinamis yang diterima selubung luar bangunan akibat terpaan udara bergerak.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BEBAN ANGIN</pattern>
+    <template><srai>MASTER APA ITU BEBAN ANGIN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BEBAN ANGIN *</pattern>
+    <template><srai>MASTER APA ITU BEBAN ANGIN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN ANGIN</pattern>
+    <template><srai>MASTER APA ITU BEBAN ANGIN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BEBAN ANGIN *</pattern>
+    <template><srai>MASTER APA ITU BEBAN ANGIN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MEP -->
+  <category>
+    <pattern>MASTER APA ITU MEP</pattern>
+    <template><think><set name="TOPIK">APA ITU MEP</set></think>Tentang <get name="TOPIK"/>: MEP adalah singkatan dari Mechanical, Electrical, and Plumbing—sistem utilitas utama penyokong operasional bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MEP</pattern>
+    <template><srai>MASTER APA ITU MEP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MEP *</pattern>
+    <template><srai>MASTER APA ITU MEP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEP</pattern>
+    <template><srai>MASTER APA ITU MEP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MEP *</pattern>
+    <template><srai>MASTER APA ITU MEP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU PENCABAYAAN ALAMI -->
+  <category>
+    <pattern>MASTER APA ITU PENCABAYAAN ALAMI</pattern>
+    <template><think><set name="TOPIK">APA ITU PENCABAYAAN ALAMI</set></think>Tentang <get name="TOPIK"/>: Pencahayaan alami adalah pemanfaatan sinar matahari untuk meminimalisasi penggunaan lampu listrik siang hari.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU PENCABAYAAN ALAMI</pattern>
+    <template><srai>MASTER APA ITU PENCABAYAAN ALAMI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU PENCABAYAAN ALAMI *</pattern>
+    <template><srai>MASTER APA ITU PENCABAYAAN ALAMI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PENCABAYAAN ALAMI</pattern>
+    <template><srai>MASTER APA ITU PENCABAYAAN ALAMI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PENCABAYAAN ALAMI *</pattern>
+    <template><srai>MASTER APA ITU PENCABAYAAN ALAMI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU VENTILASI SILANG -->
+  <category>
+    <pattern>MASTER APA ITU VENTILASI SILANG</pattern>
+    <template><think><set name="TOPIK">APA ITU VENTILASI SILANG</set></think>Tentang <get name="TOPIK"/>: Ventilasi silang (cross ventilation) mengalirkan udara segar masuk melalui bukaan di satu sisi dan keluar lewat sisi berlawanan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU VENTILASI SILANG</pattern>
+    <template><srai>MASTER APA ITU VENTILASI SILANG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU VENTILASI SILANG *</pattern>
+    <template><srai>MASTER APA ITU VENTILASI SILANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VENTILASI SILANG</pattern>
+    <template><srai>MASTER APA ITU VENTILASI SILANG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU VENTILASI SILANG *</pattern>
+    <template><srai>MASTER APA ITU VENTILASI SILANG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DAYLIGHT FACTOR -->
+  <category>
+    <pattern>MASTER APA ITU DAYLIGHT FACTOR</pattern>
+    <template><think><set name="TOPIK">APA ITU DAYLIGHT FACTOR</set></think>Tentang <get name="TOPIK"/>: Daylight factor adalah rasio antara tingkat pencahayaan di dalam ruangan dibanding pencahayaan di luar ruangan pada kondisi langit terbuka.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DAYLIGHT FACTOR</pattern>
+    <template><srai>MASTER APA ITU DAYLIGHT FACTOR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DAYLIGHT FACTOR *</pattern>
+    <template><srai>MASTER APA ITU DAYLIGHT FACTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DAYLIGHT FACTOR</pattern>
+    <template><srai>MASTER APA ITU DAYLIGHT FACTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DAYLIGHT FACTOR *</pattern>
+    <template><srai>MASTER APA ITU DAYLIGHT FACTOR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU THERMAL COMFORT -->
+  <category>
+    <pattern>MASTER APA ITU THERMAL COMFORT</pattern>
+    <template><think><set name="TOPIK">APA ITU THERMAL COMFORT</set></think>Tentang <get name="TOPIK"/>: Kenyamanan termal adalah kondisi pikiran yang merasa puas terhadap temperatur dan kelembapan udara lingkungan sekitar.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU THERMAL COMFORT</pattern>
+    <template><srai>MASTER APA ITU THERMAL COMFORT</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU THERMAL COMFORT *</pattern>
+    <template><srai>MASTER APA ITU THERMAL COMFORT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU THERMAL COMFORT</pattern>
+    <template><srai>MASTER APA ITU THERMAL COMFORT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU THERMAL COMFORT *</pattern>
+    <template><srai>MASTER APA ITU THERMAL COMFORT</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU HVAC -->
+  <category>
+    <pattern>MASTER APA ITU HVAC</pattern>
+    <template><think><set name="TOPIK">APA ITU HVAC</set></think>Tentang <get name="TOPIK"/>: HVAC (Heating, Ventilation, and Air Conditioning) adalah sistem tata udara pengatur suhu, kelembapan, dan sirkulasi udara bersih.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU HVAC</pattern>
+    <template><srai>MASTER APA ITU HVAC</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU HVAC *</pattern>
+    <template><srai>MASTER APA ITU HVAC</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU HVAC</pattern>
+    <template><srai>MASTER APA ITU HVAC</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU HVAC *</pattern>
+    <template><srai>MASTER APA ITU HVAC</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AKUSTIK BANGUNAN -->
+  <category>
+    <pattern>MASTER APA ITU AKUSTIK BANGUNAN</pattern>
+    <template><think><set name="TOPIK">APA ITU AKUSTIK BANGUNAN</set></think>Tentang <get name="TOPIK"/>: Akustik bangunan memelajari pengendalian suara di dalam ruang agar ramah pendengaran dan bebas gangguan bising exterior.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AKUSTIK BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU AKUSTIK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AKUSTIK BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU AKUSTIK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AKUSTIK BANGUNAN</pattern>
+    <template><srai>MASTER APA ITU AKUSTIK BANGUNAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AKUSTIK BANGUNAN *</pattern>
+    <template><srai>MASTER APA ITU AKUSTIK BANGUNAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RT60 -->
+  <category>
+    <pattern>MASTER APA ITU RT60</pattern>
+    <template><think><set name="TOPIK">APA ITU RT60</set></think>Tentang <get name="TOPIK"/>: RT60 (Reverberation Time) adalah waktu yang dibutuhkan intensitas suara untuk meluruh sebesar 60 desibel di dalam ruang.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RT60</pattern>
+    <template><srai>MASTER APA ITU RT60</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RT60 *</pattern>
+    <template><srai>MASTER APA ITU RT60</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RT60</pattern>
+    <template><srai>MASTER APA ITU RT60</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RT60 *</pattern>
+    <template><srai>MASTER APA ITU RT60</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SHADING DEVICE -->
+  <category>
+    <pattern>MASTER APA ITU SHADING DEVICE</pattern>
+    <template><think><set name="TOPIK">APA ITU SHADING DEVICE</set></think>Tentang <get name="TOPIK"/>: Shading device seperti kanopi atau kisi-kisi louver berfungsi menghalangi silau dan paparan radiasi panas matahari berlebih.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SHADING DEVICE</pattern>
+    <template><srai>MASTER APA ITU SHADING DEVICE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SHADING DEVICE *</pattern>
+    <template><srai>MASTER APA ITU SHADING DEVICE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHADING DEVICE</pattern>
+    <template><srai>MASTER APA ITU SHADING DEVICE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHADING DEVICE *</pattern>
+    <template><srai>MASTER APA ITU SHADING DEVICE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU ORIENTASI MATAHARI -->
+  <category>
+    <pattern>MASTER APA ITU ORIENTASI MATAHARI</pattern>
+    <template><think><set name="TOPIK">APA ITU ORIENTASI MATAHARI</set></think>Tentang <get name="TOPIK"/>: Orientasi matahari dipertimbangkan untuk mengoptimalkan panas dan pasokan sinar surya sesuai posisi terbit hingga terbenam.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU ORIENTASI MATAHARI</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI MATAHARI</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU ORIENTASI MATAHARI *</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI MATAHARI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ORIENTASI MATAHARI</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI MATAHARI</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU ORIENTASI MATAHARI *</pattern>
+    <template><srai>MASTER APA ITU ORIENTASI MATAHARI</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AIR BERSIH -->
+  <category>
+    <pattern>MASTER APA ITU AIR BERSIH</pattern>
+    <template><think><set name="TOPIK">APA ITU AIR BERSIH</set></think>Tentang <get name="TOPIK"/>: Sistem air bersih merencanakan jaringan suplai air matang atau bersih untuk konsumsi dan higienitas penghuni.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AIR BERSIH</pattern>
+    <template><srai>MASTER APA ITU AIR BERSIH</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AIR BERSIH *</pattern>
+    <template><srai>MASTER APA ITU AIR BERSIH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AIR BERSIH</pattern>
+    <template><srai>MASTER APA ITU AIR BERSIH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AIR BERSIH *</pattern>
+    <template><srai>MASTER APA ITU AIR BERSIH</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AIR KOTOR -->
+  <category>
+    <pattern>MASTER APA ITU AIR KOTOR</pattern>
+    <template><think><set name="TOPIK">APA ITU AIR KOTOR</set></think>Tentang <get name="TOPIK"/>: Sistem air kotor mengalirkan limbah dari closet (black water) dan kloset/wastafel (grey water) menuju pengolahan khusus.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AIR KOTOR</pattern>
+    <template><srai>MASTER APA ITU AIR KOTOR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AIR KOTOR *</pattern>
+    <template><srai>MASTER APA ITU AIR KOTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AIR KOTOR</pattern>
+    <template><srai>MASTER APA ITU AIR KOTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AIR KOTOR *</pattern>
+    <template><srai>MASTER APA ITU AIR KOTOR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GREYWATER -->
+  <category>
+    <pattern>MASTER APA ITU GREYWATER</pattern>
+    <template><think><set name="TOPIK">APA ITU GREYWATER</set></think>Tentang <get name="TOPIK"/>: Greywater adalah limbah cair buangan bekas mandi dan cuci yang dapat didaur ulang untuk penyiraman tanaman.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GREYWATER</pattern>
+    <template><srai>MASTER APA ITU GREYWATER</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GREYWATER *</pattern>
+    <template><srai>MASTER APA ITU GREYWATER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREYWATER</pattern>
+    <template><srai>MASTER APA ITU GREYWATER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREYWATER *</pattern>
+    <template><srai>MASTER APA ITU GREYWATER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BLACKWATER -->
+  <category>
+    <pattern>MASTER APA ITU BLACKWATER</pattern>
+    <template><think><set name="TOPIK">APA ITU BLACKWATER</set></think>Tentang <get name="TOPIK"/>: Blackwater adalah air limbah buangan kotoran yang mengandung patogen dan memerlukan Septic Tank / STP khusus.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BLACKWATER</pattern>
+    <template><srai>MASTER APA ITU BLACKWATER</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BLACKWATER *</pattern>
+    <template><srai>MASTER APA ITU BLACKWATER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BLACKWATER</pattern>
+    <template><srai>MASTER APA ITU BLACKWATER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BLACKWATER *</pattern>
+    <template><srai>MASTER APA ITU BLACKWATER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SEPTIC TANK -->
+  <category>
+    <pattern>MASTER APA ITU SEPTIC TANK</pattern>
+    <template><think><set name="TOPIK">APA ITU SEPTIC TANK</set></think>Tentang <get name="TOPIK"/>: Septic tank adalah penampungan bawah tanah kedap air untuk proses penguraian limbah toilet biologis.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SEPTIC TANK</pattern>
+    <template><srai>MASTER APA ITU SEPTIC TANK</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SEPTIC TANK *</pattern>
+    <template><srai>MASTER APA ITU SEPTIC TANK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SEPTIC TANK</pattern>
+    <template><srai>MASTER APA ITU SEPTIC TANK</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SEPTIC TANK *</pattern>
+    <template><srai>MASTER APA ITU SEPTIC TANK</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GREASE TRAP -->
+  <category>
+    <pattern>MASTER APA ITU GREASE TRAP</pattern>
+    <template><think><set name="TOPIK">APA ITU GREASE TRAP</set></think>Tentang <get name="TOPIK"/>: Grease trap adalah alat penyaring lemak dapur agar minyak sisa tidak menyumbat saluran pipa pembuangan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GREASE TRAP</pattern>
+    <template><srai>MASTER APA ITU GREASE TRAP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GREASE TRAP *</pattern>
+    <template><srai>MASTER APA ITU GREASE TRAP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREASE TRAP</pattern>
+    <template><srai>MASTER APA ITU GREASE TRAP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREASE TRAP *</pattern>
+    <template><srai>MASTER APA ITU GREASE TRAP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RAINWATER HARVESTING -->
+  <category>
+    <pattern>MASTER APA ITU RAINWATER HARVESTING</pattern>
+    <template><think><set name="TOPIK">APA ITU RAINWATER HARVESTING</set></think>Tentang <get name="TOPIK"/>: Rainwater harvesting adalah teknik penampungan air hujan untuk dimanfaatkan kembali pada flushing toilet atau penyiraman taman.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RAINWATER HARVESTING</pattern>
+    <template><srai>MASTER APA ITU RAINWATER HARVESTING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RAINWATER HARVESTING *</pattern>
+    <template><srai>MASTER APA ITU RAINWATER HARVESTING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAINWATER HARVESTING</pattern>
+    <template><srai>MASTER APA ITU RAINWATER HARVESTING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAINWATER HARVESTING *</pattern>
+    <template><srai>MASTER APA ITU RAINWATER HARVESTING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SPRINKLER -->
+  <category>
+    <pattern>MASTER APA ITU SPRINKLER</pattern>
+    <template><think><set name="TOPIK">APA ITU SPRINKLER</set></think>Tentang <get name="TOPIK"/>: Sprinkler adalah sistem proteksi kebakaran otomatis yang memancarkan air saat mendeteksi ambang panas tinggi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SPRINKLER</pattern>
+    <template><srai>MASTER APA ITU SPRINKLER</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SPRINKLER *</pattern>
+    <template><srai>MASTER APA ITU SPRINKLER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SPRINKLER</pattern>
+    <template><srai>MASTER APA ITU SPRINKLER</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SPRINKLER *</pattern>
+    <template><srai>MASTER APA ITU SPRINKLER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SMOKE DETECTOR -->
+  <category>
+    <pattern>MASTER APA ITU SMOKE DETECTOR</pattern>
+    <template><think><set name="TOPIK">APA ITU SMOKE DETECTOR</set></think>Tentang <get name="TOPIK"/>: Smoke detector adalah sensor kebakaran yang mengaktifkan alarm peringatan saat mendeteksi kepulan asap di ruangan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SMOKE DETECTOR</pattern>
+    <template><srai>MASTER APA ITU SMOKE DETECTOR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SMOKE DETECTOR *</pattern>
+    <template><srai>MASTER APA ITU SMOKE DETECTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SMOKE DETECTOR</pattern>
+    <template><srai>MASTER APA ITU SMOKE DETECTOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SMOKE DETECTOR *</pattern>
+    <template><srai>MASTER APA ITU SMOKE DETECTOR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SOLAR PANEL -->
+  <category>
+    <pattern>MASTER APA ITU SOLAR PANEL</pattern>
+    <template><think><set name="TOPIK">APA ITU SOLAR PANEL</set></think>Tentang <get name="TOPIK"/>: Solar panel (panel surya) menyorot paparan sinar matahari untuk diubah menjadi pasokan energi listrik bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SOLAR PANEL</pattern>
+    <template><srai>MASTER APA ITU SOLAR PANEL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SOLAR PANEL *</pattern>
+    <template><srai>MASTER APA ITU SOLAR PANEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SOLAR PANEL</pattern>
+    <template><srai>MASTER APA ITU SOLAR PANEL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SOLAR PANEL *</pattern>
+    <template><srai>MASTER APA ITU SOLAR PANEL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SHADOW ANALYSIS -->
+  <category>
+    <pattern>MASTER APA ITU SHADOW ANALYSIS</pattern>
+    <template><think><set name="TOPIK">APA ITU SHADOW ANALYSIS</set></think>Tentang <get name="TOPIK"/>: Analisis bayangan menghitung dampak bayangan bangunan terhadap lingkungan sekitar sepanjang siklus musim harian.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SHADOW ANALYSIS</pattern>
+    <template><srai>MASTER APA ITU SHADOW ANALYSIS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SHADOW ANALYSIS *</pattern>
+    <template><srai>MASTER APA ITU SHADOW ANALYSIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHADOW ANALYSIS</pattern>
+    <template><srai>MASTER APA ITU SHADOW ANALYSIS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SHADOW ANALYSIS *</pattern>
+    <template><srai>MASTER APA ITU SHADOW ANALYSIS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU URVAL VALUE -->
+  <category>
+    <pattern>MASTER APA ITU URVAL VALUE</pattern>
+    <template><think><set name="TOPIK">APA ITU URVAL VALUE</set></think>Tentang <get name="TOPIK"/>: U-Value mengukur tingkat konduktivitas termal material; semakin rendah angka U-Value, semakin baik insulasi material tersebut.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU URVAL VALUE</pattern>
+    <template><srai>MASTER APA ITU URVAL VALUE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU URVAL VALUE *</pattern>
+    <template><srai>MASTER APA ITU URVAL VALUE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU URVAL VALUE</pattern>
+    <template><srai>MASTER APA ITU URVAL VALUE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU URVAL VALUE *</pattern>
+    <template><srai>MASTER APA ITU URVAL VALUE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU OTTV -->
+  <category>
+    <pattern>MASTER APA ITU OTTV</pattern>
+    <template><think><set name="TOPIK">APA ITU OTTV</set></think>Tentang <get name="TOPIK"/>: OTTV (Overall Thermal Transfer Value) adalah standar perolehan perambatan panas total pada selubung luar bangunan bertingkat.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU OTTV</pattern>
+    <template><srai>MASTER APA ITU OTTV</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU OTTV *</pattern>
+    <template><srai>MASTER APA ITU OTTV</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU OTTV</pattern>
+    <template><srai>MASTER APA ITU OTTV</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU OTTV *</pattern>
+    <template><srai>MASTER APA ITU OTTV</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BUILDING ENVELOPE -->
+  <category>
+    <pattern>MASTER APA ITU BUILDING ENVELOPE</pattern>
+    <template><think><set name="TOPIK">APA ITU BUILDING ENVELOPE</set></think>Tentang <get name="TOPIK"/>: Selubung bangunan adalah pemisah fisik antara interior bangunan yang terkondisi dengan lingkungan eksterior.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BUILDING ENVELOPE</pattern>
+    <template><srai>MASTER APA ITU BUILDING ENVELOPE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BUILDING ENVELOPE *</pattern>
+    <template><srai>MASTER APA ITU BUILDING ENVELOPE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BUILDING ENVELOPE</pattern>
+    <template><srai>MASTER APA ITU BUILDING ENVELOPE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BUILDING ENVELOPE *</pattern>
+    <template><srai>MASTER APA ITU BUILDING ENVELOPE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DOUBLE SKIN FACADE -->
+  <category>
+    <pattern>MASTER APA ITU DOUBLE SKIN FACADE</pattern>
+    <template><think><set name="TOPIK">APA ITU DOUBLE SKIN FACADE</set></think>Tentang <get name="TOPIK"/>: Double-skin facade adalah sistem fasad berlapis ganda dengan rongga udara di antaranya untuk isolasi termal ekstra.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DOUBLE SKIN FACADE</pattern>
+    <template><srai>MASTER APA ITU DOUBLE SKIN FACADE</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DOUBLE SKIN FACADE *</pattern>
+    <template><srai>MASTER APA ITU DOUBLE SKIN FACADE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DOUBLE SKIN FACADE</pattern>
+    <template><srai>MASTER APA ITU DOUBLE SKIN FACADE</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DOUBLE SKIN FACADE *</pattern>
+    <template><srai>MASTER APA ITU DOUBLE SKIN FACADE</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU BIM -->
+  <category>
+    <pattern>MASTER APA ITU BIM</pattern>
+    <template><think><set name="TOPIK">APA ITU BIM</set></think>Tentang <get name="TOPIK"/>: BIM (Building Information Modeling) adalah teknologi berbasis model 3D terintegrasi yang memuat data komprehensif bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU BIM</pattern>
+    <template><srai>MASTER APA ITU BIM</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU BIM *</pattern>
+    <template><srai>MASTER APA ITU BIM</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BIM</pattern>
+    <template><srai>MASTER APA ITU BIM</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU BIM *</pattern>
+    <template><srai>MASTER APA ITU BIM</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU REVIT -->
+  <category>
+    <pattern>MASTER APA ITU REVIT</pattern>
+    <template><think><set name="TOPIK">APA ITU REVIT</set></think>Tentang <get name="TOPIK"/>: Autodesk Revit adalah perangkat lunak BIM terpopuler untuk perancangan arsitektur, struktur, dan MEP terpadu.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU REVIT</pattern>
+    <template><srai>MASTER APA ITU REVIT</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU REVIT *</pattern>
+    <template><srai>MASTER APA ITU REVIT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU REVIT</pattern>
+    <template><srai>MASTER APA ITU REVIT</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU REVIT *</pattern>
+    <template><srai>MASTER APA ITU REVIT</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AUTOCAD -->
+  <category>
+    <pattern>MASTER APA ITU AUTOCAD</pattern>
+    <template><think><set name="TOPIK">APA ITU AUTOCAD</set></think>Tentang <get name="TOPIK"/>: AutoCAD adalah perangkat lunak CAD (Computer-Aided Design) standar industri untuk pembuatan gambar draft 2D dan 3D.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AUTOCAD</pattern>
+    <template><srai>MASTER APA ITU AUTOCAD</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AUTOCAD *</pattern>
+    <template><srai>MASTER APA ITU AUTOCAD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AUTOCAD</pattern>
+    <template><srai>MASTER APA ITU AUTOCAD</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AUTOCAD *</pattern>
+    <template><srai>MASTER APA ITU AUTOCAD</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SKETCHUP -->
+  <category>
+    <pattern>MASTER APA ITU SKETCHUP</pattern>
+    <template><think><set name="TOPIK">APA ITU SKETCHUP</set></think>Tentang <get name="TOPIK"/>: SketchUp adalah aplikasi pemodelan 3D intuitif yang sering digunakan pada tahap ideasi dan konsep desain arsitektur.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SKETCHUP</pattern>
+    <template><srai>MASTER APA ITU SKETCHUP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SKETCHUP *</pattern>
+    <template><srai>MASTER APA ITU SKETCHUP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SKETCHUP</pattern>
+    <template><srai>MASTER APA ITU SKETCHUP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SKETCHUP *</pattern>
+    <template><srai>MASTER APA ITU SKETCHUP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RHINO 3D -->
+  <category>
+    <pattern>MASTER APA ITU RHINO 3D</pattern>
+    <template><think><set name="TOPIK">APA ITU RHINO 3D</set></think>Tentang <get name="TOPIK"/>: Rhino 3D adalah lunak pemodelan bebas berbasa NURBS yang sangat populer untuk membuat arsitektur kurva parametrik.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RHINO 3D</pattern>
+    <template><srai>MASTER APA ITU RHINO 3D</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RHINO 3D *</pattern>
+    <template><srai>MASTER APA ITU RHINO 3D</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RHINO 3D</pattern>
+    <template><srai>MASTER APA ITU RHINO 3D</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RHINO 3D *</pattern>
+    <template><srai>MASTER APA ITU RHINO 3D</srai></template>
+  </category>
+
+
+  <!-- MASTER: GRASSHOPPER -->
+  <category>
+    <pattern>MASTER GRASSHOPPER</pattern>
+    <template><think><set name="TOPIK">GRASSHOPPER</set></think>Tentang <get name="TOPIK"/>: Grasshopper adalah plugin pemrograman visual pada Rhino untuk mengolah bentuk parametrik dan algoritma arsitektur.</template>
+  </category>
+
+  <category>
+    <pattern>GRASSHOPPER</pattern>
+    <template><srai>MASTER GRASSHOPPER</srai></template>
+  </category>
+  <category>
+    <pattern>GRASSHOPPER *</pattern>
+    <template><srai>MASTER GRASSHOPPER</srai></template>
+  </category>
+  <category>
+    <pattern>* GRASSHOPPER</pattern>
+    <template><srai>MASTER GRASSHOPPER</srai></template>
+  </category>
+  <category>
+    <pattern>* GRASSHOPPER *</pattern>
+    <template><srai>MASTER GRASSHOPPER</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RENDERING -->
+  <category>
+    <pattern>MASTER APA ITU RENDERING</pattern>
+    <template><think><set name="TOPIK">APA ITU RENDERING</set></think>Tentang <get name="TOPIK"/>: Rendering adalah proses pengolahan gambar 3D komputer menjadi citra visual realistis dengan pencahayaan dan material nyata.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RENDERING</pattern>
+    <template><srai>MASTER APA ITU RENDERING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RENDERING *</pattern>
+    <template><srai>MASTER APA ITU RENDERING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RENDERING</pattern>
+    <template><srai>MASTER APA ITU RENDERING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RENDERING *</pattern>
+    <template><srai>MASTER APA ITU RENDERING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KDB -->
+  <category>
+    <pattern>MASTER APA ITU KDB</pattern>
+    <template><think><set name="TOPIK">APA ITU KDB</set></think>Tentang <get name="TOPIK"/>: KDB (Koefisien Dasar Bangunan) adalah persentase batas maksimal luas lantai dasar bangunan yang boleh dibangun pada tapak.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KDB</pattern>
+    <template><srai>MASTER APA ITU KDB</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KDB *</pattern>
+    <template><srai>MASTER APA ITU KDB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KDB</pattern>
+    <template><srai>MASTER APA ITU KDB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KDB *</pattern>
+    <template><srai>MASTER APA ITU KDB</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KLB -->
+  <category>
+    <pattern>MASTER APA ITU KLB</pattern>
+    <template><think><set name="TOPIK">APA ITU KLB</set></think>Tentang <get name="TOPIK"/>: KLB (Koefisien Lantai Bangunan) adalah angka kelipatan batas luas total seluruh lantai bangunan dibanding luas tapak.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KLB</pattern>
+    <template><srai>MASTER APA ITU KLB</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KLB *</pattern>
+    <template><srai>MASTER APA ITU KLB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KLB</pattern>
+    <template><srai>MASTER APA ITU KLB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KLB *</pattern>
+    <template><srai>MASTER APA ITU KLB</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU KDH -->
+  <category>
+    <pattern>MASTER APA ITU KDH</pattern>
+    <template><think><set name="TOPIK">APA ITU KDH</set></think>Tentang <get name="TOPIK"/>: KDH (Koefisien Daerah Hijau) adalah batas minimal area terbuka ruang hijau yang wajib dipelihara penyerapan airnya.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU KDH</pattern>
+    <template><srai>MASTER APA ITU KDH</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU KDH *</pattern>
+    <template><srai>MASTER APA ITU KDH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KDH</pattern>
+    <template><srai>MASTER APA ITU KDH</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU KDH *</pattern>
+    <template><srai>MASTER APA ITU KDH</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GSB -->
+  <category>
+    <pattern>MASTER APA ITU GSB</pattern>
+    <template><think><set name="TOPIK">APA ITU GSB</set></think>Tentang <get name="TOPIK"/>: GSB (Garis Sempadan Bangunan) adalah batas terdepan yang membatasi jarak aman dinding luar bangunan dari tepi jalan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GSB</pattern>
+    <template><srai>MASTER APA ITU GSB</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GSB *</pattern>
+    <template><srai>MASTER APA ITU GSB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GSB</pattern>
+    <template><srai>MASTER APA ITU GSB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GSB *</pattern>
+    <template><srai>MASTER APA ITU GSB</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU GREEN BUILDING -->
+  <category>
+    <pattern>MASTER APA ITU GREEN BUILDING</pattern>
+    <template><think><set name="TOPIK">APA ITU GREEN BUILDING</set></think>Tentang <get name="TOPIK"/>: Green building adalah praktik pembangunan yang bertanggung jawab secara lingkungan dan efisien sumber daya sepanjang siklus hidupnya.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU GREEN BUILDING</pattern>
+    <template><srai>MASTER APA ITU GREEN BUILDING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU GREEN BUILDING *</pattern>
+    <template><srai>MASTER APA ITU GREEN BUILDING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREEN BUILDING</pattern>
+    <template><srai>MASTER APA ITU GREEN BUILDING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU GREEN BUILDING *</pattern>
+    <template><srai>MASTER APA ITU GREEN BUILDING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU LEED -->
+  <category>
+    <pattern>MASTER APA ITU LEED</pattern>
+    <template><think><set name="TOPIK">APA ITU LEED</set></think>Tentang <get name="TOPIK"/>: LEED (Leadership in Energy and Environmental Design) adalah sistem sertifikasi standar internasional untuk bangunan hijau.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU LEED</pattern>
+    <template><srai>MASTER APA ITU LEED</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU LEED *</pattern>
+    <template><srai>MASTER APA ITU LEED</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LEED</pattern>
+    <template><srai>MASTER APA ITU LEED</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU LEED *</pattern>
+    <template><srai>MASTER APA ITU LEED</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU SERTIFIKASI GREENSHIP -->
+  <category>
+    <pattern>MASTER APA ITU SERTIFIKASI GREENSHIP</pattern>
+    <template><think><set name="TOPIK">APA ITU SERTIFIKASI GREENSHIP</set></think>Tentang <get name="TOPIK"/>: Greenship adalah sistem sertifikasi bangunan hijau di Indonesia yang diterbitkan oleh Green Building Council Indonesia (GBCI).</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU SERTIFIKASI GREENSHIP</pattern>
+    <template><srai>MASTER APA ITU SERTIFIKASI GREENSHIP</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU SERTIFIKASI GREENSHIP *</pattern>
+    <template><srai>MASTER APA ITU SERTIFIKASI GREENSHIP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SERTIFIKASI GREENSHIP</pattern>
+    <template><srai>MASTER APA ITU SERTIFIKASI GREENSHIP</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU SERTIFIKASI GREENSHIP *</pattern>
+    <template><srai>MASTER APA ITU SERTIFIKASI GREENSHIP</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU PBG -->
+  <category>
+    <pattern>MASTER APA ITU PBG</pattern>
+    <template><think><set name="TOPIK">APA ITU PBG</set></think>Tentang <get name="TOPIK"/>: PBG (Persetujuan Bangunan Gedung) adalah izin resmi dari pemerintah untuk membangun, mengubah, atau merawat gedung.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU PBG</pattern>
+    <template><srai>MASTER APA ITU PBG</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU PBG *</pattern>
+    <template><srai>MASTER APA ITU PBG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PBG</pattern>
+    <template><srai>MASTER APA ITU PBG</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU PBG *</pattern>
+    <template><srai>MASTER APA ITU PBG</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AMDAL -->
+  <category>
+    <pattern>MASTER APA ITU AMDAL</pattern>
+    <template><think><set name="TOPIK">APA ITU AMDAL</set></think>Tentang <get name="TOPIK"/>: AMDAL adalah kajian mengenai dampak penting suatu usaha/kegiatan pembangunan gedung terhadap lingkungan hidup.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AMDAL</pattern>
+    <template><srai>MASTER APA ITU AMDAL</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AMDAL *</pattern>
+    <template><srai>MASTER APA ITU AMDAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AMDAL</pattern>
+    <template><srai>MASTER APA ITU AMDAL</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AMDAL *</pattern>
+    <template><srai>MASTER APA ITU AMDAL</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU WAYFINDING -->
+  <category>
+    <pattern>MASTER APA ITU WAYFINDING</pattern>
+    <template><think><set name="TOPIK">APA ITU WAYFINDING</set></think>Tentang <get name="TOPIK"/>: Wayfinding adalah sistem penanda visual (signage) dan tata letak ruang yang memandu orientasi arah bagi pengguna bangunan.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU WAYFINDING</pattern>
+    <template><srai>MASTER APA ITU WAYFINDING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU WAYFINDING *</pattern>
+    <template><srai>MASTER APA ITU WAYFINDING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU WAYFINDING</pattern>
+    <template><srai>MASTER APA ITU WAYFINDING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU WAYFINDING *</pattern>
+    <template><srai>MASTER APA ITU WAYFINDING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU DESAIN INKLUSIF -->
+  <category>
+    <pattern>MASTER APA ITU DESAIN INKLUSIF</pattern>
+    <template><think><set name="TOPIK">APA ITU DESAIN INKLUSIF</set></think>Tentang <get name="TOPIK"/>: Desain inklusif menciptakan aksesibilitas yang ramah dan aman bagi seluruh pengguna, termasuk penyandang disabilitas dan lansia.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU DESAIN INKLUSIF</pattern>
+    <template><srai>MASTER APA ITU DESAIN INKLUSIF</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU DESAIN INKLUSIF *</pattern>
+    <template><srai>MASTER APA ITU DESAIN INKLUSIF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DESAIN INKLUSIF</pattern>
+    <template><srai>MASTER APA ITU DESAIN INKLUSIF</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU DESAIN INKLUSIF *</pattern>
+    <template><srai>MASTER APA ITU DESAIN INKLUSIF</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RAMPA DISABILITAS -->
+  <category>
+    <pattern>MASTER APA ITU RAMPA DISABILITAS</pattern>
+    <template><think><set name="TOPIK">APA ITU RAMPA DISABILITAS</set></think>Tentang <get name="TOPIK"/>: Rampa (ramp) adalah bidang miring landai dengan kemiringan terbatas sebagai jalur aksesabilitas pengguna kursi roda.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RAMPA DISABILITAS</pattern>
+    <template><srai>MASTER APA ITU RAMPA DISABILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RAMPA DISABILITAS *</pattern>
+    <template><srai>MASTER APA ITU RAMPA DISABILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAMPA DISABILITAS</pattern>
+    <template><srai>MASTER APA ITU RAMPA DISABILITAS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAMPA DISABILITAS *</pattern>
+    <template><srai>MASTER APA ITU RAMPA DISABILITAS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU TOR -->
+  <category>
+    <pattern>MASTER APA ITU TOR</pattern>
+    <template><think><set name="TOPIK">APA ITU TOR</set></think>Tentang <get name="TOPIK"/>: TOR (Terms of Reference) atau KAK adalah dokumen acuan kerangka kerja yang memuat batasan dan syarat kebutuhan proyek arsitektur.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU TOR</pattern>
+    <template><srai>MASTER APA ITU TOR</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU TOR *</pattern>
+    <template><srai>MASTER APA ITU TOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TOR</pattern>
+    <template><srai>MASTER APA ITU TOR</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU TOR *</pattern>
+    <template><srai>MASTER APA ITU TOR</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU MASTER PLAN -->
+  <category>
+    <pattern>MASTER APA ITU MASTER PLAN</pattern>
+    <template><think><set name="TOPIK">APA ITU MASTER PLAN</set></think>Tentang <get name="TOPIK"/>: Master plan adalah peta perancangan komprehensif jangka panjang yang mengarahkan tata pertumbuhan kawasan atau lahan besar.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU MASTER PLAN</pattern>
+    <template><srai>MASTER APA ITU MASTER PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU MASTER PLAN *</pattern>
+    <template><srai>MASTER APA ITU MASTER PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MASTER PLAN</pattern>
+    <template><srai>MASTER APA ITU MASTER PLAN</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU MASTER PLAN *</pattern>
+    <template><srai>MASTER APA ITU MASTER PLAN</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RAB -->
+  <category>
+    <pattern>MASTER APA ITU RAB</pattern>
+    <template><think><set name="TOPIK">APA ITU RAB</set></think>Tentang <get name="TOPIK"/>: RAB (Rencana Anggaran Biaya) adalah perhitungan estimasi pengeluaran total biaya material, upah, dan jasa pekerjaan proyek konstruksi.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RAB</pattern>
+    <template><srai>MASTER APA ITU RAB</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RAB *</pattern>
+    <template><srai>MASTER APA ITU RAB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAB</pattern>
+    <template><srai>MASTER APA ITU RAB</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RAB *</pattern>
+    <template><srai>MASTER APA ITU RAB</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU RKS -->
+  <category>
+    <pattern>MASTER APA ITU RKS</pattern>
+    <template><think><set name="TOPIK">APA ITU RKS</set></think>Tentang <get name="TOPIK"/>: RKS (Rencana Kerja dan Syarat-syarat) adalah dokumen tertulis pelaksanaan proyek yang memuat spesifikasi teknis dan administratif.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU RKS</pattern>
+    <template><srai>MASTER APA ITU RKS</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU RKS *</pattern>
+    <template><srai>MASTER APA ITU RKS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RKS</pattern>
+    <template><srai>MASTER APA ITU RKS</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU RKS *</pattern>
+    <template><srai>MASTER APA ITU RKS</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU AS BUILT DRAWING -->
+  <category>
+    <pattern>MASTER APA ITU AS BUILT DRAWING</pattern>
+    <template><think><set name="TOPIK">APA ITU AS BUILT DRAWING</set></think>Tentang <get name="TOPIK"/>: As-built drawing adalah gambar teknis akhir yang mencerminkan seluruh penyesuaian lapangan nyata setelah bangunan selesai dibangun.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU AS BUILT DRAWING</pattern>
+    <template><srai>MASTER APA ITU AS BUILT DRAWING</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU AS BUILT DRAWING *</pattern>
+    <template><srai>MASTER APA ITU AS BUILT DRAWING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AS BUILT DRAWING</pattern>
+    <template><srai>MASTER APA ITU AS BUILT DRAWING</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU AS BUILT DRAWING *</pattern>
+    <template><srai>MASTER APA ITU AS BUILT DRAWING</srai></template>
+  </category>
+
+
+  <!-- MASTER: APA ITU POST OCCUPANCY EVALUATION -->
+  <category>
+    <pattern>MASTER APA ITU POST OCCUPANCY EVALUATION</pattern>
+    <template><think><set name="TOPIK">APA ITU POST OCCUPANCY EVALUATION</set></think>Tentang <get name="TOPIK"/>: Post Occupancy Evaluation (POE) adalah proses peninjauan performa dan kepuasan fungsi ruang setelah bangunan dihuni.</template>
+  </category>
+
+  <category>
+    <pattern>APA ITU POST OCCUPANCY EVALUATION</pattern>
+    <template><srai>MASTER APA ITU POST OCCUPANCY EVALUATION</srai></template>
+  </category>
+  <category>
+    <pattern>APA ITU POST OCCUPANCY EVALUATION *</pattern>
+    <template><srai>MASTER APA ITU POST OCCUPANCY EVALUATION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU POST OCCUPANCY EVALUATION</pattern>
+    <template><srai>MASTER APA ITU POST OCCUPANCY EVALUATION</srai></template>
+  </category>
+  <category>
+    <pattern>* APA ITU POST OCCUPANCY EVALUATION *</pattern>
+    <template><srai>MASTER APA ITU POST OCCUPANCY EVALUATION</srai></template>
+  </category>
+
+
+</aiml>
