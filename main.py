@@ -51,7 +51,7 @@ ALIASES = {
 for k,v in ALIASES.items():
     KEYWORD_MAP[k] = v
 
-FALLBACK_MARKERS = ["maaf", "sorry", "kurang", "tidak menemukan", "tidak mengerti", "tidak paham", "di luar kemampuan", "sepertinya di luar", "tidak nangkap", "kurang paham", "kurang nangkap"]
+FALLBACK_MARKERS = ["maaf", "sorry", "kurang", "tidak menemukan", "tidak mengerti", "tidak paham", "di luar kemampuan", "sepertinya di luar", "tidak nangkap", "kurang paham", "kurang nangkap", "waduh", "ketinggian", "hmm"]
 
 def _is_fallback(resp: str) -> bool:
     if not resp:
@@ -67,13 +67,16 @@ def _correct_typos(text: str) -> str:
     for t in KNOWN_TOPICS:
         vocab.update(t.split())
     vocab.update(KEYWORD_MAP.keys())
+    # tambah vocab native agar OKE/GAS/WOY tidak dikoreksi
+    vocab.update(["HALO","WOY","WOI","HEI","HAI","OKE","OK","SIP","GAS","GASS","BRO","CUY","P","MAKASIH","CAPEK","WKWK","HAHA","HEHE","SIAPA","KAMU","AKU","KITA","BAHAS","TENTANG","YANG","KALAU","VOID","VVOID","VIOD"])
+    # words yang valid jangan dikoreksi
     words = text.upper().split()
     corrected = []
     for w in words:
-        if w in vocab or len(w) <= 2:
+        if w in vocab or len(w) <= 3:
             corrected.append(w)
         else:
-            matches = difflib.get_close_matches(w, vocab, n=1, cutoff=0.78)
+            matches = difflib.get_close_matches(w, vocab, n=1, cutoff=0.85)
             corrected.append(matches[0] if matches else w)
     return " ".join(corrected)
 
@@ -178,11 +181,27 @@ def get_response(pesan: str, session_id: str = "_global") -> str:
         resp = chatbot.respond("SIAPA KAMU", session_id)
         if resp and not _is_fallback(resp):
             return resp.strip()
-    # 3. coba AIML langsung
+    # 3. handle validasi santai "oke, gas" -> jangan dikoreksi typo
+    if re.search(r"\b(oke|ok|sip|gass?|gas|mantap|lanjut)\b", low):
+        # coba SRAI ke CORE VALIDASI via OKE
+        r = chatbot.respond("OKE", session_id)
+        if r and not _is_fallback(r):
+            return r.strip()
+    # 4. coba AIML langsung
     resp = chatbot.respond(original, session_id)
     if resp and resp.strip() and not _is_fallback(resp):
         return resp.strip()
-    # 4. keyword alias untuk query pendek seperti 'void', 'elemen arsitektur?'
+    # 5. handle vague "kita akan bahas tentang yang kamu bilang" -> context recall
+    if re.search(r"kita akan bahas|yang kamu bilang|tentang yang.*bilang", low):
+        topik = chatbot.getPredicate("TOPIK", session_id)
+        if topik:
+            r = chatbot.respond(topik, session_id)
+            if r and not _is_fallback(r):
+                return f"Maksud kamu '{topik.lower()}' yang tadi? " + r.strip()
+            return f"Kita tadi bahas {topik}. Mau lanjut detailnya?"
+        else:
+            return "Boleh, kita mau bahas apa? Coba sebut topiknya, mis. 'void' atau 'elemen arsitektur'."
+    # 5. keyword alias untuk query pendek seperti 'void', 'elemen arsitektur?'
     norm_upper = _normalize(original).upper()
     alias_topic = _keyword_alias(norm_upper)
     if alias_topic:
@@ -192,22 +211,32 @@ def get_response(pesan: str, session_id: str = "_global") -> str:
         master_resp = chatbot.respond(f"MASTER {alias_topic}", session_id)
         if master_resp and not _is_fallback(master_resp):
             return master_resp.strip()
-    # 5. typo correction (viod -> void)
+    # 6. typo correction (viod -> void) dengan catatan dinamis
     corrected = _correct_typos(norm_upper)
     if corrected != norm_upper:
+        # cari kata yang berubah untuk catatan
+        orig_words = norm_upper.split()
+        corr_words = corrected.split()
+        diffs = [f"'{o.lower()}' jadi '{c.lower()}'" for o,c in zip(orig_words, corr_words) if o!=c]
+        note = f" (aku koreksi {', '.join(diffs)} ya)" if diffs else f" (maksud kamu '{corrected.lower()}' ya?)"
         typo_resp = chatbot.respond(corrected, session_id)
         if typo_resp and not _is_fallback(typo_resp):
-            return typo_resp.strip() + " (maksud kamu '" + corrected.lower() + "' ya?)"
+            return typo_resp.strip() + note
         alias2 = _keyword_alias(corrected)
         if alias2:
             r2 = chatbot.respond(alias2, session_id)
             if r2 and not _is_fallback(r2):
-                return r2.strip() + " (aku koreksi 'viod' jadi 'void' ya)"
-    # 6. fallback helpful + saran
-    suggestions = difflib.get_close_matches(norm_upper, KNOWN_TOPICS, n=3, cutoff=0.4)
+                return r2.strip() + note
+            r3 = chatbot.respond(f"MASTER {alias2}", session_id)
+            if r3 and not _is_fallback(r3):
+                return r3.strip() + note
+    # 7. fallback helpful + saran (hanya untuk kata >=4 huruf agar tidak hallucinate untuk 'wah'/'weh')
+    suggestions = difflib.get_close_matches(norm_upper, KNOWN_TOPICS, n=3, cutoff=0.45)
     if not suggestions:
         for w in norm_upper.split():
-            sugg = difflib.get_close_matches(w, list(KEYWORD_MAP.keys()), n=2, cutoff=0.6)
+            if len(w) < 4:
+                continue
+            sugg = difflib.get_close_matches(w, list(KEYWORD_MAP.keys()), n=2, cutoff=0.65)
             if sugg:
                 for s in sugg:
                     if KEYWORD_MAP[s] not in suggestions:
