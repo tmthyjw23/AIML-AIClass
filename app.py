@@ -337,13 +337,73 @@ HTML = r"""<!doctype html>
   }
   .field input:focus, .field select:focus{border-color:rgba(255,255,255,.25)}
   .row{ display:flex; gap:10px; justify-content:flex-end; margin-top:16px}
+  /* hamburger - hidden desktop */
+  .hamburger{display:none; width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); color:#fff; cursor:pointer; place-items:center}
+  .hamburger span{width:14px; height:1.5px; background:#fff; display:block; position:relative}
+  .hamburger span::before,.hamburger span::after{content:""; position:absolute; left:0; width:14px; height:1.5px; background:#fff}
+  .hamburger span::before{top:-5px} .hamburger span::after{top:5px}
+  .mobile-menu{position:absolute; top:calc(100% + 10px); right:0; left:0; background:rgba(16,16,16,.96); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:10px; display:none; flex-direction:column; gap:8px; box-shadow:0 20px 40px rgba(0,0,0,.6)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu .btn-pill{width:100%; justify-content:center}
+
+  /* fluid & responsive */
+  @media (max-width:1024px){
+    .chat-shell{width:min(720px, 100%)}
+  }
+  @media (max-width:820px){
+    .nav-wrap{width:calc(100% - 16px); top:12px}
+    .nav-pill{padding:6px 8px 6px 10px; gap:8px}
+    .nav-links{font-size:12px; gap:8px}
+    .chat-log{height:min(58vh, 480px)}
+  }
   @media (max-width:740px){
     .nav-links{display:none}
     .nav-pill{padding:6px 8px}
-    .hero h1{font-size:36px}
-    .hero p.sub{font-size:20px}
+    .hero{width:100%}
+    .hero h1{font-size:clamp(28px, 9vw, 36px)}
+    .hero p.sub{font-size:clamp(16px, 4.5vw, 20px); margin-bottom:20px}
     .nav-actions .btn-pill{padding:7px 10px; font-size:12px}
+    .hamburger{display:grid}
+    .nav-actions#navActionsUser{display:none !important}
+    .nav-actions#navActionsUser.mobile-open{display:flex !important; flex-direction:column; position:absolute; top:calc(100% + 10px); right:0; background:rgba(16,16,16,.96); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:10px; gap:8px}
+    .chat-shell{gap:12px}
+    .chat-log{height:calc(100dvh - 220px); min-height:320px; padding:14px; border-radius:20px}
+    .bubble-row{max-width:92%}
+    .avatar{width:28px; height:28px; font-size:11px}
+    .bubble{font-size:13px; padding:10px 14px}
+    .pill{padding:10px 14px}
+    .pill input{font-size:16px} /* prevent iOS zoom */
+    .stage{padding:84px 12px 16px; justify-content:flex-start; padding-top:78px}
+    .hero{padding-top:12px}
+    .modal{padding:18px; border-radius:16px}
   }
+  @media (max-width:480px){
+    .nav-wrap{top:8px; width:calc(100% - 12px)}
+    .nav-pill{padding:5px 6px 5px 8px}
+    .logo{width:28px; height:28px}
+    .logo-dots{width:18px; height:18px}
+    .hero h1{font-size:26px}
+    .hero p.sub{font-size:15px}
+    .pill{padding:10px 12px; gap:8px}
+    .pill .arrow{width:36px; height:36px}
+    .chat-log{height:calc(100dvh - 200px); height:calc(100svh - 200px); padding:12px; gap:8px}
+    .chat-input-row .pill{padding:8px 10px 8px 14px}
+    .terms{font-size:11px}
+    .modal{width:calc(100% - 12px); padding:16px}
+    .field input, .field select{font-size:16px}
+  }
+  @media (min-width:741px) and (max-width:1024px){
+    .hero h1{font-size:42px}
+    .hero p.sub{font-size:22px}
+  }
+  /* dynamic viewport & safe area */
+  @supports (height: 100dvh){
+    .stage{min-height:100dvh}
+    .chat-log{height:calc(100dvh - 220px)}
+  }
+  /* tidy: prevent horizontal scroll, improve touch */
+  .nav-pill, .pill, .chat-log, .modal{max-width:100%}
+  .btn-pill, .pill .arrow, .hamburger{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
@@ -373,6 +433,13 @@ HTML = r"""<!doctype html>
       <button class="btn-pill small" onclick="openSettings()">Pengaturan</button>
       <button class="btn-pill small" onclick="logout()" style="background:rgba(255,255,255,.10)">Logout</button>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="menu" onclick="toggleMobileMenu()"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="btn-pill small" onclick="resetContext(); toggleMobileMenu()">Reset Konteks</button>
+    <button class="btn-pill small danger" onclick="resetSession(); toggleMobileMenu()">Reset Sesi</button>
+    <button class="btn-pill small" onclick="openSettings(); toggleMobileMenu()">Pengaturan</button>
+    <button class="btn-pill small" onclick="logout(); toggleMobileMenu()" style="background:rgba(255,255,255,.10)">Logout</button>
   </div>
 </div>
 
@@ -461,6 +528,10 @@ function updateNav(){
   document.getElementById('navActionsGuest').classList.toggle('hidden', logged);
   document.getElementById('navUser').classList.toggle('hidden', !logged);
   document.getElementById('navActionsUser').classList.toggle('hidden', !logged);
+  const ham = document.getElementById('hamburger');
+  if(ham) ham.style.display = (logged && window.innerWidth <= 740) ? 'grid' : 'none';
+  const mm = document.getElementById('mobileMenu');
+  if(!logged && mm) mm.classList.remove('open');
   if(logged){
     const n = localStorage.getItem('ars_name') || 'User';
     document.getElementById('navName').textContent = n;
@@ -469,6 +540,26 @@ function updateNav(){
     document.getElementById('helloName').textContent = '— hai, ' + n + '!';
   }
 }
+function toggleMobileMenu(){
+  const mm = document.getElementById('mobileMenu');
+  if(mm) mm.classList.toggle('open');
+}
+// dynamic viewport: handle mobile 100vh issue
+function setVH(){
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setVH();
+window.addEventListener('resize', ()=>{ setVH(); updateNav(); });
+window.addEventListener('orientationchange', setVH);
+// close mobile menu on outside click
+document.addEventListener('click', (e)=>{
+  const mm = document.getElementById('mobileMenu');
+  const ham = document.getElementById('hamburger');
+  if(mm && ham && !mm.contains(e.target) && !ham.contains(e.target)){
+    mm.classList.remove('open');
+  }
+});
 function toast(msg){
   const t=document.createElement('div');
   t.textContent=msg;
