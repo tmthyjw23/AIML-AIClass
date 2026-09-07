@@ -3,11 +3,108 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent))
 from flask import Flask, request, jsonify, render_template_string
 from flask_cors import CORS
-from main import get_response, chatbot  # re-use kernel yang sudah di-load
-import time
+from main import get_response, chatbot
+import time, json, threading
+from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)  # agar bisa di-fetch dari frontend lain
+CORS(app)
+
+# --- Persistent storage (nama user & history log) ---
+DATA_DIR = Path(__file__).parent / "data"
+HISTORY_DIR = DATA_DIR / "history"
+USERS_FILE = DATA_DIR / "users.json"
+LOG_FILE = DATA_DIR / "chat_log.jsonl"
+_lock = threading.Lock()
+
+def ensure_dirs():
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    if not USERS_FILE.exists():
+        USERS_FILE.write_text("{}", encoding="utf-8")
+    if not LOG_FILE.exists():
+        LOG_FILE.write_text("", encoding="utf-8")
+
+ensure_dirs()
+
+def load_users():
+    try:
+        return json.loads(USERS_FILE.read_text(encoding="utf-8") or "{}")
+    except:
+        return {}
+
+def save_users(data):
+    with _lock:
+        USERS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+def save_user(session_id, name, email):
+    users = load_users()
+    users[session_id] = {
+        "name": name.strip(),
+        "email": email.strip(),
+        "updated_at": datetime.now().isoformat(),
+        "created_at": users.get(session_id, {}).get("created_at", datetime.now().isoformat())
+    }
+    save_users(users)
+    # also set AIML predicates for personalization
+    if name:
+        chatbot.setPredicate("user_name", name.strip(), session_id)
+    if email:
+        chatbot.setPredicate("user_email", email.strip(), session_id)
+
+def get_user(session_id):
+    return load_users().get(session_id, {})
+
+def append_history(session_id, role, message, name=""):
+    ensure_dirs()
+    entry = {
+        "ts": datetime.now().isoformat(),
+        "session_id": session_id,
+        "role": role,  # user | bot
+        "message": message,
+        "name": name
+    }
+    # per-session file
+    sess_file = HISTORY_DIR / f"{session_id}.jsonl"
+    with _lock:
+        with open(sess_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        # global log
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+def read_history(session_id, limit=100):
+    sess_file = HISTORY_DIR / f"{session_id}.jsonl"
+    if not sess_file.exists():
+        return []
+    lines = sess_file.read_text(encoding="utf-8").strip().splitlines()
+    # keep last limit
+    out = []
+    for l in lines[-limit:]:
+        try:
+            out.append(json.loads(l))
+        except:
+            continue
+    return out
+
+def clear_session_predicates(session_id, mode="context"):
+    # mode: context -> clear TOPIK & gaya_bahasa only; session -> full reset
+    if mode == "session":
+        # delete session entirely (Kernel internal)
+        try:
+            chatbot._deleteSession(session_id)
+        except:
+            pass
+        # also clear history file (optional keep for audit — we keep but predicate cleared)
+        # we keep file, but user can request history clear via separate
+        chatbot._addSession(session_id)
+        chatbot.setPredicate("TOPIK", "", session_id)
+        chatbot.setPredicate("gaya_bahasa", "", session_id)
+        chatbot.setPredicate("user_name", get_user(session_id).get("name",""), session_id)
+    else:  # context
+        chatbot.setPredicate("TOPIK", "", session_id)
+        # keep gaya_bahasa as is to keep persona, but clear last topic
+        # also clear _inputHistory/_outputHistory last? keep for audit but topic cleared
 
 HTML = r"""<!doctype html>
 <html lang="id">
@@ -16,25 +113,20 @@ HTML = r"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ArsitekBot — AI-Powered AIML Chatbot</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
   html,body{height:100%;margin:0}
   body{
     font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    background:#000;
-    color:#fff;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
+    background:#000; color:#fff; overflow-x:hidden; -webkit-font-smoothing:antialiased;
   }
-  /* dotted grid like 21st.dev */
   .bg-dots{
     position:fixed; inset:0;
     background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
     background-size:22px 22px;
     mask: radial-gradient(ellipse at center, black 60%, transparent 85%);
-    opacity:.55;
-    pointer-events:none;
+    opacity:.55; pointer-events:none;
   }
   .bg-glow{
     position:fixed; inset:0; pointer-events:none;
@@ -43,47 +135,50 @@ HTML = r"""<!doctype html>
       radial-gradient(800px 600px at 50% 120%, rgba(255,255,255,.05), transparent 60%);
   }
   a{color:inherit;text-decoration:none}
-  /* pill navbar — exact like preview */
-  .nav-wrap{position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:30; width:min(720px, calc(100% - 24px));}
+  .nav-wrap{position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:30; width:min(820px, calc(100% - 24px));}
   .nav-pill{
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
     background:rgba(18,18,18,.72); backdrop-filter:blur(16px) saturate(140%);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:9999px; padding:8px 10px 8px 14px;
+    border:1px solid rgba(255,255,255,.12); border-radius:9999px; padding:8px 10px 8px 14px;
     box-shadow:0 10px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
   }
-  .nav-left{display:flex; align-items:center; gap:18px}
-  .logo{width:32px;height:32px; display:grid; place-items:center; border-radius:50%;}
+  .nav-left{display:flex; align-items:center; gap:14px}
+  .logo{width:32px;height:32px; display:grid; place-items:center; border-radius:50%; flex-shrink:0}
   .logo-dots{width:22px;height:22px; display:grid; grid-template-columns:6px 6px; gap:4px; place-content:center}
-  .logo-dots i{width:5px;height:5px; background:#fff; border-radius:50%; display:block; opacity:.95}
+  .logo-dots i{width:5px;height:5px; background:#fff; border-radius:50%; display:block}
   .logo-dots i:nth-child(1){opacity:.9} .logo-dots i:nth-child(2){opacity:.7} .logo-dots i:nth-child(3){opacity:.45} .logo-dots i:nth-child(4){opacity:1}
-  .nav-links{display:flex; gap:22px; font-size:14px; font-weight:500; color:rgba(255,255,255,.78)}
-  .nav-links a:hover{color:#fff}
+  .nav-links{display:flex; gap:14px; font-size:13px; font-weight:500; color:rgba(255,255,255,.72)}
+  .nav-links a{padding:6px 10px; border-radius:9999px; border:1px solid transparent}
+  .nav-links a:hover{color:#fff; background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.08)}
   .nav-actions{display:flex; gap:8px; align-items:center}
   .btn-pill{
-    border-radius:9999px; padding:10px 18px; font-size:14px; font-weight:600; border:1px solid rgba(255,255,255,.14);
-    background:rgba(255,255,255,.06); color:#fff; cursor:pointer; transition:.2s;
+    border-radius:9999px; padding:9px 15px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,.14);
+    background:rgba(255,255,255,.06); color:#fff; cursor:pointer; transition:.2s; white-space:nowrap;
   }
   .btn-pill:hover{background:rgba(255,255,255,.10)}
   .btn-pill.primary{ background:#fff; color:#000; border-color:#fff; box-shadow:0 0 28px rgba(255,255,255,.45), 0 4px 16px rgba(0,0,0,.4); }
   .btn-pill.primary:hover{ background:#f5f5f5; transform:translateY(-1px)}
-  /* layout */
+  .btn-pill.small{padding:7px 12px; font-size:12px}
+  .btn-pill.danger{border-color:rgba(255,80,80,.3); background:rgba(255,50,50,.08); color:#ff9a9a}
+  .btn-pill.danger:hover{background:rgba(255,50,50,.15)}
+  .user-pill{
+    display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+    border-radius:9999px; padding:6px 10px 6px 8px; font-size:12px; color:rgba(255,255,255,.85)
+  }
+  .user-pill .avatar{width:22px; height:22px; border-radius:50%; background:#fff; color:#000; display:grid; place-items:center; font-weight:700; font-size:11px; flex-shrink:0}
   .stage{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:108px 16px 32px; position:relative; z-index:1}
   .hero{width:min(640px, 100%); text-align:center; animation:fadeUp .7s ease both}
   .hero h1{font-size:clamp(36px, 6vw, 54px); line-height:1.02; letter-spacing:-.04em; font-weight:700; margin:0 0 10px}
   .hero p.sub{color:rgba(255,255,255,.62); font-size:clamp(18px, 3vw, 30px); font-weight:400; margin:0 0 28px; letter-spacing:-.02em}
   @keyframes fadeUp{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
-  /* sign-in pills */
   .pill{
     width:100%; background:rgba(18,18,18,.85); border:1px solid rgba(255,255,255,.14);
-    border-radius:9999px; padding:14px 16px; display:flex; align-items:center; gap:12px;
+    border-radius:9999px; padding:12px 16px; display:flex; align-items:center; gap:12px;
     backdrop-filter:blur(12px); box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
     transition:border-color .2s, background .2s;
   }
   .pill:hover{border-color:rgba(255,255,255,.22)}
   .pill:focus-within{border-color:rgba(255,255,255,.28); background:rgba(22,22,22,.95)}
-  .pill-google{justify-content:center; cursor:pointer; font-weight:500; font-size:15px}
-  .pill-google:hover{background:rgba(28,28,28,1)}
   .pill input{
     flex:1; background:transparent; border:0; outline:0; color:#fff; font-size:15px; text-align:center;
   }
@@ -93,22 +188,21 @@ HTML = r"""<!doctype html>
     display:grid; place-items:center; cursor:pointer; flex-shrink:0; transition:.2s;
   }
   .pill .arrow:hover{background:#fff; color:#000; transform:scale(1.02)}
-  .divider{display:flex; align-items:center; gap:16px; color:rgba(255,255,255,.35); font-size:14px; margin:16px 0}
+  .divider{display:flex; align-items:center; gap:16px; color:rgba(255,255,255,.35); font-size:14px; margin:14px 0}
   .divider::before,.divider::after{content:""; flex:1; height:1px; background:rgba(255,255,255,.12)}
-  .terms{margin-top:26px; color:rgba(255,255,255,.42); font-size:12px; line-height:1.6}
+  .terms{margin-top:20px; color:rgba(255,255,255,.42); font-size:12px; line-height:1.6}
   .terms a{color:rgba(255,255,255,.7); text-decoration:underline; text-underline-offset:3px}
-  /* chat view — same pill language */
-  .chat-shell{width:min(760px, 100%); display:none; flex-direction:column; gap:14px; animation:fadeUp .5s ease both}
+  .chat-shell{width:min(780px, 100%); display:none; flex-direction:column; gap:14px; animation:fadeUp .5s ease both}
   .chat-shell.active{display:flex}
   .chat-log{
     background:rgba(16,16,16,.72); backdrop-filter:blur(14px);
     border:1px solid rgba(255,255,255,.10); border-radius:24px; padding:18px;
-    height:min(58vh, 520px); overflow:auto; display:flex; flex-direction:column; gap:10px;
+    height:min(56vh, 520px); overflow:auto; display:flex; flex-direction:column; gap:10px;
     box-shadow:0 20px 60px rgba(0,0,0,.5);
   }
   .chat-log::-webkit-scrollbar{width:6px}
   .chat-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15); border-radius:9999px}
-  .bubble{max-width:78%; padding:12px 16px; border-radius:18px; font-size:14px; line-height:1.55; word-wrap:break-word}
+  .bubble{max-width:78%; padding:11px 15px; border-radius:18px; font-size:14px; line-height:1.55; word-wrap:break-word}
   .bubble.user{align-self:flex-end; background:#fff; color:#000; border-bottom-right-radius:6px; font-weight:500}
   .bubble.bot{align-self:flex-start; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); color:rgba(255,255,255,.92); border-bottom-left-radius:6px}
   .bubble.bot small{color:rgba(255,255,255,.45); font-size:11px; display:block; margin-top:6px}
@@ -116,11 +210,28 @@ HTML = r"""<!doctype html>
   .chat-input-row .pill{padding:10px 12px 10px 18px}
   .hint{color:rgba(255,255,255,.38); font-size:12px; text-align:center; margin-top:6px}
   .hidden{display:none !important}
-  @media (max-width:640px){
+  /* modal */
+  .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(8px); display:none; place-items:center; z-index:50; padding:16px}
+  .modal-bg.open{display:grid}
+  .modal{
+    width:min(480px, 100%); background:#111; border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:22px;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+  }
+  .modal h3{margin:0 0 14px; font-size:18px}
+  .field{margin-bottom:12px}
+  .field label{display:block; font-size:12px; color:rgba(255,255,255,.6); margin-bottom:6px}
+  .field input, .field select{
+    width:100%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:#fff;
+    padding:10px 14px; border-radius:12px; outline:0; font-size:14px;
+  }
+  .field input:focus, .field select:focus{border-color:rgba(255,255,255,.25)}
+  .row{ display:flex; gap:10px; justify-content:flex-end; margin-top:16px}
+  @media (max-width:740px){
     .nav-links{display:none}
-    .nav-pill{padding:6px 8px 6px 10px}
+    .nav-pill{padding:6px 8px}
     .hero h1{font-size:36px}
     .hero p.sub{font-size:20px}
+    .nav-actions .btn-pill{padding:7px 10px; font-size:12px}
   }
 </style>
 </head>
@@ -129,148 +240,278 @@ HTML = r"""<!doctype html>
 <div class="bg-glow"></div>
 
 <div class="nav-wrap">
-  <div class="nav-pill">
+  <div class="nav-pill" id="navPill">
     <div class="nav-left">
-      <div class="logo" aria-label="logo"><div class="logo-dots"><i></i><i></i><i></i><i></i></div></div>
-      <nav class="nav-links">
-        <a href="#" onclick="toast('Manifesto — ArsitekBot untuk edukasi Teknik Arsitektur');return false">Manifesto</a>
-        <a href="#" onclick="toast('Features: 150+ topik, context-aware, web chat');return false">Careers</a>
-        <a href="#" onclick="toast('Discover: coba tanya — apa itu bauhaus?');return false">Discover</a>
+      <div class="logo"><div class="logo-dots"><i></i><i></i><i></i><i></i></div></div>
+      <!-- guest nav -->
+      <nav class="nav-links" id="navGuest">
+        <a href="#" onclick="toast('ArsitekBot — 875 AIML categories, context-aware');return false">Manifesto</a>
+        <a href="#" onclick="toast('Fitur: login nama, history log, reset konteks/sesi');return false">Careers</a>
+        <a href="#" onclick="toast('Coba: apa itu bauhaus → jelaskan lebih detail → tadi aku nanya apa');return false">Discover</a>
       </nav>
+      <!-- logged in user pill -->
+      <div id="navUser" class="user-pill hidden">
+        <div class="avatar" id="navAvatar">A</div>
+        <span id="navName">User</span>
+        <span style="opacity:.4">·</span>
+        <span id="navSess" style="opacity:.6; font-size:11px"></span>
+      </div>
     </div>
-    <div class="nav-actions">
-      <button class="btn-pill" onclick="enterGuest()">LogIn</button>
-      <button class="btn-pill primary" onclick="enterGuest()">Signup</button>
+    <div class="nav-actions" id="navActionsGuest">
+      <button class="btn-pill" onclick="focusAuth()">LogIn</button>
+      <button class="btn-pill primary" onclick="focusAuth()">Signup</button>
+    </div>
+    <div class="nav-actions hidden" id="navActionsUser">
+      <button class="btn-pill small" onclick="resetContext()" title="Hapus TOPIK & konteks arsitektur">Reset Konteks</button>
+      <button class="btn-pill small danger" onclick="resetSession()" title="Hapus semua sesi & gaya_bahasa">Reset Sesi</button>
+      <button class="btn-pill small" onclick="openSettings()">Pengaturan</button>
+      <button class="btn-pill small" onclick="logout()" style="background:rgba(255,255,255,.10)">Logout</button>
     </div>
   </div>
 </div>
 
 <main class="stage">
-  <!-- AUTH VIEW — exact clone of 21st.dev sign-in flow -->
   <section id="authView" class="hero">
     <h1>Welcome Developer</h1>
     <p class="sub">Your sign in component</p>
-
     <div style="margin-top:6px">
       <button class="pill pill-google" onclick="signInGoogle()">
         <span style="font-weight:700; font-size:18px; width:18px; text-align:center">G</span>
         <span>Sign in with Google</span>
       </button>
-
       <div class="divider">or</div>
-
+      <div class="pill" id="namePill" style="margin-bottom:10px">
+        <input id="nameInput" type="text" placeholder="Nama Anda" maxlength="32" autocomplete="name" onkeydown="if(event.key==='Enter') document.getElementById('emailInput').focus()">
+        <span style="opacity:.35; font-size:13px">👤</span>
+      </div>
       <div class="pill" id="emailPill">
         <input id="emailInput" type="email" placeholder="info@gmail.com" autocomplete="email" onkeydown="if(event.key==='Enter') enterChat()">
         <button class="arrow" onclick="enterChat()" aria-label="continue">→</button>
       </div>
-
-      <div class="hint" style="margin-top:10px">Tekan Enter atau → untuk lanjut sebagai tamu — email opsional</div>
-
+      <div class="hint" style="margin-top:10px">Nama akan disimpan & history dicatat di log. Email opsional.</div>
       <p class="terms">
         By signing up, you agree to the <a href="#">MSA</a>, <a href="#">Product Terms</a>, <a href="#">Policies</a>,<br>
         <a href="#">Privacy Notice</a>, and <a href="#">Cookie Notice</a>.
       </p>
-
       <p class="hint" id="catsLine" style="margin-top:18px"></p>
     </div>
   </section>
 
-  <!-- CHAT VIEW — same pill design language -->
   <section id="chatView" class="chat-shell">
     <div style="text-align:center; margin-bottom:2px">
-      <h2 style="margin:0; font-size:22px; letter-spacing:-.02em">ArsitekBot</h2>
-      <p style="margin:6px 0 0; color:rgba(255,255,255,.55); font-size:13px">Context-aware • <span id="sessLabel"></span> • <span id="catLabel"></span></p>
+      <h2 style="margin:0; font-size:22px; letter-spacing:-.02em">ArsitekBot <span id="helloName" style="font-weight:400; color:rgba(255,255,255,.55)"></span></h2>
+      <p style="margin:6px 0 0; color:rgba(255,255,255,.55); font-size:12px">
+        <span id="catLabel"></span> • <span id="sessLabel"></span> • <span id="historyCount"></span>
+      </p>
     </div>
-
     <div id="log" class="chat-log"></div>
-
     <div class="chat-input-row">
       <div class="pill" style="flex:1">
         <input id="inp" placeholder="Tanya: halo / apa itu bauhaus / void dalam arsitektur..." autocomplete="off">
         <button class="arrow" id="send" aria-label="send">→</button>
       </div>
     </div>
-    <div class="hint">Coba urutan context: <code>apa itu bauhaus</code> → <code>jelaskan lebih detail</code> → <code>tadi aku nanya apa</code></div>
-    <div style="text-align:center; margin-top:6px">
-      <button onclick="backToAuth()" style="background:transparent; border:0; color:rgba(255,255,255,.5); font-size:12px; cursor:pointer; text-decoration:underline">← Kembali ke Sign In</button>
-    </div>
+    <div class="hint">Context test: <code>apa itu bauhaus</code> → <code>jelaskan lebih detail</code> → <code>tadi aku nanya apa</code> &nbsp;|&nbsp; <a href="#" onclick="loadHistory();return false" style="color:rgba(255,255,255,.6); text-decoration:underline">Lihat history log</a></div>
   </section>
 </main>
 
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal-bg" onclick="if(event.target===this) closeSettings()">
+  <div class="modal">
+    <h3>Pengaturan User</h3>
+    <div class="field">
+      <label>Nama</label>
+      <input id="setName" type="text" maxlength="32" placeholder="Nama Anda">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input id="setEmail" type="email" placeholder="info@gmail.com">
+    </div>
+    <div class="field">
+      <label>Gaya Bahasa</label>
+      <select id="setGaya">
+        <option value="">Otomatis (sesuai sapaan)</option>
+        <option value="santai">Santai (gue, bro)</option>
+        <option value="formal">Formal (saya, Anda)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Session ID</label>
+      <input id="setSid" type="text" disabled style="opacity:.6">
+    </div>
+    <div class="row">
+      <button class="btn-pill small" onclick="closeSettings()">Batal</button>
+      <button class="btn-pill primary small" onclick="saveSettings()">Simpan</button>
+    </div>
+    <p class="hint" style="margin-top:12px; text-align:left">Nama & email disimpan di <code>data/users.json</code>, history di <code>data/history/{sid}.jsonl</code> & <code>data/chat_log.jsonl</code></p>
+  </div>
+</div>
+
 <script>
-const sid = 'web_' + Math.random().toString(36).slice(2,8);
-let email = '';
+let sid = localStorage.getItem('ars_sid') || ('web_' + Math.random().toString(36).slice(2,8));
+let userName = localStorage.getItem('ars_name') || '';
+let userEmail = localStorage.getItem('ars_email') || '';
+localStorage.setItem('ars_sid', sid);
+
 const log = document.getElementById('log');
 const inp = document.getElementById('inp');
+const nameInput = document.getElementById('nameInput');
 const emailInput = document.getElementById('emailInput');
 const authView = document.getElementById('authView');
 const chatView = document.getElementById('chatView');
 
-function toast(msg){
-  add(msg, 'bot', true);
-  if(chatView.classList.contains('active')) return;
-  // small temp toast in auth
-  const t = document.createElement('div');
-  t.textContent = msg;
-  t.style.cssText = 'position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(20,20,20,.9); border:1px solid rgba(255,255,255,.12); padding:10px 14px; border-radius:9999px; font-size:12px; z-index:50';
-  document.body.appendChild(t); setTimeout(()=>t.remove(), 2200);
-}
-function add(text, who, isToast){
-  const d = document.createElement('div');
-  d.className = 'bubble ' + who;
-  d.textContent = text;
-  if(who==='bot' && !isToast){
-    const meta = document.createElement('small');
-    meta.textContent = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
-    d.appendChild(meta);
+function updateNav(){
+  const logged = !!localStorage.getItem('ars_logged');
+  document.getElementById('navGuest').classList.toggle('hidden', logged);
+  document.getElementById('navActionsGuest').classList.toggle('hidden', logged);
+  document.getElementById('navUser').classList.toggle('hidden', !logged);
+  document.getElementById('navActionsUser').classList.toggle('hidden', !logged);
+  if(logged){
+    const n = localStorage.getItem('ars_name') || 'User';
+    document.getElementById('navName').textContent = n;
+    document.getElementById('navAvatar').textContent = n.trim().charAt(0).toUpperCase() || 'U';
+    document.getElementById('navSess').textContent = sid;
+    document.getElementById('helloName').textContent = '— hai, ' + n + '!';
   }
-  log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
+}
+function toast(msg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText='position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(20,20,20,.92); border:1px solid rgba(255,255,255,.12); padding:10px 14px; border-radius:9999px; font-size:12px; z-index:60';
+  document.body.appendChild(t); setTimeout(()=>t.remove(), 2400);
+}
+function add(text, who){
+  const d=document.createElement('div');
+  d.className='bubble '+who;
+  d.textContent=text;
+  if(who==='bot'){
+    const m=document.createElement('small');
+    m.textContent=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    d.appendChild(m);
+  }
+  log.appendChild(d); log.scrollTop=log.scrollHeight;
 }
 async function send(){
-  const msg = inp.value.trim(); if(!msg) return;
-  add(msg, 'user'); inp.value='';
-  const r = await fetch('/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message: msg, session_id: sid})});
-  const j = await r.json();
-  add(j.response, 'bot');
+  const msg=inp.value.trim(); if(!msg) return;
+  add(msg,'user'); inp.value='';
+  const r=await fetch('/chat',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg, session_id:sid})});
+  const j=await r.json();
+  add(j.response,'bot');
+  document.getElementById('historyCount').textContent = 'history: ' + (log.children.length-1) + ' pesan';
 }
-function enterGuest(){
-  email = emailInput.value.trim();
-  authView.classList.add('hidden');
-  chatView.classList.add('active');
-  document.getElementById('sessLabel').textContent = email ? email + ' · ' + sid : sid;
+async function enterChat(){
+  const name = nameInput.value.trim() || userName || '';
+  const email = emailInput.value.trim() || userEmail || '';
+  if(!name){
+    nameInput.style.outline='1px solid #ff5a5a'; nameInput.placeholder='Isi nama dulu';
+    setTimeout(()=>nameInput.style.outline='',1200);
+    // allow guest without name but warn
+    // return;
+  }
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    emailInput.style.outline='1px solid #ff5a5a';
+    toast('Email tidak valid'); setTimeout(()=>emailInput.style.outline='',1200); return;
+  }
+  const finalName = name || 'Tamu';
+  // persist to backend
+  await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:finalName, email:email})});
+  localStorage.setItem('ars_name', finalName);
+  localStorage.setItem('ars_email', email);
+  localStorage.setItem('ars_logged','1');
+  userName=finalName; userEmail=email;
+  authView.classList.add('hidden'); chatView.classList.add('active');
+  updateNav();
+  document.getElementById('sessLabel').textContent=sid;
+  document.getElementById('setSid').value=sid;
   if(log.children.length===0){
-    fetch('/health').then(r=>r.json()).then(j=>{
-      document.getElementById('catLabel').textContent = j.categories + ' categories';
-      add(j.demo, 'bot');
-    });
+    const h=await (await fetch('/health')).json();
+    document.getElementById('catLabel').textContent=h.categories+' categories';
+    add(h.demo,'bot');
+    // load existing history
+    loadHistory(true);
   }
-  setTimeout(()=> inp.focus(), 120);
-}
-function enterChat(){
-  const v = emailInput.value.trim();
-  if(v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
-    emailInput.style.outline = '1px solid #ff5a5a';
-    toast('Format email tidak valid — tetap bisa lanjut sebagai tamu');
-    setTimeout(()=> emailInput.style.outline='', 1200);
-  }
-  enterGuest();
+  setTimeout(()=>inp.focus(),120);
 }
 function signInGoogle(){
-  toast('Sign in with Google — mock (langsung masuk sebagai tamu)');
-  setTimeout(enterGuest, 400);
+  // mock google -> use name Google User
+  nameInput.value = nameInput.value || 'Google User';
+  toast('Sign in with Google — mock OK');
+  setTimeout(enterChat, 400);
 }
-function backToAuth(){
-  chatView.classList.remove('active');
-  authView.classList.remove('hidden');
+function focusAuth(){
+  authView.classList.remove('hidden'); chatView.classList.remove('active');
+  nameInput.focus();
 }
-document.getElementById('send').onclick = send;
+async function resetContext(){
+  if(!confirm('Reset konteks? TOPIK arch & history chat akan dibersihkan untuk sesi ini.')) return;
+  const r=await fetch('/reset', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, mode:'context'})});
+  const j=await r.json();
+  toast(j.message); log.innerHTML=''; add(j.demo || 'Konteks direset. Coba tanya lagi.', 'bot');
+}
+async function resetSession(){
+  if(!confirm('Reset sesi penuh? Semua predicate & gaya bahasa akan direset.')) return;
+  const r=await fetch('/reset', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, mode:'session'})});
+  const j=await r.json();
+  toast(j.message); log.innerHTML=''; add('Sesi direset. Halo lagi!', 'bot');
+}
+async function logout(){
+  await fetch('/logout', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid})});
+  localStorage.removeItem('ars_logged');
+  chatView.classList.remove('active'); authView.classList.remove('hidden');
+  updateNav(); toast('Logout — sesi tetap tersimpan di log');
+}
+function openSettings(){
+  document.getElementById('setName').value = localStorage.getItem('ars_name')||'';
+  document.getElementById('setEmail').value = localStorage.getItem('ars_email')||'';
+  document.getElementById('setSid').value = sid;
+  // fetch current gaya
+  fetch('/settings?session_id='+sid).then(r=>r.json()).then(j=>{
+    document.getElementById('setGaya').value = j.gaya_bahasa || '';
+  });
+  document.getElementById('settingsModal').classList.add('open');
+}
+function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
+async function saveSettings(){
+  const name=document.getElementById('setName').value.trim();
+  const email=document.getElementById('setEmail').value.trim();
+  const gaya=document.getElementById('setGaya').value;
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('Email tidak valid'); return; }
+  await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:name||'Tamu', email:email})});
+  if(gaya){ await fetch('/settings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, gaya_bahasa:gaya})}); }
+  localStorage.setItem('ars_name', name); localStorage.setItem('ars_email', email);
+  updateNav(); closeSettings(); toast('Pengaturan disimpan');
+}
+async function loadHistory(silent){
+  const r=await fetch('/history?session_id='+sid);
+  const j=await r.json();
+  if(j.history && j.history.length && !silent){
+    log.innerHTML='';
+    j.history.slice(-40).forEach(h=>{
+      const who = h.role==='user' ? 'user' : 'bot';
+      add(h.message, who);
+    });
+    toast('History loaded ('+j.history.length+' pesan)');
+  } else if(j.history){
+    document.getElementById('historyCount').textContent='history: '+j.history.length+' pesan';
+  }
+}
+document.getElementById('send').onclick=send;
 inp.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
 emailInput.addEventListener('keydown', e=>{ if(e.key==='Enter') enterChat(); });
-// init cats line
+nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') emailInput.focus(); });
+// init
+nameInput.value = userName; emailInput.value = userEmail;
 fetch('/health').then(r=>r.json()).then(j=>{
-  document.getElementById('catsLine').textContent = j.categories + ' AIML categories • Context-aware • Flask';
+  document.getElementById('catsLine').textContent=j.categories+' AIML categories • Context-aware • Flask';
+  document.getElementById('catLabel').textContent=j.categories+' categories';
 });
+updateNav();
+// auto-enter if already logged
+if(localStorage.getItem('ars_logged')){
+  authView.classList.add('hidden'); chatView.classList.add('active');
+  document.getElementById('sessLabel').textContent=sid;
+  fetch('/health').then(r=>r.json()).then(j=>{ if(log.children.length===0) add(j.demo,'bot'); loadHistory(true); });
+}
 </script>
 </body>
 </html>
@@ -289,6 +530,66 @@ def health():
         "time": time.time()
     })
 
+@app.post("/login")
+def login():
+    data = request.get_json(force=True, silent=True) or {}
+    sid = (data.get("session_id") or request.headers.get("X-Session-Id") or "_global").strip() or "_global"
+    name = (data.get("name") or "").strip()
+    email = (data.get("email") or "").strip()
+    if not name and not email:
+        return jsonify({"error": "nama atau email wajib"}), 400
+    if email and "@" not in email:
+        return jsonify({"error": "email tidak valid"}), 400
+    save_user(sid, name or "Tamu", email)
+    append_history(sid, "system", f"LOGIN name={name} email={email}", name)
+    return jsonify({"ok": True, "session_id": sid, "name": name, "email": email, "user": get_user(sid)})
+
+@app.post("/logout")
+def logout():
+    data = request.get_json(force=True, silent=True) or {}
+    sid = (data.get("session_id") or "_global").strip() or "_global"
+    # keep history file for audit, just log event
+    append_history(sid, "system", "LOGOUT", get_user(sid).get("name",""))
+    return jsonify({"ok": True, "session_id": sid})
+
+@app.post("/reset")
+def reset():
+    data = request.get_json(force=True, silent=True) or {}
+    sid = (data.get("session_id") or "_global").strip() or "_global"
+    mode = (data.get("mode") or "context").strip()  # context | session
+    clear_session_predicates(sid, mode)
+    append_history(sid, "system", f"RESET mode={mode}", get_user(sid).get("name",""))
+    demo = get_response("HALO", sid) if mode=="session" else "Konteks arsitektur direset. TOPIK kosong."
+    msg = "Konteks direset." if mode=="context" else "Sesi direset total."
+    return jsonify({"ok": True, "mode": mode, "message": msg, "demo": demo, "predicate": {"TOPIK": chatbot.getPredicate("TOPIK", sid), "gaya_bahasa": chatbot.getPredicate("gaya_bahasa", sid)}})
+
+@app.get("/history")
+def history():
+    sid = request.args.get("session_id", "_global")
+    hist = read_history(sid, limit=200)
+    return jsonify({"session_id": sid, "history": hist, "count": len(hist), "user": get_user(sid)})
+
+@app.get("/settings")
+def get_settings():
+    sid = request.args.get("session_id", "_global")
+    return jsonify({
+        "session_id": sid,
+        "user": get_user(sid),
+        "gaya_bahasa": chatbot.getPredicate("gaya_bahasa", sid),
+        "TOPIK": chatbot.getPredicate("TOPIK", sid)
+    })
+
+@app.post("/settings")
+def post_settings():
+    data = request.get_json(force=True, silent=True) or {}
+    sid = (data.get("session_id") or "_global").strip() or "_global"
+    gaya = (data.get("gaya_bahasa") or "").strip()
+    if gaya in ("santai","formal",""):
+        if gaya:
+            chatbot.setPredicate("gaya_bahasa", gaya, sid)
+        return jsonify({"ok": True, "gaya_bahasa": chatbot.getPredicate("gaya_bahasa", sid)})
+    return jsonify({"error": "gaya_bahasa harus santai/formal"}), 400
+
 @app.post("/chat")
 def chat():
     data = request.get_json(force=True, silent=True) or {}
@@ -296,8 +597,13 @@ def chat():
     sid = (data.get("session_id") or "_global").strip() or "_global"
     if not msg:
         return jsonify({"response": "Ketik sesuatu dulu ya.", "session_id": sid}), 400
-    # optional: log predicate untuk debug
+    user = get_user(sid)
+    name = user.get("name","")
+    # log user
+    append_history(sid, "user", msg, name)
     resp = get_response(msg, sid)
+    # log bot
+    append_history(sid, "bot", resp, name)
     gaya = chatbot.getPredicate("gaya_bahasa", sid)
     topik = chatbot.getPredicate("TOPIK", sid)
     return jsonify({
@@ -306,7 +612,7 @@ def chat():
         "predicate": {"gaya_bahasa": gaya, "TOPIK": topik}
     })
 
-# kompatibel dengan `python app.py` dan `flask run`
 if __name__ == "__main__":
     print(f"[app] categories={chatbot.numCategories()} http://127.0.0.1:5000")
+    print(f"[app] data dir: {DATA_DIR} users={USERS_FILE} log={LOG_FILE}")
     app.run(host="127.0.0.1", port=5000, debug=True)

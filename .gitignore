@@ -45,3 +45,10 @@ instance/
 
 # Node (if you add frontend later)
 node_modules/
+
+# Chatbot persistent data (keep structure, ignore logs)
+data/*
+!data/.gitkeep
+!data/history
+data/history/*
+!data/history/.gitkeep
