@@ -32,7 +32,7 @@
             <think><set name="gaya_bahasa">formal</set></think>
             <random>
                 <li>Halo, selamat datang. Ada yang bisa saya bantu?</li>
-                <li>Selamat datang! Apakah ada informasi seputar Teknik Arsitektur yang Anda butuhkan?</li>
+                <li>Selamat datang! Ada yang bisa saya bantu hari ini?</li>
                 <li>Salam! Saya siap membantu menjawab pertanyaan Anda.</li>
             </random>
         </template>

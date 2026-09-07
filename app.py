@@ -662,7 +662,12 @@ def reset():
         mode="context"
     clear_session_predicates(sid, mode)
     append_history(sid, "system", f"RESET mode={mode}", get_user(sid).get("name",""))
-    demo = get_response("HALO", sid) if mode=="session" else "Konteks arsitektur direset. TOPIK kosong."
+    if mode=="session":
+        demo = "Halo, selamat datang. Ada yang bisa saya bantu?"
+        chatbot.setPredicate("gaya_bahasa", "", sid)
+        chatbot.setPredicate("TOPIK", "", sid)
+    else:
+        demo = "Konteks arsitektur direset. TOPIK kosong."
     msg = "Konteks direset." if mode=="context" else "Sesi direset total."
     return jsonify({"ok": True, "mode": mode, "message": msg, "demo": demo, "predicate": {"TOPIK": chatbot.getPredicate("TOPIK", sid), "gaya_bahasa": chatbot.getPredicate("gaya_bahasa", sid)}})
 
