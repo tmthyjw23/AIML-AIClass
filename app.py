@@ -334,11 +334,9 @@ HTML = r"""<!doctype html>
   <div class="nav-pill" id="navPill">
     <div class="nav-left">
       <div class="logo"><div class="logo-dots"><i></i><i></i><i></i><i></i></div></div>
-      <!-- guest nav -->
+      <!-- guest nav — minimal -->
       <nav class="nav-links" id="navGuest">
-        <a href="#" onclick="toast('ArsitekBot — 875 AIML categories, context-aware');return false">Manifesto</a>
-        <a href="#" onclick="toast('Fitur: login nama, history log, reset konteks/sesi');return false">Careers</a>
-        <a href="#" onclick="toast('Coba: apa itu bauhaus → jelaskan lebih detail → tadi aku nanya apa');return false">Discover</a>
+        <span style="color:rgba(255,255,255,.55); font-size:12px">875 AIML • Context-aware • Flask</span>
       </nav>
       <!-- logged in user pill -->
       <div id="navUser" class="user-pill hidden">
@@ -364,27 +362,17 @@ HTML = r"""<!doctype html>
 <main class="stage">
   <section id="authView" class="hero">
     <h1>Welcome Developer</h1>
-    <p class="sub">Your sign in component</p>
-    <div style="margin-top:6px">
-      <button class="pill pill-google" onclick="signInGoogle()">
-        <span style="font-weight:700; font-size:18px; width:18px; text-align:center">G</span>
-        <span>Sign in with Google</span>
-      </button>
-      <div class="divider">or</div>
-      <div class="pill" id="namePill" style="margin-bottom:10px">
-        <input id="nameInput" type="text" placeholder="Nama Anda" maxlength="32" autocomplete="name" onkeydown="if(event.key==='Enter') document.getElementById('emailInput').focus()">
-        <span style="opacity:.35; font-size:13px">👤</span>
-      </div>
-      <div class="pill" id="emailPill">
-        <input id="emailInput" type="email" placeholder="info@gmail.com" autocomplete="email" onkeydown="if(event.key==='Enter') enterChat()">
+    <p class="sub">Masukkan nama untuk memulai</p>
+    <div style="margin-top:10px">
+      <div class="pill" id="namePill">
+        <input id="nameInput" type="text" placeholder="Nama Anda" maxlength="32" autocomplete="name" onkeydown="if(event.key==='Enter') enterChat()" autofocus>
         <button class="arrow" onclick="enterChat()" aria-label="continue">→</button>
       </div>
-      <div class="hint" style="margin-top:10px">Nama akan disimpan & history dicatat di log. Email opsional.</div>
-      <p class="terms">
-        By signing up, you agree to the <a href="#">MSA</a>, <a href="#">Product Terms</a>, <a href="#">Policies</a>,<br>
-        <a href="#">Privacy Notice</a>, and <a href="#">Cookie Notice</a>.
-      </p>
+      <div class="hint" style="margin-top:12px">Hanya nama — tekan <b>Enter</b> atau <b>→</b>, otomatis disimpan di session & log</div>
       <p class="hint" id="catsLine" style="margin-top:18px"></p>
+      <p class="terms" style="margin-top:18px">
+        Dengan masuk, history chat Anda disimpan di <code>data/history/{sid}.jsonl</code>
+      </p>
     </div>
   </section>
 
@@ -447,7 +435,6 @@ localStorage.setItem('ars_sid', sid);
 const log = document.getElementById('log');
 const inp = document.getElementById('inp');
 const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
 const authView = document.getElementById('authView');
 const chatView = document.getElementById('chatView');
 
@@ -492,24 +479,18 @@ async function send(){
 }
 async function enterChat(){
   const name = nameInput.value.trim() || userName || '';
-  const email = emailInput.value.trim() || userEmail || '';
   if(!name){
     nameInput.style.outline='1px solid #ff5a5a'; nameInput.placeholder='Isi nama dulu';
-    setTimeout(()=>nameInput.style.outline='',1200);
-    // allow guest without name but warn
-    // return;
+    toast('Nama tidak boleh kosong');
+    setTimeout(()=>{ nameInput.style.outline=''; nameInput.placeholder='Nama Anda'; },1400);
+    return;
   }
-  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    emailInput.style.outline='1px solid #ff5a5a';
-    toast('Email tidak valid'); setTimeout(()=>emailInput.style.outline='',1200); return;
-  }
-  const finalName = name || 'Tamu';
-  // persist to backend
-  await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:finalName, email:email})});
+  const finalName = name;
+  // persist to backend — hanya nama, disimpan ke session & log
+  await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:finalName})});
   localStorage.setItem('ars_name', finalName);
-  localStorage.setItem('ars_email', email);
   localStorage.setItem('ars_logged','1');
-  userName=finalName; userEmail=email;
+  userName=finalName;
   authView.classList.add('hidden'); chatView.classList.add('active');
   updateNav();
   document.getElementById('sessLabel').textContent=sid;
@@ -518,16 +499,9 @@ async function enterChat(){
     const h=await (await fetch('/health')).json();
     document.getElementById('catLabel').textContent=h.categories+' categories';
     add(h.demo,'bot');
-    // load existing history
     loadHistory(true);
   }
   setTimeout(()=>inp.focus(),120);
-}
-function signInGoogle(){
-  // mock google -> use name Google User
-  nameInput.value = nameInput.value || 'Google User';
-  toast('Sign in with Google — mock OK');
-  setTimeout(enterChat, 400);
 }
 function focusAuth(){
   authView.classList.remove('hidden'); chatView.classList.remove('active');
@@ -588,10 +562,9 @@ async function loadHistory(silent){
 }
 document.getElementById('send').onclick=send;
 inp.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
-emailInput.addEventListener('keydown', e=>{ if(e.key==='Enter') enterChat(); });
-nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') emailInput.focus(); });
+nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') enterChat(); });
 // init
-nameInput.value = userName; emailInput.value = userEmail;
+nameInput.value = userName;
 fetch('/health').then(r=>r.json()).then(j=>{
   document.getElementById('catsLine').textContent=j.categories+' AIML categories • Context-aware • Flask';
   document.getElementById('catLabel').textContent=j.categories+' categories';
