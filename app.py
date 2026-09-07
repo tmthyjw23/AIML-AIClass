@@ -301,10 +301,22 @@ HTML = r"""<!doctype html>
   }
   .chat-log::-webkit-scrollbar{width:6px}
   .chat-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15); border-radius:9999px}
-  .bubble{max-width:78%; padding:11px 15px; border-radius:18px; font-size:14px; line-height:1.55; word-wrap:break-word}
-  .bubble.user{align-self:flex-end; background:#fff; color:#000; border-bottom-right-radius:6px; font-weight:500}
-  .bubble.bot{align-self:flex-start; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); color:rgba(255,255,255,.92); border-bottom-left-radius:6px}
-  .bubble.bot small{color:rgba(255,255,255,.45); font-size:11px; display:block; margin-top:6px}
+  .bubble-row{display:flex; gap:10px; max-width:86%; animation:fadeUp .25s ease}
+  .bubble-row.user{align-self:flex-end; flex-direction:row-reverse}
+  .bubble-row.bot{align-self:flex-start}
+  .avatar{width:32px; height:32px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:12px; flex-shrink:0; margin-top:2px}
+  .avatar.user{background:#fff; color:#000}
+  .avatar.bot{background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.14); color:#fff}
+  .bubble{max-width:100%; padding:12px 16px; border-radius:18px; font-size:14px; line-height:1.55; word-wrap:break-word; position:relative}
+  .bubble.user{background:#fff; color:#000; border-bottom-right-radius:6px; font-weight:500}
+  .bubble.bot{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); color:rgba(255,255,255,.92); border-bottom-left-radius:6px}
+  .bubble-meta{font-size:11px; margin-top:6px; display:flex; gap:8px; align-items:center}
+  .bubble.user .bubble-meta{color:rgba(0,0,0,.55); justify-content:flex-end}
+  .bubble.bot .bubble-meta{color:rgba(255,255,255,.45)}
+  .typing{ display:flex; gap:4px; padding:14px 16px; background:rgba(255,255,255,.06); border-radius:18px; width:fit-content}
+  .typing i{width:6px; height:6px; background:rgba(255,255,255,.6); border-radius:50%; animation:bounce 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.15s} .typing i:nth-child(3){animation-delay:.3s}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0); opacity:.5} 40%{transform:translateY(-6px); opacity:1}}
   .chat-input-row{display:flex; gap:10px; align-items:center}
   .chat-input-row .pill{padding:10px 12px 10px 18px}
   .hint{color:rgba(255,255,255,.38); font-size:12px; text-align:center; margin-top:6px}
@@ -463,24 +475,55 @@ function toast(msg){
   t.style.cssText='position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(20,20,20,.92); border:1px solid rgba(255,255,255,.12); padding:10px 14px; border-radius:9999px; font-size:12px; z-index:60';
   document.body.appendChild(t); setTimeout(()=>t.remove(), 2400);
 }
+function makeRow(text, who){
+  const row=document.createElement('div');
+  row.className='bubble-row '+who;
+  const av=document.createElement('div');
+  av.className='avatar '+who;
+  const n = who==='user' ? (localStorage.getItem('ars_name')||'U') : 'A';
+  av.textContent = n.trim().charAt(0).toUpperCase();
+  if(who==='bot') av.textContent='◈';
+  const bubble=document.createElement('div');
+  bubble.className='bubble '+who;
+  const body=document.createElement('div');
+  body.textContent=text;
+  bubble.appendChild(body);
+  const meta=document.createElement('div');
+  meta.className='bubble-meta';
+  const name = who==='user' ? (localStorage.getItem('ars_name')||'Anda') : 'ArsitekBot';
+  const time = new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  meta.textContent = name + ' • ' + time;
+  bubble.appendChild(meta);
+  row.appendChild(av);
+  row.appendChild(bubble);
+  return row;
+}
 function add(text, who){
-  const d=document.createElement('div');
-  d.className='bubble '+who;
-  d.textContent=text;
-  if(who==='bot'){
-    const m=document.createElement('small');
-    m.textContent=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-    d.appendChild(m);
-  }
-  log.appendChild(d); log.scrollTop=log.scrollHeight;
+  const row = makeRow(text, who);
+  log.appendChild(row); log.scrollTop=log.scrollHeight;
+}
+function showTyping(){
+  const row=document.createElement('div');
+  row.className='bubble-row bot'; row.id='typing';
+  const av=document.createElement('div'); av.className='avatar bot'; av.textContent='◈';
+  const b=document.createElement('div'); b.className='typing';
+  b.innerHTML='<i></i><i></i><i></i>';
+  row.appendChild(av); row.appendChild(b);
+  log.appendChild(row); log.scrollTop=log.scrollHeight;
+}
+function hideTyping(){
+  const t=document.getElementById('typing');
+  if(t) t.remove();
 }
 async function send(){
   const msg=inp.value.trim(); if(!msg) return;
   add(msg,'user'); inp.value='';
+  showTyping();
   const r=await fetch('/chat',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg, session_id:sid})});
   const j=await r.json();
+  hideTyping();
   add(j.response,'bot');
-  document.getElementById('historyCount').textContent = 'history: ' + (log.children.length-1) + ' pesan';
+  document.getElementById('historyCount').textContent = 'history: ' + log.querySelectorAll('.bubble-row').length + ' pesan';
 }
 async function enterChat(){
   const name = nameInput.value.trim() || userName || '';
@@ -491,6 +534,17 @@ async function enterChat(){
     return;
   }
   const finalName = name;
+  const prevName = localStorage.getItem('ars_name') || '';
+  const isNewUser = prevName && prevName !== finalName;
+  // jika ganti user -> buat sesi baru isolasi history (pro standard)
+  if(isNewUser){
+    sid = 'web_' + Math.random().toString(36).slice(2,8);
+    localStorage.setItem('ars_sid', sid);
+    document.getElementById('sessLabel').textContent=sid;
+    document.getElementById('setSid').value=sid;
+    log.innerHTML='';
+    toast(`Ganti user: ${prevName} → ${finalName} — sesi baru`);
+  }
   // persist to backend — hanya nama, disimpan ke session & log
   await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:finalName})});
   localStorage.setItem('ars_name', finalName);
@@ -546,11 +600,22 @@ async function saveSettings(){
   const name=document.getElementById('setName').value.trim();
   const email=document.getElementById('setEmail').value.trim();
   const gaya=document.getElementById('setGaya').value;
+  if(!name){ toast('Nama tidak boleh kosong'); return; }
   if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('Email tidak valid'); return; }
+  const prev = localStorage.getItem('ars_name')||'';
+  if(prev && prev !== name){
+    // ganti nama = sesi baru profesional
+    sid = 'web_' + Math.random().toString(36).slice(2,8);
+    localStorage.setItem('ars_sid', sid);
+    log.innerHTML='';
+  }
   await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, name:name||'Tamu', email:email})});
   if(gaya){ await fetch('/settings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, gaya_bahasa:gaya})}); }
   localStorage.setItem('ars_name', name); localStorage.setItem('ars_email', email);
-  updateNav(); closeSettings(); toast('Pengaturan disimpan');
+  document.getElementById('sessLabel').textContent=sid;
+  document.getElementById('setSid').value=sid;
+  document.getElementById('historyCount').textContent='history: 0 pesan';
+  updateNav(); closeSettings(); toast(prev && prev!==name ? `User diganti: ${prev} → ${name}` : 'Pengaturan disimpan');
 }
 async function loadHistory(silent){
   const r=await fetch('/history?session_id='+sid);
