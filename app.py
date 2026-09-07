@@ -319,6 +319,10 @@ HTML = r"""<!doctype html>
   @keyframes bounce{0%,80%,100%{transform:translateY(0); opacity:.5} 40%{transform:translateY(-6px); opacity:1}}
   .chat-input-row{display:flex; gap:10px; align-items:center}
   .chat-input-row .pill{padding:10px 12px 10px 18px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:6px 0 2px; min-height:32px}
+  .chip{padding:8px 14px; border-radius:9999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); color:rgba(255,255,255,.85); font-size:12px; font-weight:500; cursor:pointer; transition:.18s; white-space:nowrap}
+  .chip:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.22); transform:translateY(-1px); color:#fff}
+  .chip:active{transform:scale(.98)}
   .hint{color:rgba(255,255,255,.38); font-size:12px; text-align:center; margin-top:6px}
   .hidden{display:none !important}
   /* modal */
@@ -468,6 +472,7 @@ HTML = r"""<!doctype html>
       </p>
     </div>
     <div id="log" class="chat-log"></div>
+    <div id="chips" class="chips"></div>
     <div class="chat-input-row">
       <div class="pill" style="flex:1">
         <input id="inp" placeholder="Tanya: halo / apa itu bauhaus / void dalam arsitektur..." autocomplete="off">
@@ -615,6 +620,7 @@ async function send(){
   hideTyping();
   add(j.response,'bot');
   document.getElementById('historyCount').textContent = 'history: ' + log.querySelectorAll('.bubble-row').length + ' pesan';
+  loadRecommendations();
 }
 async function enterChat(){
   const name = nameInput.value.trim() || userName || '';
@@ -652,6 +658,7 @@ async function enterChat(){
     add(`Halo, ${finalName}! Selamat datang di ArsitekBot. Ada yang bisa saya bantu?`, 'bot');
     loadHistory(true);
   }
+  loadRecommendations();
   setTimeout(()=>inp.focus(),120);
 }
 function focusAuth(){
@@ -663,17 +670,20 @@ async function resetContext(){
   const r=await fetch('/reset', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, mode:'context'})});
   const j=await r.json();
   toast(j.message); log.innerHTML=''; add(j.demo || 'Konteks direset. Coba tanya lagi.', 'bot');
+  loadRecommendations();
 }
 async function resetSession(){
   if(!confirm('Reset sesi penuh? Semua predicate & gaya bahasa akan direset.')) return;
   const r=await fetch('/reset', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, mode:'session'})});
   const j=await r.json();
   toast(j.message); log.innerHTML=''; add(j.demo || 'Sesi direset. Halo lagi!', 'bot');
+  loadRecommendations();
 }
 async function logout(){
   await fetch('/logout', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid})});
   localStorage.removeItem('ars_logged');
   chatView.classList.remove('active'); authView.classList.remove('hidden');
+  document.getElementById('chips').innerHTML='';
   updateNav(); toast('Logout — sesi tetap tersimpan di log');
 }
 function openSettings(){
@@ -722,6 +732,26 @@ async function loadHistory(silent){
     document.getElementById('historyCount').textContent='history: '+j.history.length+' pesan';
   }
 }
+async function loadRecommendations(){
+  try{
+    const r=await fetch('/recommend?session_id='+sid);
+    const j=await r.json();
+    renderChips(j.recommendations||[]);
+  }catch(e){}
+}
+function renderChips(list){
+  const c=document.getElementById('chips');
+  if(!c) return;
+  c.innerHTML='';
+  list.forEach(q=>{
+    const b=document.createElement('button');
+    b.className='chip';
+    b.textContent=q;
+    b.title='Klik untuk tanya';
+    b.onclick=()=>{ inp.value=q; send(); };
+    c.appendChild(b);
+  });
+}
 document.getElementById('send').onclick=send;
 inp.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
 nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') enterChat(); });
@@ -730,13 +760,14 @@ nameInput.value = userName;
 fetch('/health').then(r=>r.json()).then(j=>{
   document.getElementById('catsLine').textContent=j.categories+' AIML categories • Context-aware • Flask';
   document.getElementById('catLabel').textContent=j.categories+' categories';
+  if(localStorage.getItem('ars_logged')) loadRecommendations();
 });
 updateNav();
 // auto-enter if already logged
 if(localStorage.getItem('ars_logged')){
   authView.classList.add('hidden'); chatView.classList.add('active');
   document.getElementById('sessLabel').textContent=sid;
-  fetch('/health').then(r=>r.json()).then(j=>{ if(log.children.length===0) add(j.demo,'bot'); loadHistory(true); });
+  fetch('/health').then(r=>r.json()).then(j=>{ if(log.children.length===0) add(j.demo,'bot'); loadHistory(true); loadRecommendations(); });
 }
 </script>
 </body>
@@ -872,6 +903,96 @@ def chat():
         "session_id": sid,
         "predicate": {"gaya_bahasa": gaya, "TOPIK": topik}
     })
+
+@app.get("/recommend")
+def recommend():
+    raw = request.args.get("session_id", "_global")
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
+    # --- flow-aware recommendation, semua dari model ---
+    from main import KNOWN_TOPICS
+    import difflib
+    topik = chatbot.getPredicate("TOPIK", sid)
+    gaya = chatbot.getPredicate("gaya_bahasa", sid)
+    # history untuk hindari pengulangan
+    hist = read_history(sid, limit=50)
+    asked = set()
+    for h in hist:
+        if h.get("role") == "user":
+            asked.add(h.get("message","").strip().upper())
+    # helper: cek apakah pertanyaan ada di model (via KNOWN_TOPICS atau Native)
+    # Native starter yang valid di model
+    STARTERS = ["apa itu arsitektur", "apa saja elemen arsitektur", "apa itu bauhaus", "siapa frank lloyd wright", "bisa apa", "halo"]
+    RELATED_FLOW = {
+        "APA ITU VOID DALAM ARSITEKTUR": ["apa itu mezzanine", "apa itu skala arsitektur", "apa itu zonasi ruang"],
+        "APA ITU BAUHAUS": ["apa itu art deco", "apa itu arsitektur modern", "siapa mies van der rohe"],
+        "APA ITU ARSITEKTUR MODERN": ["apa itu arsitektur postmodern", "apa itu arsitektur minimalis", "apa itu bauhaus"],
+        "APA ITU ARSITEKTUR TROPIS": ["apa itu arsitektur vernakular", "apa itu arsitektur bioklimatik", "apa itu orientasi bangunan"],
+        "SIAPA FRANK LLOYD WRIGHT": ["siapa le corbusier", "siapa zaha hadid", "apa itu arsitektur organik"],
+        "APA SAJA ELEMEN ARSITEKTUR": ["apa itu prinsip desain arsitektur", "apa itu skala arsitektur", "apa itu proporsi dalam arsitektur"],
+        "APA ITU SKALA ARSITEKTUR": ["apa itu proporsi dalam arsitektur", "apa itu ergonomi", "apa itu antropometri"],
+        "APA ITU BETON BERTULANG": ["apa itu beton pracetak", "apa itu baja ringan", "apa itu kaca low e"],
+    }
+    recs = []
+    if not topik:
+        # flow awal: sapa -> elemen -> gaya -> tokoh
+        for q in STARTERS:
+            if q.upper() not in asked:
+                recs.append(q)
+            if len(recs) >= 4:
+                break
+    else:
+        # 1. action kontekstual (selalu ada di model Native)
+        recs.append("jelaskan lebih detail")
+        # 2. related dari flow map
+        if topik in RELATED_FLOW:
+            for q in RELATED_FLOW[topik]:
+                if q.upper() not in asked and q not in recs:
+                    recs.append(q)
+        # 3. cari mirip via difflib jika masih kurang
+        if len(recs) < 4:
+            sims = difflib.get_close_matches(topik, KNOWN_TOPICS, n=6, cutoff=0.35)
+            for s in sims:
+                q = s.lower()
+                if s != topik and q.upper() not in asked and q not in recs:
+                    recs.append(q)
+                if len(recs) >= 4:
+                    break
+        # 4. fallback: keyword kategori sama
+        if len(recs) < 4:
+            # ambil 1 starter yang belum ditanya
+            for q in STARTERS:
+                if q.upper() not in asked and q not in recs:
+                    recs.append(q)
+                    if len(recs) >= 4:
+                        break
+    # pastikan semua recs ada di model (validasi via difflib atau cek KNOWN_TOPICS + Native)
+    # Native valid: jelaskan lebih detail, contohnya, siapa kamu, etc.
+    NATIVE_VALID = {"jelaskan lebih detail","contohnya","halo","siapa kamu","bisa apa","apa kabar"}
+    filtered = []
+    for r in recs[:4]:
+        low = r.lower()
+        # cek Native
+        if low in NATIVE_VALID:
+            filtered.append(r)
+        elif r.upper() in [t.upper() for t in KNOWN_TOPICS] or any(r.upper() == t.upper() for t in KNOWN_TOPICS):
+            filtered.append(r)
+        elif low in [s.lower() for s in STARTERS]:
+            filtered.append(r)
+        else:
+            # coba cek via difflib ke KNOWN
+            m = difflib.get_close_matches(r.upper(), [t.upper() for t in KNOWN_TOPICS], n=1, cutoff=0.8)
+            if m:
+                # kembalikan yang asli dari KNOWN
+                orig = next((t.lower() for t in KNOWN_TOPICS if t.upper()==m[0]), r)
+                filtered.append(orig)
+            else:
+                filtered.append(r)
+    # final: pastikan 3-4, potong
+    filtered = filtered[:4]
+    # jika gaya santai, buat variasi santai? tetap lower, frontend akan tampil apa adanya
+    return jsonify({"session_id": sid, "topik": topik, "gaya": gaya, "recommendations": filtered})
 
 if __name__ == "__main__":
     print(f"[app] categories={chatbot.numCategories()} http://127.0.0.1:5000")
