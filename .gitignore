@@ -47,6 +47,7 @@ instance/
 node_modules/
 
 # Chatbot persistent data (keep structure, ignore logs)
+/*.jsonl
 data/*
 !data/.gitkeep
 !data/history

@@ -4,11 +4,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 from flask import Flask, request, jsonify, render_template_string
 from flask_cors import CORS
 from main import get_response, chatbot
-import time, json, threading
+import time, json, threading, re, html
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)
+app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
+CORS(app, resources={r"/*": {"origins": ["http://127.0.0.1:5000", "http://localhost:5000", "http://127.0.0.1:*", "http://localhost:*"]}})
 
 # --- Persistent storage (nama user & history log) ---
 DATA_DIR = Path(__file__).parent / "data"
@@ -27,17 +28,53 @@ def ensure_dirs():
 
 ensure_dirs()
 
-def load_users():
+def sanitize_sid(sid: str) -> str:
+    """Whitelist session_id: alnum, _, -, 1-64 chars. Reject traversal."""
+    sid = (sid or "").strip()
+    if not sid:
+        return "_global"
+    if "/" in sid or "\\" in sid or ".." in sid:
+        return "_global"
+    if not re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", sid):
+        cleaned = re.sub(r"[^a-zA-Z0-9_-]", "_", sid)[:64].strip("_")
+        return cleaned if cleaned and re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", cleaned) else "_global"
+    return sid
+
+def safe_history_path(sid: str) -> Path:
+    safe = sanitize_sid(sid)
+    path = (HISTORY_DIR / f"{safe}.jsonl").resolve()
     try:
-        return json.loads(USERS_FILE.read_text(encoding="utf-8") or "{}")
-    except:
-        return {}
+        if not path.is_relative_to(HISTORY_DIR.resolve()):
+            return (HISTORY_DIR / "_global.jsonl").resolve()
+    except AttributeError:
+        if not str(path).startswith(str(HISTORY_DIR.resolve())):
+            return (HISTORY_DIR / "_global.jsonl").resolve()
+    return path
+
+def load_users():
+    with _lock:
+        try:
+            txt = USERS_FILE.read_text(encoding="utf-8") or "{}"
+            data = json.loads(txt)
+            if not isinstance(data, dict):
+                return {}
+            return data
+        except Exception:
+            try:
+                USERS_FILE.rename(USERS_FILE.with_suffix(".corrupt." + datetime.now().strftime("%Y%m%d%H%M%S")))
+                USERS_FILE.write_text("{}", encoding="utf-8")
+            except:
+                pass
+            return {}
 
 def save_users(data):
     with _lock:
         USERS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 def save_user(session_id, name, email):
+    session_id = sanitize_sid(session_id)
+    name = html.escape(name.strip()[:64])
+    email = html.escape(email.strip()[:100])
     users = load_users()
     users[session_id] = {
         "name": name.strip(),
@@ -53,10 +90,13 @@ def save_user(session_id, name, email):
         chatbot.setPredicate("user_email", email.strip(), session_id)
 
 def get_user(session_id):
-    return load_users().get(session_id, {})
+    return load_users().get(sanitize_sid(session_id), {})
 
 def append_history(session_id, role, message, name=""):
     ensure_dirs()
+    session_id = sanitize_sid(session_id)
+    message = str(message)[:2000]
+    name = html.escape(str(name)[:64])
     entry = {
         "ts": datetime.now().isoformat(),
         "session_id": session_id,
@@ -64,20 +104,34 @@ def append_history(session_id, role, message, name=""):
         "message": message,
         "name": name
     }
-    # per-session file
-    sess_file = HISTORY_DIR / f"{session_id}.jsonl"
+    sess_file = safe_history_path(session_id)
     with _lock:
+        try:
+            if sess_file.exists() and sess_file.stat().st_size > 5*1024*1024:
+                sess_file.rename(sess_file.with_suffix(".old." + datetime.now().strftime("%Y%m%d%H%M%S")))
+        except:
+            pass
         with open(sess_file, "a", encoding="utf-8") as f:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-        # global log
+        try:
+            if LOG_FILE.exists() and LOG_FILE.stat().st_size > 10*1024*1024:
+                LOG_FILE.rename(LOG_FILE.with_suffix(".old." + datetime.now().strftime("%Y%m%d%H%M%S")))
+                LOG_FILE.write_text("", encoding="utf-8")
+        except:
+            pass
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 def read_history(session_id, limit=100):
-    sess_file = HISTORY_DIR / f"{session_id}.jsonl"
+    sess_file = safe_history_path(session_id)
     if not sess_file.exists():
         return []
-    lines = sess_file.read_text(encoding="utf-8").strip().splitlines()
+    with _lock:
+        try:
+            txt = sess_file.read_text(encoding="utf-8")
+        except:
+            return []
+    lines = txt.strip().splitlines()
     # keep last limit
     out = []
     for l in lines[-limit:]:
@@ -88,6 +142,7 @@ def read_history(session_id, limit=100):
     return out
 
 def clear_session_predicates(session_id, mode="context"):
+    session_id = sanitize_sid(session_id)
     # mode: context -> clear TOPIK & gaya_bahasa only; session -> full reset
     if mode == "session":
         # delete session entirely (Kernel internal)
@@ -105,6 +160,42 @@ def clear_session_predicates(session_id, mode="context"):
         chatbot.setPredicate("TOPIK", "", session_id)
         # keep gaya_bahasa as is to keep persona, but clear last topic
         # also clear _inputHistory/_outputHistory last? keep for audit but topic cleared
+
+
+# --- Simple rate limit (in-memory) ---
+_rate = {}
+_rate_lock = threading.Lock()
+def check_rate(sid, limit=20, window=60):
+    now = time.time()
+    with _rate_lock:
+        lst = _rate.get(sid, [])
+        lst = [t for t in lst if now - t < window]
+        if len(lst) >= limit:
+            return False
+        lst.append(now)
+        _rate[sid] = lst
+        return True
+
+@app.before_request
+def rate_guard():
+    if request.path in ("/chat", "/login") and request.method=="POST":
+        sid = ""
+        try:
+            sid = (request.get_json(silent=True) or {}).get("session_id","") or request.headers.get("X-Session-Id","") or request.remote_addr or "unknown"
+        except:
+            sid = request.remote_addr or "unknown"
+        sid = sanitize_sid(sid) if sid and sid != "unknown" else (request.remote_addr or "unknown")
+        # use sanitized but fallback to ip
+        check_sid = sid if re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", sid) else (request.remote_addr or "unknown")
+        if not check_rate(check_sid, limit=30, window=60):
+            return jsonify({"error":"rate limit, coba lagi 1 menit"}), 429
+
+@app.after_request
+def add_security_headers(resp):
+    resp.headers["X-Content-Type-Options"] = "nosniff"
+    resp.headers["X-Frame-Options"] = "DENY"
+    resp.headers["Referrer-Policy"] = "no-referrer"
+    return resp
 
 HTML = r"""<!doctype html>
 <html lang="id">
@@ -533,12 +624,16 @@ def health():
 @app.post("/login")
 def login():
     data = request.get_json(force=True, silent=True) or {}
-    sid = (data.get("session_id") or request.headers.get("X-Session-Id") or "_global").strip() or "_global"
-    name = (data.get("name") or "").strip()
-    email = (data.get("email") or "").strip()
+    raw_sid = data.get("session_id") or request.headers.get("X-Session-Id") or "_global"
+    sid = sanitize_sid(raw_sid)
+    # reject traversal/invalid sid
+    if raw_sid and raw_sid.strip() and sid != raw_sid.strip():
+        return jsonify({"error": "session_id tidak valid (hanya a-z, 0-9, _, -)"}), 400
+    name = (data.get("name") or "").strip()[:64]
+    email = (data.get("email") or "").strip()[:100]
     if not name and not email:
         return jsonify({"error": "nama atau email wajib"}), 400
-    if email and "@" not in email:
+    if email and not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", email):
         return jsonify({"error": "email tidak valid"}), 400
     save_user(sid, name or "Tamu", email)
     append_history(sid, "system", f"LOGIN name={name} email={email}", name)
@@ -547,7 +642,10 @@ def login():
 @app.post("/logout")
 def logout():
     data = request.get_json(force=True, silent=True) or {}
-    sid = (data.get("session_id") or "_global").strip() or "_global"
+    raw = data.get("session_id") or "_global"
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     # keep history file for audit, just log event
     append_history(sid, "system", "LOGOUT", get_user(sid).get("name",""))
     return jsonify({"ok": True, "session_id": sid})
@@ -555,8 +653,13 @@ def logout():
 @app.post("/reset")
 def reset():
     data = request.get_json(force=True, silent=True) or {}
-    sid = (data.get("session_id") or "_global").strip() or "_global"
+    raw = data.get("session_id") or "_global"
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     mode = (data.get("mode") or "context").strip()  # context | session
+    if mode not in ("context","session"):
+        mode="context"
     clear_session_predicates(sid, mode)
     append_history(sid, "system", f"RESET mode={mode}", get_user(sid).get("name",""))
     demo = get_response("HALO", sid) if mode=="session" else "Konteks arsitektur direset. TOPIK kosong."
@@ -565,13 +668,19 @@ def reset():
 
 @app.get("/history")
 def history():
-    sid = request.args.get("session_id", "_global")
+    raw = request.args.get("session_id", "_global")
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     hist = read_history(sid, limit=200)
     return jsonify({"session_id": sid, "history": hist, "count": len(hist), "user": get_user(sid)})
 
 @app.get("/settings")
 def get_settings():
-    sid = request.args.get("session_id", "_global")
+    raw = request.args.get("session_id", "_global")
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     return jsonify({
         "session_id": sid,
         "user": get_user(sid),
@@ -582,7 +691,10 @@ def get_settings():
 @app.post("/settings")
 def post_settings():
     data = request.get_json(force=True, silent=True) or {}
-    sid = (data.get("session_id") or "_global").strip() or "_global"
+    raw = data.get("session_id") or "_global"
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     gaya = (data.get("gaya_bahasa") or "").strip()
     if gaya in ("santai","formal",""):
         if gaya:
@@ -594,7 +706,12 @@ def post_settings():
 def chat():
     data = request.get_json(force=True, silent=True) or {}
     msg = (data.get("message") or "").strip()
-    sid = (data.get("session_id") or "_global").strip() or "_global"
+    if len(msg) > 2000:
+        msg = msg[:2000]
+    raw = data.get("session_id") or "_global"
+    sid = sanitize_sid(raw)
+    if raw and raw.strip() and sid != raw.strip():
+        return jsonify({"error": "session_id tidak valid"}), 400
     if not msg:
         return jsonify({"response": "Ketik sesuatu dulu ya.", "session_id": sid}), 400
     user = get_user(sid)
