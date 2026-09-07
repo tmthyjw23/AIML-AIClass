@@ -78,16 +78,44 @@ def _correct_typos(text: str) -> str:
     return " ".join(corrected)
 
 def _keyword_alias(text_upper: str):
+    # pakai word boundary agar TIDAK match substring di dalam kata (mis DAK di TIDAK)
     for kw in sorted(KEYWORD_MAP.keys(), key=lambda x: -len(x)):
-        if kw in text_upper:
+        if re.search(r"\b" + re.escape(kw) + r"\b", text_upper):
             return KEYWORD_MAP[kw]
     return None
 
 def _handle_name_intent(pesan: str, session_id: str):
     low = pesan.lower()
+    # tanya kemampuan ambil nama dari input/login
+    if re.search(r"ambil.*nama|bisa.*ambil.*nama|dari.*nama.*input|dari.*login", low):
+        name = chatbot.getPredicate("user_name", session_id)
+        if name:
+            return f"Bisa dong! Aku sudah simpan namamu sebagai {name} dari sesi login. Kalau mau ganti, bilang 'nama saya adalah Budi' — nanti aku update."
+        else:
+            # coba ambil dari users.json jika ada
+            try:
+                import json
+                users = json.loads((BASE / "data" / "users.json").read_text(encoding="utf-8") or "{}")
+                u = users.get(session_id, {})
+                if u.get("name"):
+                    chatbot.setPredicate("user_name", u["name"], session_id)
+                    return f"Bisa! Dari login kamu tercatat sebagai {u['name']}. Mau aku panggil begitu?"
+            except:
+                pass
+            return "Bisa! Cukup bilang 'nama saya adalah Budi' atau login di awal dengan nama, nanti aku ingat dan pakai di chat selanjutnya."
     # recall: siapa nama saya / namaku siapa
     if re.search(r"siapa.*nama.*saya|namaku siapa|siapa namaku", low):
         name = chatbot.getPredicate("user_name", session_id)
+        if not name:
+            # fallback coba users.json
+            try:
+                import json
+                users = json.loads((BASE / "data" / "users.json").read_text(encoding="utf-8") or "{}")
+                name = users.get(session_id, {}).get("name", "")
+                if name:
+                    chatbot.setPredicate("user_name", name, session_id)
+            except:
+                pass
         if name:
             return f"Nama kamu adalah {name}, sudah aku ingat! Ada lagi yang mau ditanya soal arsitektur?"
         else:
@@ -103,6 +131,33 @@ def _handle_name_intent(pesan: str, session_id: str):
         raw_name = raw_name.split()[0].capitalize() if raw_name else ""
         if raw_name and len(raw_name) >= 2:
             chatbot.setPredicate("user_name", raw_name, session_id)
+            # persist ke users.json juga agar tidak hilang ganti sesi
+            try:
+                import json
+                from datetime import datetime
+                users_path = BASE / "data" / "users.json"
+                users = {}
+                if users_path.exists():
+                    users = json.loads(users_path.read_text(encoding="utf-8") or "{}")
+                users.setdefault(session_id, {})
+                users[session_id]["name"] = raw_name
+                users[session_id]["updated_at"] = datetime.now().isoformat()
+                if "created_at" not in users[session_id]:
+                    users[session_id]["created_at"] = users[session_id]["updated_at"]
+                # keep email if ada
+                users_path.write_text(json.dumps(users, ensure_ascii=False, indent=2), encoding="utf-8")
+                # also log
+                try:
+                    from pathlib import Path
+                    hist = BASE / "data" / "history" / f"{session_id}.jsonl"
+                    hist.parent.mkdir(exist_ok=True, parents=True)
+                    with open(hist, "a", encoding="utf-8") as f:
+                        import json as _j
+                        f.write(_j.dumps({"ts": datetime.now().isoformat(), "session_id": session_id, "role": "system", "message": f"SET name={raw_name}", "name": raw_name}, ensure_ascii=False) + "\n")
+                except:
+                    pass
+            except:
+                pass
             return f"Siap, aku ingat namamu adalah {raw_name}! Senang berkenalan. Ada yang mau ditanya soal arsitektur?"
     if re.search(r"siapa.*nama.*kamu|nama kamu siapa|kamu siapa.*nama", low):
         return None
