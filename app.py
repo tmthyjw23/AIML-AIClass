@@ -346,10 +346,7 @@ HTML = r"""<!doctype html>
         <span id="navSess" style="opacity:.6; font-size:11px"></span>
       </div>
     </div>
-    <div class="nav-actions" id="navActionsGuest">
-      <button class="btn-pill" onclick="focusAuth()">LogIn</button>
-      <button class="btn-pill primary" onclick="focusAuth()">Signup</button>
-    </div>
+    <div class="nav-actions" id="navActionsGuest" style="display:none"></div>
     <div class="nav-actions hidden" id="navActionsUser">
       <button class="btn-pill small" onclick="resetContext()" title="Hapus TOPIK & konteks arsitektur">Reset Konteks</button>
       <button class="btn-pill small danger" onclick="resetSession()" title="Hapus semua sesi & gaya_bahasa">Reset Sesi</button>
