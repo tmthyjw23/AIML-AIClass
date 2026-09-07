@@ -143,19 +143,27 @@ def read_history(session_id, limit=100):
 
 def clear_session_predicates(session_id, mode="context"):
     session_id = sanitize_sid(session_id)
-    # mode: context -> clear TOPIK & gaya_bahasa only; session -> full reset
+    # simpan nama sebelum reset agar tidak hilang / tertukar Valdo<->Timothy
+    _saved_name = chatbot.getPredicate("user_name", session_id) or get_user(session_id).get("name","")
+    # mode: context -> clear TOPIK only; session -> full reset tapi pertahankan nama
     if mode == "session":
-        # delete session entirely (Kernel internal)
         try:
             chatbot._deleteSession(session_id)
         except:
             pass
-        # also clear history file (optional keep for audit — we keep but predicate cleared)
-        # we keep file, but user can request history clear via separate
         chatbot._addSession(session_id)
         chatbot.setPredicate("TOPIK", "", session_id)
         chatbot.setPredicate("gaya_bahasa", "", session_id)
-        chatbot.setPredicate("user_name", get_user(session_id).get("name",""), session_id)
+        if _saved_name:
+            chatbot.setPredicate("user_name", _saved_name, session_id)
+            # juga pastikan users.json tetap konsisten
+            try:
+                users = load_users()
+                if session_id in users:
+                    users[session_id]["name"] = _saved_name
+                    save_users(users)
+            except:
+                pass
     else:  # context
         chatbot.setPredicate("TOPIK", "", session_id)
         # keep gaya_bahasa as is to keep persona, but clear last topic
@@ -495,7 +503,8 @@ async function enterChat(){
   if(log.children.length===0){
     const h=await (await fetch('/health')).json();
     document.getElementById('catLabel').textContent=h.categories+' categories';
-    add(h.demo,'bot');
+    // sapaan personal: Halo, {nama}!
+    add(`Halo, ${finalName}! Selamat datang di ArsitekBot. Ada yang bisa saya bantu?`, 'bot');
     loadHistory(true);
   }
   setTimeout(()=>inp.focus(),120);
@@ -514,7 +523,7 @@ async function resetSession(){
   if(!confirm('Reset sesi penuh? Semua predicate & gaya bahasa akan direset.')) return;
   const r=await fetch('/reset', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid, mode:'session'})});
   const j=await r.json();
-  toast(j.message); log.innerHTML=''; add('Sesi direset. Halo lagi!', 'bot');
+  toast(j.message); log.innerHTML=''; add(j.demo || 'Sesi direset. Halo lagi!', 'bot');
 }
 async function logout(){
   await fetch('/logout', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sid})});
@@ -630,14 +639,18 @@ def reset():
     mode = (data.get("mode") or "context").strip()  # context | session
     if mode not in ("context","session"):
         mode="context"
+    # simpan nama untuk demo personal
+    _name = get_user(sid).get("name") or chatbot.getPredicate("user_name", sid) or ""
     clear_session_predicates(sid, mode)
-    append_history(sid, "system", f"RESET mode={mode}", get_user(sid).get("name",""))
+    append_history(sid, "system", f"RESET mode={mode}", _name)
     if mode=="session":
-        demo = "Halo, selamat datang. Ada yang bisa saya bantu?"
+        demo = f"Halo, {_name}! Sesi direset. Ada yang bisa saya bantu?" if _name else "Halo! Sesi direset. Ada yang bisa saya bantu?"
         chatbot.setPredicate("gaya_bahasa", "", sid)
         chatbot.setPredicate("TOPIK", "", sid)
+        if _name:
+            chatbot.setPredicate("user_name", _name, sid)
     else:
-        demo = "Konteks arsitektur direset. TOPIK kosong."
+        demo = f"Konteks arsitektur direset, {_name}. TOPIK kosong." if _name else "Konteks arsitektur direset. TOPIK kosong."
     msg = "Konteks direset." if mode=="context" else "Sesi direset total."
     return jsonify({"ok": True, "mode": mode, "message": msg, "demo": demo, "predicate": {"TOPIK": chatbot.getPredicate("TOPIK", sid), "gaya_bahasa": chatbot.getPredicate("gaya_bahasa", sid)}})
 
